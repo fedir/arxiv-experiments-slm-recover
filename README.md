@@ -1,7 +1,6 @@
-# Public verification and bounded SLM recovery — research data
+# Verification-Gated Redraw and Repair for Local Small Language Models: A Paired Evaluation
 
-Data accompanying **Public Verification and Bounded Recovery for Two Local Small
-Language Models**, by Fedir Rykhtik, October 2026.
+Research data accompanying this article, by Fedir Rykhtik, October 2026.
 
 This is a **data-only release**, not the original execution pipeline. It contains
 the completed Ornith 1.5 9B / Gemma 4 E4B study: 72 tasks per model (40 HumanEval+,
