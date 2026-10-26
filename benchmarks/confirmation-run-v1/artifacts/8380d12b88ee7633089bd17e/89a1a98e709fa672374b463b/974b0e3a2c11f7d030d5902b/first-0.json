@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\n\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n    if not lst:\n        return True  # An empty list can be considered sorted\n\n    # Check for strict ascending order while allowing duplicates only if they are consecutive\n    # and the count of any number doesn't exceed 2 based on the examples.\n\n    # Re-evaluating the duplicate rule based on examples:\n    # is_sorted([1, 2, 3, 4, 5]) -> True (No duplicates)\n    # is_sorted([1, 2, 2, 3, 3, 4]) -> True (Duplicates allowed, up to pair)\n    # is_sorted([1, 2, 2, 2, 3, 4]) -> False (Three '2's means more than 1 duplicate value)\n\n    # This implies:\n    # 1. The list must be in non-decreasing order (a <= b <= c ...).\n    # 2. For any number, it can appear at most twice in the list.\n\n    # Check strict ascending order (non-decreasing)\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i+1]:\n            return False\n\n    # Check duplicate constraint: no number can appear more than twice.\n    from collections import Counter\n    counts = Counter(lst)\n    for count in counts.values():\n        if count > 2:\n            return False\n\n    # If it passed both checks (sorted non-decreasingly AND no element appears > 2 times)\n    return True\n\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 302,
+      "total_output_tokens": 603,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 45.09695719592954,
+      "time_to_first_token_seconds": 0.283
+    }
+  },
+  "answer": "```python\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n    if not lst:\n        return True  # An empty list can be considered sorted\n\n    # Check for strict ascending order while allowing duplicates only if they are consecutive\n    # and the count of any number doesn't exceed 2 based on the examples.\n\n    # Re-evaluating the duplicate rule based on examples:\n    # is_sorted([1, 2, 3, 4, 5]) -> True (No duplicates)\n    # is_sorted([1, 2, 2, 3, 3, 4]) -> True (Duplicates allowed, up to pair)\n    # is_sorted([1, 2, 2, 2, 3, 4]) -> False (Three '2's means more than 1 duplicate value)\n\n    # This implies:\n    # 1. The list must be in non-decreasing order (a <= b <= c ...).\n    # 2. For any number, it can appear at most twice in the list.\n\n    # Check strict ascending order (non-decreasing)\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i+1]:\n            return False\n\n    # Check duplicate constraint: no number can appear more than twice.\n    from collections import Counter\n    counts = Counter(lst)\n    for count in counts.values():\n        if count > 2:\n            return False\n\n    # If it passed both checks (sorted non-decreasingly AND no element appears > 2 times)\n    return True\n\n```",
+  "telemetry": {
+    "request_seconds": 13.672048916996573,
+    "prompt_tokens": 302,
+    "completion_tokens": 603,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "HumanEval/126",
+    "task_sha256": "1eb5a916ff763ccf87d180fb0efd3648bd96c781cc8d20763ed2abe389d61648",
+    "prompt_sha256": "382eb1fb05071b64e835c6903d8c2b876e329eeac2740d35417ad82e2e9f8ddb",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "0 public prompt examples; exit=0; ",
+    "seconds": 0.05568479200883303
+  }
+}

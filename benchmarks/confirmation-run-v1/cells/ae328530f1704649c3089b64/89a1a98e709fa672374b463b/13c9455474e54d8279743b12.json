@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "cv1-sh-literal-bracket-search",
+    "task_sha256": "1994cd7b5213cebca0712293936869d25627b72f2b7c5d7f0fd53d4680f84b73",
+    "prompt_sha256": "5e35f15fbf75a8484e208d098cd60d5d00d260286c05137f395b2c038df3ab57",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/13c9455474e54d8279743b12/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.8503454589954345
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/13c9455474e54d8279743b12/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/13c9455474e54d8279743b12/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 1.565399917002651
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/13c9455474e54d8279743b12/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/13c9455474e54d8279743b12/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 1.6136753749888157
+    }
+  },
+  "cell_seconds": 2.3288565420079976
+}

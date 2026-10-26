@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); Return customer names with no matching order, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); INSERT INTO customers VALUES(1,'Ada'),(2,'Bo'); INSERT INTO orders VALUES(1);\", \"expected\": [[\"Bo\"]], \"ordered\": true}]\n\nASSISTANT:\n```python\ndef get_customers_without_orders(customers, orders):\n    \"\"\"\n    Returns customer names with no matching order, sorted by name.\n\n    Args:\n        customers (list of tuples): List representing the customers table [(id, name), ...].\n        orders (list of tuples): List representing the orders table [(customer_id,), ...].\n\n    Returns:\n        list of lists: The matching customer names, sorted by name.\n    \"\"\"\n    # This function simulates the SQL query execution environment based on the prompt's constraints.\n    # The actual implementation focuses on generating the conceptual SQL query structure.\n\n    # Conceptual SQL Query:\n    # SELECT T1.name FROM customers AS T1 LEFT JOIN orders AS T2 ON T1.id = T2.customer_id WHERE T2.customer_id IS NULL ORDER BY T1.name;\n\n    # For the purpose of this execution environment, we assume the underlying system uses the conceptual query.\n    # Since the prompt asks to \"Return only one code block\" containing the solution, and the fixture implies\n    # a testing/execution harness context, we must ensure the conceptual query matches the requirement.\n\n    pass # In a real scenario, this function would execute or return the query string/result.\n```\n\nUSER:\nthe query fails: OperationalError: near \"def\": syntax error Correct the solution. Return only one code block.",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```sqlite\nSELECT customers.name FROM customers LEFT JOIN orders ON customers.id = orders.customer_id WHERE orders.customer_id IS NULL ORDER BY customers.name;\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 482,
+      "total_output_tokens": 39,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 45.9455821702867,
+      "time_to_first_token_seconds": 0.285
+    }
+  },
+  "answer": "```sqlite\nSELECT customers.name FROM customers LEFT JOIN orders ON customers.id = orders.customer_id WHERE orders.customer_id IS NULL ORDER BY customers.name;\n```",
+  "telemetry": {
+    "request_seconds": 1.1518027910060482,
+    "prompt_tokens": 482,
+    "completion_tokens": 39,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-customers-without-orders",
+    "task_sha256": "57c98fa3130be0d15b1b93608ebe64266b2f333c5a29c0f011fc6572ae739312",
+    "prompt_sha256": "024c932c9802fd28eed9af68c8eb1f9234745a75cf44e3296f63e32c035abe28",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0008098749967757612
+  }
+}

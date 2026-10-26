@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE events(id INTEGER,day TEXT); Return event ids dated from 2024-03-01 through 2024-03-31 inclusive, ordered by id. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE events(id INTEGER,day TEXT); INSERT INTO events VALUES(1,'2024-03-10');\", \"expected\": [[1]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef get_march_events(conn):\n    \"\"\"\n    Returns event ids from the events table with dates in March 2024.\n    \"\"\"\n    cursor = conn.cursor()\n    query = \"\"\"\n    SELECT id FROM events WHERE day >= '2024-03-01' AND day <= '2024-03-31' ORDER BY id;\n    \"\"\"\n    cursor.execute(query)\n    return [row[0] for row in cursor.fetchall()]\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 174,
+      "total_output_tokens": 119,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.07496399274475,
+      "time_to_first_token_seconds": 0.187
+    }
+  },
+  "answer": "```python\ndef get_march_events(conn):\n    \"\"\"\n    Returns event ids from the events table with dates in March 2024.\n    \"\"\"\n    cursor = conn.cursor()\n    query = \"\"\"\n    SELECT id FROM events WHERE day >= '2024-03-01' AND day <= '2024-03-31' ORDER BY id;\n    \"\"\"\n    cursor.execute(query)\n    return [row[0] for row in cursor.fetchall()]\n```",
+  "telemetry": {
+    "request_seconds": 2.7855705410038354,
+    "prompt_tokens": 174,
+    "completion_tokens": 119,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-date-window",
+    "task_sha256": "3d8a1d0a77583b3a0c63cf291e740e8e9f46555c387da4ea2ea12cda8c8c4659",
+    "prompt_sha256": "5d492fd6bf8cd7ee6c6a8981417591cbd6ba5d0a6fb61687020d7eb36c287dd3",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.000231999991228804
+  }
+}

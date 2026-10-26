@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/4818f1ef5d02381779ce3b04/R-1.json",
+  "artifact_sha256": "17ee9b3a8fff07771621e91d5998e242c6b889987b734f7ac8e279ac18f6ccc1",
+  "final_grade": {
+    "passed": false,
+    "detail": "the query fails: OperationalError: near \"import\": syntax error"
+  }
+}

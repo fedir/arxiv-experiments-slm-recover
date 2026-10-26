@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nPrint the number of newline-delimited records in records.txt; an unterminated final record still counts. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"records.txt\": \"a\\nb\\n\"}, \"expected\": \"2\\n\"}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```bash\nwc -l < records.txt\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 183,
+      "total_output_tokens": 13,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 50.26131864791424,
+      "time_to_first_token_seconds": 0.16
+    }
+  },
+  "answer": "```bash\nwc -l < records.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.4324317079881439,
+    "prompt_tokens": 183,
+    "completion_tokens": 13,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sh-newline-record-count",
+    "task_sha256": "59f4cc2b02e2a20bef7468c044228655f3cadae211c32e3c688c6ec894540185",
+    "prompt_sha256": "46ae9dda6a1179acd82455b948f134f491b6bb8efbe41135d298a707afdf31f1",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "exit=0, stdout=b'       2\\n', expected=b'2\\n', stderr=b''",
+    "seconds": 0.017046708991983905
+  }
+}

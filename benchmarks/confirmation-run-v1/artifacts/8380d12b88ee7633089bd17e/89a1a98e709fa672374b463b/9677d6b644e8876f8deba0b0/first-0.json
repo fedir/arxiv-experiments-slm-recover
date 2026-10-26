@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nfrom typing import List\n\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\" Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n    \"\"\"\n",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\nfrom typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\" Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n    \"\"\"\n    if not numbers:\n        return []\n\n    min_val = min(numbers)\n    max_val = max(numbers)\n\n    # Handle the edge case where all numbers are the same (range is zero)\n    if max_val == min_val:\n        return [0.0] * len(numbers)\n\n    # Apply the linear transformation: new_value = (old_value - min_val) / (max_val - min_val)\n    range_val = max_val - min_val\n    rescaled_numbers = [round((num - min_val) / range_val, 10) for num in numbers] # Rounding to handle potential float inaccuracies near boundaries\n    return rescaled_numbers\n\nif __name__ == '__main__':\n    import doctest\n    doctest.testmod()\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 176,
+      "total_output_tokens": 324,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.26208262258033,
+      "time_to_first_token_seconds": 0.185
+    }
+  },
+  "answer": "```python\nfrom typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\" Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n    \"\"\"\n    if not numbers:\n        return []\n\n    min_val = min(numbers)\n    max_val = max(numbers)\n\n    # Handle the edge case where all numbers are the same (range is zero)\n    if max_val == min_val:\n        return [0.0] * len(numbers)\n\n    # Apply the linear transformation: new_value = (old_value - min_val) / (max_val - min_val)\n    range_val = max_val - min_val\n    rescaled_numbers = [round((num - min_val) / range_val, 10) for num in numbers] # Rounding to handle potential float inaccuracies near boundaries\n    return rescaled_numbers\n\nif __name__ == '__main__':\n    import doctest\n    doctest.testmod()\n```",
+  "telemetry": {
+    "request_seconds": 7.203236250003101,
+    "prompt_tokens": 176,
+    "completion_tokens": 324,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "HumanEval/21",
+    "task_sha256": "dd5eb71fb5624cfe117c21588f08a07fe6bb303005d690f39c93440968b6bd80",
+    "prompt_sha256": "f52a6194ece21765de1e36ffeede4c09907c1a56959293c41264f1d4e325e664",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "1 public prompt examples; exit=0; ",
+    "seconds": 0.05790208300459199
+  }
+}

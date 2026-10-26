@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE projects(id INTEGER,name TEXT); CREATE TABLE issues(project_id INTEGER,flagged INTEGER); Return project names having at least one flagged issue, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE projects(id INTEGER,name TEXT); CREATE TABLE issues(project_id INTEGER,flagged INTEGER); INSERT INTO projects VALUES(1,'A'); INSERT INTO issues VALUES(1,1);\", \"expected\": [[\"A\"]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```sql\nSELECT T1.name FROM projects AS T1 INNER JOIN issues AS T2 ON T1.id = T2.project_id WHERE T2.flagged = 1 GROUP BY T1.name ORDER BY T1.name;\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 182,
+      "total_output_tokens": 56,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.6031811336435,
+      "time_to_first_token_seconds": 0.186
+    }
+  },
+  "answer": "```sql\nSELECT T1.name FROM projects AS T1 INNER JOIN issues AS T2 ON T1.id = T2.project_id WHERE T2.flagged = 1 GROUP BY T1.name ORDER BY T1.name;\n```",
+  "telemetry": {
+    "request_seconds": 1.4036940410005627,
+    "prompt_tokens": 182,
+    "completion_tokens": 56,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-exists-flagged-project",
+    "task_sha256": "c8b132241c56a79efa68b5e07767c9eba88e2b40d49dc48a5effab62f765befa",
+    "prompt_sha256": "8881423b64d14dd35a4bd7a5b4a8064732c90424db6ee04987c59029371f00ce",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0003496669960441068
+  }
+}

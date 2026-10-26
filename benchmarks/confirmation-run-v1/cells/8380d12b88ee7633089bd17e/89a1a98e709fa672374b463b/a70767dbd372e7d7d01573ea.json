@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "cv1-sql-empty-sales-count",
+    "task_sha256": "35ee1cecf8c776a666a3d08b15b444082cd99e7b5c630fdc281d9a8d104b23e1",
+    "prompt_sha256": "56d4f5a752004161b3c0ba3957a7690ca672c14c9b92b84910184b1a81e02a8c",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/a70767dbd372e7d7d01573ea/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.1244054999988293
+    },
+    "R": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/a70767dbd372e7d7d01573ea/first-0.json",
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/a70767dbd372e7d7d01573ea/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 2.238100417001988
+    },
+    "D": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/a70767dbd372e7d7d01573ea/first-0.json",
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/a70767dbd372e7d7d01573ea/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 2.2580509999970673
+    }
+  },
+  "cell_seconds": 3.371897709002951
+}

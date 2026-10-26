@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE results(score INTEGER); Count non-NULL score values. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE results(score INTEGER); INSERT INTO results VALUES(1),(NULL),(3);\", \"expected\": [[2]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-s3b2j86bphqpqhzv7hrpbf",
+    "object": "chat.completion",
+    "created": 1792959467,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```sql\nSELECT COUNT(score) FROM results;\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 131,
+      "completion_tokens": 13,
+      "total_tokens": 144,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```sql\nSELECT COUNT(score) FROM results;\n```",
+  "telemetry": {
+    "request_seconds": 0.7159261670021806,
+    "prompt_tokens": 131,
+    "completion_tokens": 13,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-s3b2j86bphqpqhzv7hrpbf"
+  },
+  "association": {
+    "task_id": "cv1-sql-nonnull-score-count",
+    "task_sha256": "583b65090e8743e9e174789527dc9dfadaba1887b3de85b015af2ce787f86296",
+    "prompt_sha256": "987b69a900f89f876c09c3871ffdda382c90dca4b66791e2771e5416a8811fdf",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.004412624999531545
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE results(score INTEGER); Count non-NULL score values. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE results(score INTEGER); INSERT INTO results VALUES(1),(NULL),(3);\", \"expected\": [[2]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\nimport sqlite3\n\ndef count_non_null_scores(conn: sqlite3.Connection) -> list[list[int]]:\n    \"\"\"\n    Counts the non-NULL score values from the results table.\n\n    Args:\n        conn: A connection object to the SQLite database.\n\n    Returns:\n        A list of lists containing the count.\n    \"\"\"\n    cursor = conn.cursor()\n    # The query counts all rows where score is not NULL.\n    query = \"SELECT COUNT(score) FROM results;\"\n    cursor.execute(query)\n    result = cursor.fetchone()\n    return [list(result)]\n\nif __name__ == '__main__':\n    # Setup phase from the fixture\n    setup_sql = \"\"\"\n    CREATE TABLE results(score INTEGER); \n    INSERT INTO results VALUES(1),(NULL),(3);\n    \"\"\"\n\n    # Execution phase (calling the function)\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    cursor.executescript(setup_sql)\n\n    # The function call simulates the required read-only SELECT query result\n    result = count_non_null_scores(conn)\n\n    # Verification (optional, for testing locally)\n    print(result) \n    \n    conn.close()\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 134,
+      "total_output_tokens": 288,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 45.28581778067778,
+      "time_to_first_token_seconds": 0.046
+    }
+  },
+  "answer": "```python\nimport sqlite3\n\ndef count_non_null_scores(conn: sqlite3.Connection) -> list[list[int]]:\n    \"\"\"\n    Counts the non-NULL score values from the results table.\n\n    Args:\n        conn: A connection object to the SQLite database.\n\n    Returns:\n        A list of lists containing the count.\n    \"\"\"\n    cursor = conn.cursor()\n    # The query counts all rows where score is not NULL.\n    query = \"SELECT COUNT(score) FROM results;\"\n    cursor.execute(query)\n    result = cursor.fetchone()\n    return [list(result)]\n\nif __name__ == '__main__':\n    # Setup phase from the fixture\n    setup_sql = \"\"\"\n    CREATE TABLE results(score INTEGER); \n    INSERT INTO results VALUES(1),(NULL),(3);\n    \"\"\"\n\n    # Execution phase (calling the function)\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    cursor.executescript(setup_sql)\n\n    # The function call simulates the required read-only SELECT query result\n    result = count_non_null_scores(conn)\n\n    # Verification (optional, for testing locally)\n    print(result) \n    \n    conn.close()\n```",
+  "telemetry": {
+    "request_seconds": 6.420312124988413,
+    "prompt_tokens": 134,
+    "completion_tokens": 288,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-nonnull-score-count",
+    "task_sha256": "583b65090e8743e9e174789527dc9dfadaba1887b3de85b015af2ce787f86296",
+    "prompt_sha256": "987b69a900f89f876c09c3871ffdda382c90dca4b66791e2771e5416a8811fdf",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"import\": syntax error",
+    "seconds": 0.000342958010151051
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE queue(label TEXT,priority INTEGER); Return labels ordered by priority ascending, with NULL priorities last, then label. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE queue(label TEXT,priority INTEGER); INSERT INTO queue VALUES('a',2),('b',1);\", \"expected\": [[\"b\"], [\"a\"]], \"ordered\": true}]"
+      },
+      {
+        "role": "assistant",
+        "content": "```python\nimport sqlite3\n\n\ndef query(queue, **kwargs):\n    conn = sqlite3.connect(\":memory:\")\n    cur = conn.cursor()\n    cur.execute(\"CREATE TABLE queue(label TEXT, priority INTEGER)\")\n    cur.executemany(\"INSERT INTO queue VALUES(?, ?)\", queue)\n    conn.commit()\n\n    cur.execute(\n        \"\"\"\n        SELECT label, priority FROM queue\n        ORDER BY COALESCE(priority, -2147483648), label\n        COLLATE BINARY\n        \"\"\"\n    )\n    rows = cur.fetchall()\n\n    result = []\n    for label, priority in rows:\n        row = [label]\n        if \"priority\" in kwargs or not (kwargs.get(\"ordered\", False) and label is None):\n            row.append(priority)\n        result.append(row)\n\n    conn.close()\n    return result\n\n\nif __name__ == \"__main__\":\n    fixture = [{\"setup\": \"CREATE TABLE queue(label TEXT,priority INTEGER); INSERT INTO queue VALUES('a',2),('b',1);\",\n                \"expected\": [[\"b\"], [\"a\"]], \"ordered\": True}]\n    for item in fixture:\n        conn = sqlite3.connect(\":memory:\")\n        cur = conn.cursor()\n        cur.execute(item[\"setup\"])\n        conn.commit()\n\n        cols = [\"label\", \"priority\"] if item.get(\"ordered\", False) else [\"label\"]\n        query_str = \", \".join(f'\"{c}\"' for c in cols) + f\" FROM queue ORDER BY {query_str} COLLATE BINARY\"\n        cur.execute(query_str)\n        result = [tuple(row) for row in cur.fetchall()]\n\n        expected_cols = [] if item.get(\"ordered\", False) else [\"label\"]\n        col_count = len(expected_cols)\n\n        ok = True\n        if \"expected\" in item and col_count > 0:\n            exp = [row[:col_count] for row in item[\"expected\"]]\n            ok = result == exp\n\n        print(f\"{item.get('setup', '')[:40]} -> {result}  {'PASS' if ok else 'FAIL'}\")\n        conn.close()\n```"
+      },
+      {
+        "role": "user",
+        "content": "the query fails: OperationalError: near \"import\": syntax error Correct the solution. Return only one code block."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-3haq2k4jg5jrxccczcwyjb",
+    "object": "chat.completion",
+    "created": 1792959490,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\nimport sqlite3\n\n\ndef query(queue, **kwargs):\n    conn = sqlite3.connect(\":memory:\")\n    cur = conn.cursor()\n    cur.execute(\"CREATE TABLE queue(label TEXT, priority INTEGER)\")\n    cur.executemany(\"INSERT INTO queue VALUES(?, ?)\", queue)\n    conn.commit()\n\n    ordered = kwargs.get(\"ordered\", False)\n\n    if \"priority\" in queue:\n        cur.execute(\n            \"\"\"\n            SELECT label, priority FROM queue\n            ORDER BY COALESCE(priority, -2147483648), label\n            COLLATE BINARY\n            \"\"\"\n        )\n    else:\n        cur.execute(\"SELECT label FROM queue ORDER BY label COLLATE BINARY\")\n\n    rows = cur.fetchall()\n\n    result = []\n    for row in rows:\n        if ordered and \"priority\" not in queue:\n            result.append([row[0]])\n        else:\n            result.append(list(row))\n\n    conn.close()\n    return result\n\n\nif __name__ == \"__main__\":\n    fixture = [{\"setup\": \"CREATE TABLE queue(label TEXT,priority INTEGER); INSERT INTO queue VALUES('a',2),('b',1);\",\n                \"expected\": [[\"b\"], [\"a\"]], \"ordered\": True}]\n    for item in fixture:\n        conn = sqlite3.connect(\":memory:\")\n        cur = conn.cursor()\n        cur.execute(item[\"setup\"])\n        conn.commit()\n\n        cols = [\"label\", \"priority\"] if item.get(\"ordered\", False) else [\"label\"]\n        query_str = \", \".join(f'\"{c}\"' for c in cols) + f\" FROM queue ORDER BY {query_str} COLLATE BINARY\"\n        cur.execute(query_str)\n        result = [tuple(row) for row in cur.fetchall()]\n\n        expected_cols = [] if item.get(\"ordered\", False) else [\"label\"]\n        col_count = len(expected_cols)\n\n        ok = True\n        if \"expected\" in item and col_count > 0:\n            exp = [row[:col_count] for row in item[\"expected\"]]\n            ok = result == exp\n\n        print(f\"{item.get('setup', '')[:40]} -> {result}  {'PASS' if ok else 'FAIL'}\")\n        conn.close()\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 661,
+      "completion_tokens": 502,
+      "total_tokens": 1163,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\nimport sqlite3\n\n\ndef query(queue, **kwargs):\n    conn = sqlite3.connect(\":memory:\")\n    cur = conn.cursor()\n    cur.execute(\"CREATE TABLE queue(label TEXT, priority INTEGER)\")\n    cur.executemany(\"INSERT INTO queue VALUES(?, ?)\", queue)\n    conn.commit()\n\n    ordered = kwargs.get(\"ordered\", False)\n\n    if \"priority\" in queue:\n        cur.execute(\n            \"\"\"\n            SELECT label, priority FROM queue\n            ORDER BY COALESCE(priority, -2147483648), label\n            COLLATE BINARY\n            \"\"\"\n        )\n    else:\n        cur.execute(\"SELECT label FROM queue ORDER BY label COLLATE BINARY\")\n\n    rows = cur.fetchall()\n\n    result = []\n    for row in rows:\n        if ordered and \"priority\" not in queue:\n            result.append([row[0]])\n        else:\n            result.append(list(row))\n\n    conn.close()\n    return result\n\n\nif __name__ == \"__main__\":\n    fixture = [{\"setup\": \"CREATE TABLE queue(label TEXT,priority INTEGER); INSERT INTO queue VALUES('a',2),('b',1);\",\n                \"expected\": [[\"b\"], [\"a\"]], \"ordered\": True}]\n    for item in fixture:\n        conn = sqlite3.connect(\":memory:\")\n        cur = conn.cursor()\n        cur.execute(item[\"setup\"])\n        conn.commit()\n\n        cols = [\"label\", \"priority\"] if item.get(\"ordered\", False) else [\"label\"]\n        query_str = \", \".join(f'\"{c}\"' for c in cols) + f\" FROM queue ORDER BY {query_str} COLLATE BINARY\"\n        cur.execute(query_str)\n        result = [tuple(row) for row in cur.fetchall()]\n\n        expected_cols = [] if item.get(\"ordered\", False) else [\"label\"]\n        col_count = len(expected_cols)\n\n        ok = True\n        if \"expected\" in item and col_count > 0:\n            exp = [row[:col_count] for row in item[\"expected\"]]\n            ok = result == exp\n\n        print(f\"{item.get('setup', '')[:40]} -> {result}  {'PASS' if ok else 'FAIL'}\")\n        conn.close()\n```",
+  "telemetry": {
+    "request_seconds": 11.374497416996746,
+    "prompt_tokens": 661,
+    "completion_tokens": 502,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-3haq2k4jg5jrxccczcwyjb"
+  },
+  "association": {
+    "task_id": "cv1-sql-nulls-last-labels",
+    "task_sha256": "f604f0d12026657df19a1f2f0a27fd3c7d604374c3697fae8b855426b3aa0b1d",
+    "prompt_sha256": "16554a87269e7ecc781ad0be8e347cdb15cc0d591970ff0cb926524dcd98a371",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"import\": syntax error",
+    "seconds": 0.000295541001833044
+  }
+}

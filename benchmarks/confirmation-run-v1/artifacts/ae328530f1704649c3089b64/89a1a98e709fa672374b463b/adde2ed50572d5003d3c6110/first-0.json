@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print the first colon-separated field of each nonempty line in users.txt. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"users.txt\": \"ada:1\\nbo:2\\n\"}, \"expected\": \"ada\\nbo\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-jxdbmqd6nucbzhq6tggxl7",
+    "object": "chat.completion",
+    "created": 1792959545,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\ncut -d: -f1 users.txt | sed '/^$/d'\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 177,
+      "completion_tokens": 22,
+      "total_tokens": 199,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\ncut -d: -f1 users.txt | sed '/^$/d'\n```",
+  "telemetry": {
+    "request_seconds": 0.9975039590062806,
+    "prompt_tokens": 177,
+    "completion_tokens": 22,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-jxdbmqd6nucbzhq6tggxl7"
+  },
+  "association": {
+    "task_id": "cv1-sh-first-fields",
+    "task_sha256": "fbb345912c96e9109e376ffb04bb1712b3b87c8d98cdeb542178ed483081c080",
+    "prompt_sha256": "5cfb73afb3de910f0c251cc3c27b32e7cdd7330ee367f3fcefe7defce84230b1",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.03403295799216721
+  }
+}

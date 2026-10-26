@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-literal-bracket-search",
+    "task_sha256": "1994cd7b5213cebca0712293936869d25627b72f2b7c5d7f0fd53d4680f84b73",
+    "prompt_sha256": "54315e8631bc3c57d916b7da030faf89ba5c699d49f112715036b687daa07db5",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "D-1.json"
+}

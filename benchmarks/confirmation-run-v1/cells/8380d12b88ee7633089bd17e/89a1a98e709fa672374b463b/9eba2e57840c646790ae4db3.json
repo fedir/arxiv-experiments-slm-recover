@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "HumanEval/50",
+    "task_sha256": "a961986947fd9cc88033b113b6cd46b73e1703cbf64470835bdf7a89b630cfe7",
+    "prompt_sha256": "aee333e08bee4e1ffba4a300628ed1941117baa1232fa4640884e27f1f64efd2",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/9eba2e57840c646790ae4db3/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 3.232599958006176
+    },
+    "R": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/9eba2e57840c646790ae4db3/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 3.232619791000616
+    },
+    "D": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/9eba2e57840c646790ae4db3/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 3.23261704100878
+    }
+  },
+  "cell_seconds": 3.232774124990101
+}

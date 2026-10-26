@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e0c0c29ea4cbbe202d605781/first-0.json",
+  "artifact_sha256": "6b3309a26a93a1e0b3fd5ca97e89120d9cc2c278bafa07f9f46299b375c68bb0",
+  "final_grade": {
+    "passed": false,
+    "detail": "exit=2, stdout=b'', expected=b'b\\na\\nb\\n', stderr=b'grep: invalid option -- P\\nusage: grep [-abcdDEFGHhIiJLlMmnOopqRSsUVvwXxZz] [-A num] [-B num] [-C[num]]\\n\\t[-e pattern] [-f file] [--binary-files=value] [--color=when]\\n\\t[--context[=num]] [--directories=a'"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE products(name TEXT,price INTEGER); Return every product with the highest price, ordered by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE products(name TEXT,price INTEGER); INSERT INTO products VALUES('a',3),('b',8);\", \"expected\": [[\"b\"]], \"ordered\": true}]"
+      },
+      {
+        "role": "assistant",
+        "content": "```python\nimport sqlite3\n\n\ndef get_highest_price_product(cursor):\n    cursor.execute(\"SELECT name FROM products WHERE price = (SELECT MAX(price) FROM products)\")\n    return cursor.fetchall()\n```"
+      },
+      {
+        "role": "user",
+        "content": "the query fails: OperationalError: near \"import\": syntax error Correct the solution. Return only one code block."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-pb7y24pgf6yfpg1agb09h",
+    "object": "chat.completion",
+    "created": 1792959474,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef get_highest_price_product(cursor):\n    cursor.execute(\"SELECT name FROM products WHERE price = (SELECT MAX(price) FROM products)\")\n    return cursor.fetchall()\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 226,
+      "completion_tokens": 40,
+      "total_tokens": 266,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\ndef get_highest_price_product(cursor):\n    cursor.execute(\"SELECT name FROM products WHERE price = (SELECT MAX(price) FROM products)\")\n    return cursor.fetchall()\n```",
+  "telemetry": {
+    "request_seconds": 1.1035327919962583,
+    "prompt_tokens": 226,
+    "completion_tokens": 40,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-pb7y24pgf6yfpg1agb09h"
+  },
+  "association": {
+    "task_id": "cv1-sql-highest-price-ties",
+    "task_sha256": "f87b3e53dbcc339af473dac389202a1629ca8c74015c1d4e6d494ab78214a4b0",
+    "prompt_sha256": "0024638f015abf66b0e8eddda7716a98e05ab9f0080e20b4b65e56b59fd681a9",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.0002843750116880983
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "status": "pass",
+  "analysis_sha256": "848176a97d2ec26e2515618dfefc0236eca20b69bc48331ed1f8f66f558f6ea9",
+  "candidate_grades": 226,
+  "source": "frozen source snapshots; clean temporary directory; copied raw evidence",
+  "environment": "existing pinned evaluator environment and dataset cache, not a fresh dependency installation",
+  "model_calls": 0
+}

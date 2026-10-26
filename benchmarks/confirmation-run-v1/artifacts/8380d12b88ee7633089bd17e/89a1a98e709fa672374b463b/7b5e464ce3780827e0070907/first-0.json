@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nfrom typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    number_map = {\n        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n    }\n\n    # Split the input string into individual number word strings\n    number_list = numbers.split()\n\n    # Convert each string to its integer value\n    int_values = []\n    for num_str in number_list:\n        if num_str in number_map:\n            int_values.append(number_map[num_str])\n\n    # Sort the integer values\n    int_values.sort()\n\n    # Convert the sorted integer values back to their string representations (numberals)\n    reverse_map = {v: k for k, v in number_map.items()}\n    sorted_number_list = [reverse_map[val] for val in int_values]\n\n    # Join them back into a space-delimited string\n    return ' '.join(sorted_number_list)\n\nif __name__ == '__main__':\n    # Example usage and tests based on the docstring example\n    print(f\"'three one five' sorted: '{sort_numbers('three one five')}'\")\n    assert sort_numbers('three one five') == 'one three five'\n\n    # Additional tests\n    print(f\"'nine seven zero' sorted: '{sort_numbers('nine seven zero')}'\")\n    assert sort_numbers('nine seven zero') == 'zero seven nine'\n\n    print(f\"'one two three' sorted: '{sort_numbers('one two three')}'\")\n    assert sort_numbers('one two three') == 'one two three'\n\n    print(f\"'zero' sorted: '{sort_numbers('zero')}'\")\n    assert sort_numbers('zero') == 'zero'\n\n    print(f\"'eight four two' sorted: '{sort_numbers('eight four two')}'\")\n    assert sort_numbers('eight four two') == 'two four eight'\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 154,
+      "total_output_tokens": 584,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.047960558342275,
+      "time_to_first_token_seconds": 0.164
+    }
+  },
+  "answer": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    number_map = {\n        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n    }\n\n    # Split the input string into individual number word strings\n    number_list = numbers.split()\n\n    # Convert each string to its integer value\n    int_values = []\n    for num_str in number_list:\n        if num_str in number_map:\n            int_values.append(number_map[num_str])\n\n    # Sort the integer values\n    int_values.sort()\n\n    # Convert the sorted integer values back to their string representations (numberals)\n    reverse_map = {v: k for k, v in number_map.items()}\n    sorted_number_list = [reverse_map[val] for val in int_values]\n\n    # Join them back into a space-delimited string\n    return ' '.join(sorted_number_list)\n\nif __name__ == '__main__':\n    # Example usage and tests based on the docstring example\n    print(f\"'three one five' sorted: '{sort_numbers('three one five')}'\")\n    assert sort_numbers('three one five') == 'one three five'\n\n    # Additional tests\n    print(f\"'nine seven zero' sorted: '{sort_numbers('nine seven zero')}'\")\n    assert sort_numbers('nine seven zero') == 'zero seven nine'\n\n    print(f\"'one two three' sorted: '{sort_numbers('one two three')}'\")\n    assert sort_numbers('one two three') == 'one two three'\n\n    print(f\"'zero' sorted: '{sort_numbers('zero')}'\")\n    assert sort_numbers('zero') == 'zero'\n\n    print(f\"'eight four two' sorted: '{sort_numbers('eight four two')}'\")\n    assert sort_numbers('eight four two') == 'two four eight'\n```",
+  "telemetry": {
+    "request_seconds": 12.864863417009474,
+    "prompt_tokens": 154,
+    "completion_tokens": 584,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "HumanEval/19",
+    "task_sha256": "937724434285e46ed828f2f7501de1a273ffd2a9cd5dd17383b185b3cbceb706",
+    "prompt_sha256": "69d6d898db13a04287df3f2099f505f1154f1675be19d92031ae5228ce648baa",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "1 public prompt examples; exit=0; ",
+    "seconds": 0.06062558300618548
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE routes(origin TEXT,destination TEXT); Return distinct origin and destination pairs, sorted by origin then destination. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE routes(origin TEXT,destination TEXT); INSERT INTO routes VALUES('A','B'),('B','C');\", \"expected\": [[\"A\", \"B\"], [\"B\", \"C\"]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-zk2fvm6jkc5z45gmxbq2p",
+    "object": "chat.completion",
+    "created": 1792959508,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\nimport sqlite3\n\n\ndef get_distinct_routes():\n    conn = sqlite3.connect(\":memory:\")\n    cursor = conn.cursor()\n    cursor.execute(\"CREATE TABLE routes(origin TEXT, destination TEXT)\")\n    cursor.execute(\n        \"SELECT DISTINCT origin, destination FROM routes ORDER BY origin, destination COLLATE NOBINARY\"\n    )\n    rows = cursor.fetchall()\n    conn.close()\n    return rows\n\n\n# Test with the provided fixture\ndata = [\n    {\"setup\": \"CREATE TABLE routes(origin TEXT, destination TEXT); INSERT INTO routes VALUES('A','B'),('B','C');\",\n     \"expected\": [[\"A\", \"B\"], [\"B\", \"C\"]],\n     \"ordered\": True}\n]\n\nfor test in data:\n    setup = test[\"setup\"]\n    conn = sqlite3.connect(\":memory:\")\n    cursor = conn.cursor()\n    for line in setup.split(\";\"):\n        line = line.strip()\n        if line:\n            cursor.execute(line)\n    conn.close()\n\n    result = get_distinct_routes()\n\n    if test[\"ordered\"]:\n        assert result == sorted(result), f\"Result not ordered: {result}\"\n\n    if test.get(\"expected\"):\n        assert result == test[\"expected\"], f\"Unexpected result: {result}, expected: {test['expected']}\"\n\n    print(f\"Test passed with result: {result}\")\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 155,
+      "completion_tokens": 301,
+      "total_tokens": 456,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\nimport sqlite3\n\n\ndef get_distinct_routes():\n    conn = sqlite3.connect(\":memory:\")\n    cursor = conn.cursor()\n    cursor.execute(\"CREATE TABLE routes(origin TEXT, destination TEXT)\")\n    cursor.execute(\n        \"SELECT DISTINCT origin, destination FROM routes ORDER BY origin, destination COLLATE NOBINARY\"\n    )\n    rows = cursor.fetchall()\n    conn.close()\n    return rows\n\n\n# Test with the provided fixture\ndata = [\n    {\"setup\": \"CREATE TABLE routes(origin TEXT, destination TEXT); INSERT INTO routes VALUES('A','B'),('B','C');\",\n     \"expected\": [[\"A\", \"B\"], [\"B\", \"C\"]],\n     \"ordered\": True}\n]\n\nfor test in data:\n    setup = test[\"setup\"]\n    conn = sqlite3.connect(\":memory:\")\n    cursor = conn.cursor()\n    for line in setup.split(\";\"):\n        line = line.strip()\n        if line:\n            cursor.execute(line)\n    conn.close()\n\n    result = get_distinct_routes()\n\n    if test[\"ordered\"]:\n        assert result == sorted(result), f\"Result not ordered: {result}\"\n\n    if test.get(\"expected\"):\n        assert result == test[\"expected\"], f\"Unexpected result: {result}, expected: {test['expected']}\"\n\n    print(f\"Test passed with result: {result}\")\n```",
+  "telemetry": {
+    "request_seconds": 6.728852250002092,
+    "prompt_tokens": 155,
+    "completion_tokens": 301,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-zk2fvm6jkc5z45gmxbq2p"
+  },
+  "association": {
+    "task_id": "cv1-sql-distinct-route-pairs",
+    "task_sha256": "0b03a0b6d4e6d77024ad0c8ba4e16cbf6f96c239fc3440db046214a7ee33ddce",
+    "prompt_sha256": "2b5a9c58a3bbabbaf8c99fa0e1dc9587834b45f4b5eaf97480926b61e2cf2722",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"import\": syntax error",
+    "seconds": 0.00029999999969732016
+  }
+}

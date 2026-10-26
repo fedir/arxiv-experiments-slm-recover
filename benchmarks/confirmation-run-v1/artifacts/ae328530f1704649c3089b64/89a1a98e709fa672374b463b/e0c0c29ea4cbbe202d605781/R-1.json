@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print text.txt after removing only adjacent duplicate lines. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"text.txt\": \"a\\na\\nb\\n\"}, \"expected\": \"a\\nb\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-a9t4xiwc58eve3pebr5uc",
+    "object": "chat.completion",
+    "created": 1792959556,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nawk '!seen[$0]++' text.txt\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 170,
+      "completion_tokens": 16,
+      "total_tokens": 186,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nawk '!seen[$0]++' text.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.4518257919989992,
+    "prompt_tokens": 170,
+    "completion_tokens": 16,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-a9t4xiwc58eve3pebr5uc"
+  },
+  "association": {
+    "task_id": "cv1-sh-deduplicate-adjacent-lines",
+    "task_sha256": "23cb1a363938b8a75738ce5eb81cb743a083be2e581bb89f7ec2627dfedbfffe",
+    "prompt_sha256": "61f2d531cf7cb347ec7e7171c9b03bb62f904a5f027bf8c91bfe77f89ada0527",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.033521125005790964
+  }
+}

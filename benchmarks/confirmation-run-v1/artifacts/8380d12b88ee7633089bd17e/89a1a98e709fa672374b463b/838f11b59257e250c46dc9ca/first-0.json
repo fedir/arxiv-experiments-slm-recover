@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\n\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    if len(l) <= 1:\n        return True\n\n    is_increasing = all(l[i] <= l[i+1] for i in range(len(l) - 1))\n    is_decreasing = all(l[i] >= l[i+1] for i in range(len(l) - 1))\n\n    return is_increasing or is_decreasing\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 131,
+      "total_output_tokens": 180,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.40856372069831,
+      "time_to_first_token_seconds": 0.112
+    }
+  },
+  "answer": "```python\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    if len(l) <= 1:\n        return True\n\n    is_increasing = all(l[i] <= l[i+1] for i in range(len(l) - 1))\n    is_decreasing = all(l[i] >= l[i+1] for i in range(len(l) - 1))\n\n    return is_increasing or is_decreasing\n```",
+  "telemetry": {
+    "request_seconds": 4.004389291003463,
+    "prompt_tokens": 131,
+    "completion_tokens": 180,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "HumanEval/57",
+    "task_sha256": "5cb39e5bd9008c0bdc0a70ce9f8db084347f44b297533b2b24a9ba223bd0fade",
+    "prompt_sha256": "4a1802fc63048098eb3a124f1e2f42cd81507e8f1597f07465e8a95e8b2e3ede",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "3 public prompt examples; exit=0; ",
+    "seconds": 0.05461079099040944
+  }
+}

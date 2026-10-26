@@ -1,0 +1,24 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Fedir Rykhtik
+
+The author-contributed research data and annotations in this repository are
+licensed under the Creative Commons Attribution 4.0 International License, to
+the extent that the author holds copyright or other licensable rights.
+
+You may share and adapt that material, including commercially, subject to the
+license terms, including attribution, a link to the license, and indication of
+changes. The authoritative license text is:
+
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Suggested attribution:
+Fedir Rykhtik, "Public Verification and Bounded Recovery for Two Local Small
+Language Models," 2026, research data.
+
+This grant does not replace third-party licenses, grant rights the author does
+not hold, or assert exclusive rights in facts or model-generated code. Material
+identified as third-party remains subject to its original terms. In particular,
+HumanEval/EvalPlus-derived content retains the notices and licenses reproduced
+in THIRD_PARTY_NOTICES.md. Model weights and the author's harness scripts are
+not distributed in this data-only repository.

@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print the name of the largest regular file in the current directory; choose the lexicographically greatest full filename on ties. At least one regular file exists. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"a\": \"x\", \"b\": \"xx\"}, \"expected\": \"b\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-8gb3ofyw8ubjag6f9w61xg",
+    "object": "chat.completion",
+    "created": 1792959549,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nls -1 . | grep -E '^-' | awk '{print $NF}' | sort | tail -n1\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 189,
+      "completion_tokens": 30,
+      "total_tokens": 219,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nls -1 . | grep -E '^-' | awk '{print $NF}' | sort | tail -n1\n```",
+  "telemetry": {
+    "request_seconds": 1.1773613750119694,
+    "prompt_tokens": 189,
+    "completion_tokens": 30,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-8gb3ofyw8ubjag6f9w61xg"
+  },
+  "association": {
+    "task_id": "cv1-sh-largest-byte-file",
+    "task_sha256": "2f38e31a2e9f6073a58076abb1d5c832cf2b905ad8b5609670d7c9c6b60b6b6c",
+    "prompt_sha256": "c852a7fe58227130d6ddc3b8ceed1e234a11d037c38a4cfef809a8c3fff38039",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "exit=0, stdout=b'', expected=b'b\\n', stderr=b''",
+    "seconds": 0.014447209003265016
+  }
+}

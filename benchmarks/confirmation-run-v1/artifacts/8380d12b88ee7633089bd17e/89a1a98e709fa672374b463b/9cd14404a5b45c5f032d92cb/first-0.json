@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nFor each nonempty comma-separated line in pairs.csv, print its two fields in reverse order. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"pairs.csv\": \"a,b\\n\"}, \"expected\": \"b,a\\n\"}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```bash\nawk -F',' '{if (NF>1) printf \"%s,%s\\n\", $2,$1}' pairs.csv\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 182,
+      "total_output_tokens": 33,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 47.44317522081948,
+      "time_to_first_token_seconds": 0.162
+    }
+  },
+  "answer": "```bash\nawk -F',' '{if (NF>1) printf \"%s,%s\\n\", $2,$1}' pairs.csv\n```",
+  "telemetry": {
+    "request_seconds": 0.8701553330029128,
+    "prompt_tokens": 182,
+    "completion_tokens": 33,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sh-reverse-fields",
+    "task_sha256": "e9936ba829e2d91eb22deb7e2ca54a97091846bc6fd7dc55802c3e0c1051f701",
+    "prompt_sha256": "7280940c38a61e5adfd10b7ae2b4fd34065d410722a5b12ba5c57b8d59256900",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.015423167002154514
+  }
+}

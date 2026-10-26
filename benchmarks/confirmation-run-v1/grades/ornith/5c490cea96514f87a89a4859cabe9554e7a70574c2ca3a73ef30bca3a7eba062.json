@@ -1,0 +1,10 @@
+{
+  "artifact": "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/cd407095a184e5d296eee4dd/R-1.json",
+  "artifact_sha256": "1f447a56864e13f2cf7df9849e7115fdb0e0bbb4ad94fc8707d336ccdee6adc1",
+  "final_grade": {
+    "task_id": "HumanEval/10",
+    "base_status": "fail",
+    "plus_status": "fail",
+    "passed": false
+  }
+}

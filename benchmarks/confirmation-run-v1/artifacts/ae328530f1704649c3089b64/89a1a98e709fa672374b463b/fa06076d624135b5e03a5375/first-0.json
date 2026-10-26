@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print the number of lines in data.txt containing the literal substring a.b (not a regular expression), including zero when none match. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"data.txt\": \"a.b\\na.b a.b\\n\"}, \"expected\": \"2\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-gp55z4lp7vbpeexem2smqp",
+    "object": "chat.completion",
+    "created": 1792959562,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\ngrep -c 'a.b' data.txt || true\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 186,
+      "completion_tokens": 17,
+      "total_tokens": 203,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\ngrep -c 'a.b' data.txt || true\n```",
+  "telemetry": {
+    "request_seconds": 0.8830512080021435,
+    "prompt_tokens": 186,
+    "completion_tokens": 17,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-gp55z4lp7vbpeexem2smqp"
+  },
+  "association": {
+    "task_id": "cv1-sh-nonoverlapping-literal-count",
+    "task_sha256": "ddc34e42f09a25469c8a54e0807898808e94116e16c0dc2b4adfce6e712fe08c",
+    "prompt_sha256": "3fa52763ee077e0ff07f526e6acf702e96d6347edf882ac85b84f364cf6ab59a",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.04072804099996574
+  }
+}

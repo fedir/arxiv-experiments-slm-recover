@@ -1,0 +1,84 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Prefix every line of input.txt, including blank lines, with its 1-based number and a colon. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"input.txt\": \"a\\nb\\n\"}, \"expected\": \"1:a\\n2:b\\n\"}]"
+      },
+      {
+        "role": "assistant",
+        "content": "```bash\nawk '{printf \"%d:%s\\n\", NR, $0}' input.txt > output.txt\n```"
+      },
+      {
+        "role": "user",
+        "content": "exit=0, stdout=b'', expected=b'1:a\\n2:b\\n', stderr=b'' Correct the solution. Return only one code block."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ne476k2vaacyut7zkg0edq",
+    "object": "chat.completion",
+    "created": 1792959554,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nawk '{printf \"%d:%s\\n\", NR, $0}' input.txt > output.txt\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 249,
+      "completion_tokens": 25,
+      "total_tokens": 274,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nawk '{printf \"%d:%s\\n\", NR, $0}' input.txt > output.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.7271822500042617,
+    "prompt_tokens": 249,
+    "completion_tokens": 25,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-ne476k2vaacyut7zkg0edq"
+  },
+  "association": {
+    "task_id": "cv1-sh-line-prefix-number",
+    "task_sha256": "7bb0530493e3a0f248a6857623b66ec19db4c1980ca4291b3e9aea26a5432755",
+    "prompt_sha256": "ba9e4a3efa3d54717255dc493c0ef9047f3d44bcd0d0df15d4d300636a86313d",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "exit=0, stdout=b'', expected=b'1:a\\n2:b\\n', stderr=b''",
+    "seconds": 0.03869933300302364
+  }
+}

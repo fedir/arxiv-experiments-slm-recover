@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "cv1-sh-reverse-fields",
+    "task_sha256": "e9936ba829e2d91eb22deb7e2ca54a97091846bc6fd7dc55802c3e0c1051f701",
+    "prompt_sha256": "7280940c38a61e5adfd10b7ae2b4fd34065d410722a5b12ba5c57b8d59256900",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/9cd14404a5b45c5f032d92cb/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.987744375001057
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/9cd14404a5b45c5f032d92cb/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.9877629580005305
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/9cd14404a5b45c5f032d92cb/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.9877609160030261
+    }
+  },
+  "cell_seconds": 0.98791875000461
+}

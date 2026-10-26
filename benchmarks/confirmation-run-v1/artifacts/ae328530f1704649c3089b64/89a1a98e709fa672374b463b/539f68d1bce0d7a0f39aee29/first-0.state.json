@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-failed-command-names",
+    "task_sha256": "fe0d260a5538b2a2e31fdc3969351a5f90316a5e1cefb6bf2a477e669c7637e5",
+    "prompt_sha256": "c777e7d7e6871676bb6308c3d6f2e1809e6152986e5cbd64d432b1ed60fdf7f7",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "first-0.json"
+}

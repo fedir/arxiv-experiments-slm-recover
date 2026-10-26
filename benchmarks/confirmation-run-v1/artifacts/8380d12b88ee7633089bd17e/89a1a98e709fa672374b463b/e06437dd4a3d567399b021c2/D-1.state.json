@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-matching-extension-count",
+    "task_sha256": "322fb7fc674418152d1c463a40c29bbf030f4d855ea703ffe1e07304f00fdc04",
+    "prompt_sha256": "49509fa651e5fa2044ff220a21de45c7a6ed486e2a8587c9d3c7262ce9a2730d",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "record": "D-1.json"
+}

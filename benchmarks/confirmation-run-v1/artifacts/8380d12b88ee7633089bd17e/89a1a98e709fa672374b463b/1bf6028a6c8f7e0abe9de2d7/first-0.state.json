@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-highest-price-ties",
+    "task_sha256": "f87b3e53dbcc339af473dac389202a1629ca8c74015c1d4e6d494ab78214a4b0",
+    "prompt_sha256": "907538496115eccba64bfc48fa13c12d1e4705262bd7120b6a81dd5e01b5920d",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "record": "first-0.json"
+}

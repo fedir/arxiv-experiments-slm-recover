@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "HumanEval/17",
+    "task_sha256": "2aeb163e72ad32b8836525ebb5b32f6adacc9fe5a41d6666c57cff99cb55066c",
+    "prompt_sha256": "f6b8a484e5bf900cebff5901ba347644f00a705e08edcf701b42634b81b4b230",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "first-0.json"
+}

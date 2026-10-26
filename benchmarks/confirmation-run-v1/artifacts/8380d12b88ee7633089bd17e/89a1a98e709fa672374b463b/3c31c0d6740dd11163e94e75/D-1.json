@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE readings(temp REAL); Return the average non-NULL temperature rounded to two decimals. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE readings(temp REAL); INSERT INTO readings VALUES(2.0),(4.0);\", \"expected\": [[3.0]], \"ordered\": true}]\n\nASSISTANT:\n```python\ndef get_average_temperature(conn):\n    \"\"\"\n    Calculates the average non-NULL temperature from the readings table, \n    rounded to two decimals.\n\n    Args:\n        conn: A sqlite3 connection object.\n\n    Returns:\n        A list containing the average temperature rounded to two decimals, \n        or None if no readings exist.\n    \"\"\"\n    cursor = conn.cursor()\n    # The query calculates AVG(temp), which automatically ignores NULLs.\n    # ROUND(AVG(temp), 2) rounds the result to two decimal places.\n    query = \"SELECT ROUND(AVG(temp), 2) FROM readings;\"\n    cursor.execute(query)\n    result = cursor.fetchone()\n    \n    if result and result[0] is not None:\n        return [result[0]]\n    else:\n        # Handle case where table is empty or all temps are NULL\n        return []\n\nif __name__ == '__main__':\n    import sqlite3\n    \n    # Setup for testing based on the fixture\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    \n    # Fixture setup: CREATE TABLE readings(temp REAL); INSERT INTO readings VALUES(2.0),(4.0);\n    cursor.execute(\"CREATE TABLE readings(temp REAL);\")\n    cursor.executemany(\"INSERT INTO readings VALUES(?)\", [(2.0,), (4.0,)])\n    conn.commit()\n\n    # Execution\n    average_temp = get_average_temperature(conn)\n    print(f\"Result: {average_temp}\")\n\n    # Verification against fixture expected output\n    expected = [[3.0]]\n    assert average_temp == expected, f\"Expected {expected}, Got {average_temp}\"\n\n    # Test case with NULLs and different values\n    cursor.execute(\"INSERT INTO readings VALUES(10.0), (20.0), (NULL);\")\n    conn.commit()\n    average_temp_2 = get_average_temperature(conn)\n    print(f\"Result 2: {average_temp_2}\") # Average of 10 and 20 is 15.0\n    assert average_temp_2 == [[15.0]]\n\n    # Test case with empty table\n    conn.close()\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    cursor.execute(\"CREATE TABLE readings(temp REAL);\")\n    conn.commit()\n    average_temp_3 = get_average_temperature(conn)\n    print(f\"Result 3: {average_temp_3}\")\n    assert average_temp_3 == []\n\n    conn.close()\n```\n\nUSER:\nthe query fails: OperationalError: near \"def\": syntax error Correct the solution. Return only one code block.",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef get_average_temperature(conn):\n    \"\"\"\n    Calculates the average non-NULL temperature from the readings table, \n    rounded to two decimals.\n\n    Args:\n        conn: A sqlite3 connection object.\n\n    Returns:\n        A list containing the average temperature rounded to two decimals, \n        or an empty list if no readings exist.\n    \"\"\"\n    cursor = conn.cursor()\n    # The query calculates AVG(temp), which automatically ignores NULLs in SQLite.\n    # ROUND(AVG(temp), 2) rounds the result to two decimal places.\n    query = \"SELECT ROUND(AVG(temp), 2) FROM readings;\"\n    cursor.execute(query)\n    result = cursor.fetchone()\n    \n    if result and result[0] is not None:\n        return [result[0]]\n    else:\n        # Handle case where table is empty or all temps are NULL\n        return []\n\nif __name__ == '__main__':\n    import sqlite3\n    \n    # Setup for testing based on the fixture\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    \n    # Fixture setup: CREATE TABLE readings(temp REAL); INSERT INTO readings VALUES(2.0),(4.0);\n    cursor.execute(\"CREATE TABLE readings(temp REAL);\")\n    cursor.executemany(\"INSERT INTO readings VALUES(?)\", [(2.0,), (4.0,)])\n    conn.commit()\n\n    # Execution\n    average_temp = get_average_temperature(conn)\n    print(f\"Result: {average_temp}\")\n\n    # Verification against fixture expected output\n    expected = [[3.0]]\n    assert average_temp == expected, f\"Expected {expected}, Got {average_temp}\"\n\n    # Test case with NULLs and different values\n    cursor.execute(\"INSERT INTO readings VALUES(10.0), (20.0), (NULL);\")\n    conn.commit()\n    average_temp_2 = get_average_temperature(conn)\n    print(f\"Result 2: {average_temp_2}\") # Average of 10 and 20 is 15.0\n    assert average_temp_2 == [[15.0]]\n\n    # Test case with empty table\n    conn.close()\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    cursor.execute(\"CREATE TABLE readings(temp REAL);\")\n    conn.commit()\n    average_temp_3 = get_average_temperature(conn)\n    print(f\"Result 3: {average_temp_3}\")\n    assert average_temp_3 == []\n\n    conn.close()\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 781,
+      "total_output_tokens": 610,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 44.9586608327082,
+      "time_to_first_token_seconds": 0.569
+    }
+  },
+  "answer": "```python\ndef get_average_temperature(conn):\n    \"\"\"\n    Calculates the average non-NULL temperature from the readings table, \n    rounded to two decimals.\n\n    Args:\n        conn: A sqlite3 connection object.\n\n    Returns:\n        A list containing the average temperature rounded to two decimals, \n        or an empty list if no readings exist.\n    \"\"\"\n    cursor = conn.cursor()\n    # The query calculates AVG(temp), which automatically ignores NULLs in SQLite.\n    # ROUND(AVG(temp), 2) rounds the result to two decimal places.\n    query = \"SELECT ROUND(AVG(temp), 2) FROM readings;\"\n    cursor.execute(query)\n    result = cursor.fetchone()\n    \n    if result and result[0] is not None:\n        return [result[0]]\n    else:\n        # Handle case where table is empty or all temps are NULL\n        return []\n\nif __name__ == '__main__':\n    import sqlite3\n    \n    # Setup for testing based on the fixture\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    \n    # Fixture setup: CREATE TABLE readings(temp REAL); INSERT INTO readings VALUES(2.0),(4.0);\n    cursor.execute(\"CREATE TABLE readings(temp REAL);\")\n    cursor.executemany(\"INSERT INTO readings VALUES(?)\", [(2.0,), (4.0,)])\n    conn.commit()\n\n    # Execution\n    average_temp = get_average_temperature(conn)\n    print(f\"Result: {average_temp}\")\n\n    # Verification against fixture expected output\n    expected = [[3.0]]\n    assert average_temp == expected, f\"Expected {expected}, Got {average_temp}\"\n\n    # Test case with NULLs and different values\n    cursor.execute(\"INSERT INTO readings VALUES(10.0), (20.0), (NULL);\")\n    conn.commit()\n    average_temp_2 = get_average_temperature(conn)\n    print(f\"Result 2: {average_temp_2}\") # Average of 10 and 20 is 15.0\n    assert average_temp_2 == [[15.0]]\n\n    # Test case with empty table\n    conn.close()\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n    cursor.execute(\"CREATE TABLE readings(temp REAL);\")\n    conn.commit()\n    average_temp_3 = get_average_temperature(conn)\n    print(f\"Result 3: {average_temp_3}\")\n    assert average_temp_3 == []\n\n    conn.close()\n```",
+  "telemetry": {
+    "request_seconds": 14.153818417005823,
+    "prompt_tokens": 781,
+    "completion_tokens": 610,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-average-nonnull",
+    "task_sha256": "ab1d5db3d34db72fe4d76739ebf649b6a3653df2790ad48eed2c000dc3d229cc",
+    "prompt_sha256": "a60b9dd0468fdeb1c9b5ecb895a0d8f1abfe68d8612be9247d3907778bfedb73",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.00023470800078939646
+  }
+}

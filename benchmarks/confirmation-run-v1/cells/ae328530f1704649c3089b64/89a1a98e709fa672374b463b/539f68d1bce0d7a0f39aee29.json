@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "cv1-sh-failed-command-names",
+    "task_sha256": "fe0d260a5538b2a2e31fdc3969351a5f90316a5e1cefb6bf2a477e669c7637e5",
+    "prompt_sha256": "c777e7d7e6871676bb6308c3d6f2e1809e6152986e5cbd64d432b1ed60fdf7f7",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/539f68d1bce0d7a0f39aee29/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.8792377909994684
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/539f68d1bce0d7a0f39aee29/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.8792589989898261
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/539f68d1bce0d7a0f39aee29/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.8792559569992591
+    }
+  },
+  "cell_seconds": 0.8794151250040159
+}

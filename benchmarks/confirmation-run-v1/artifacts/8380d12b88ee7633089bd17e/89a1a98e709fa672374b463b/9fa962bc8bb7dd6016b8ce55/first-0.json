@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nPrefix every line of input.txt, including blank lines, with its 1-based number and a colon. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"input.txt\": \"a\\nb\\n\"}, \"expected\": \"1:a\\n2:b\\n\"}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```bash\nnl -s ':' input.txt > output.txt && cat output.txt\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 190,
+      "total_output_tokens": 22,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 48.160615723489634,
+      "time_to_first_token_seconds": 0.161
+    }
+  },
+  "answer": "```bash\nnl -s ':' input.txt > output.txt && cat output.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.6325522920087678,
+    "prompt_tokens": 190,
+    "completion_tokens": 22,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sh-line-prefix-number",
+    "task_sha256": "7bb0530493e3a0f248a6857623b66ec19db4c1980ca4291b3e9aea26a5432755",
+    "prompt_sha256": "6b0ec4cf468ac1c713dba33e1f704e10774020f53111a2c7ed40e8345337f465",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "exit=0, stdout=b'     1:a\\n     2:b\\n', expected=b'1:a\\n2:b\\n', stderr=b''",
+    "seconds": 0.019799333007540554
+  }
+}

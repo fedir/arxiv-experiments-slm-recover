@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') \u279e True\n    is_nested('[]]]]]]][[[[[]') \u279e False\n    is_nested('[][]') \u279e False\n    is_nested('[]') \u279e False\n    is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    '''\n"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-y79248hwuiragrs3spq7",
+    "object": "chat.completion",
+    "created": 1792959435,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef is_nested(string):\n    # Count open and close brackets, ignoring any characters that are not '[' or ']'\n    opens = 0\n    closes = 0\n    for ch in string:\n        if ch == '[':\n            opens += 1\n        elif ch == ']':\n            closes += 1\n\n    # If there are more opens than closes, we can always pick a nested pair.\n    if opens > closes:\n        return True\n\n    # Simulate the sequence, tracking how many unmatched open brackets we have.\n    balance = 0\n    min_balance = float('inf')\n    for ch in string:\n        if ch == '[':\n            balance += 1\n        else:  # ch == ']'\n            balance -= 1\n        min_balance = min(min_balance, balance)\n\n    # A valid subsequence exists (no negative balance) only if min_balance >= 0.\n    # A nesting occurs when, at some point, we have an open bracket that is later closed\n    # while still being \"inside\" a previously opened, not-yet-closed bracket.\n    # This happens when the minimum balance is negative relative to available opens,\n    # i.e., there's a point where closes exceed opens up to that point but overall\n    # we can reorder. Concretely, nesting exists iff (opens - closes) at the position\n    # of the closing bracket allows an inner pair. The clean check:\n\n    if min_balance >= 0:\n        # Sequence is balanced; nesting exists iff it's not \"flat\" (no inner brackets).\n        # Check for a bracket that is closed while another is still open:\n        return False  # placeholder, replaced below\n\n    return True\n\n\ndef is_nested(string):\n    opens = 0\n    closes = 0\n    for ch in string:\n        if ch == '[':\n            opens += 1\n        elif ch == ']':\n            closes += 1\n\n    if opens < closes:\n        return False\n\n    # Total open brackets available.\n    total_opens = opens\n    balance = 0\n    # Track the maximum depth reached while we still have open brackets to \"close\" later.\n    max_depth = 0\n\n    # We greedily match each closing bracket to the earliest still-open bracket.\n    open_positions = []  # positions (indices) of unmatched '[' seen so far\n\n    for i, ch in enumerate(string):\n        if ch == '[':\n            open_positions.append(i)\n            balance += 1\n        else:  # ch == ']'\n            if open_positions:\n                # A closing bracket matches the earliest unmatched opening.\n                first_open = open_positions.pop(0)\n                # The matched pair is nested iff the closing bracket comes after a point\n                # where another open bracket was still unmatched \u2014 i.e., there exist\n                # two nested brackets. We detect nesting by checking whether, at any time,\n                # the number of opens still pending exceeds ... see logic below.\n                balance -= 1\n                # After popping one open, the depth of nesting: if there are still opens\n                # pending that were opened before this close, then the closed bracket was\n                # inside them => nested.\n                if balance > 0 and first_open < i:\n                    return True\n            else:\n                # More closes than opens up to here; but overall opens >= closes (checked),\n                # so this can't happen for a valid subsequence \u2014 but be safe:\n                pass\n\n    # If we never returned True during matching, the sequence has no nesting.\n    return False\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 177,
+      "completion_tokens": 789,
+      "total_tokens": 966,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\ndef is_nested(string):\n    # Count open and close brackets, ignoring any characters that are not '[' or ']'\n    opens = 0\n    closes = 0\n    for ch in string:\n        if ch == '[':\n            opens += 1\n        elif ch == ']':\n            closes += 1\n\n    # If there are more opens than closes, we can always pick a nested pair.\n    if opens > closes:\n        return True\n\n    # Simulate the sequence, tracking how many unmatched open brackets we have.\n    balance = 0\n    min_balance = float('inf')\n    for ch in string:\n        if ch == '[':\n            balance += 1\n        else:  # ch == ']'\n            balance -= 1\n        min_balance = min(min_balance, balance)\n\n    # A valid subsequence exists (no negative balance) only if min_balance >= 0.\n    # A nesting occurs when, at some point, we have an open bracket that is later closed\n    # while still being \"inside\" a previously opened, not-yet-closed bracket.\n    # This happens when the minimum balance is negative relative to available opens,\n    # i.e., there's a point where closes exceed opens up to that point but overall\n    # we can reorder. Concretely, nesting exists iff (opens - closes) at the position\n    # of the closing bracket allows an inner pair. The clean check:\n\n    if min_balance >= 0:\n        # Sequence is balanced; nesting exists iff it's not \"flat\" (no inner brackets).\n        # Check for a bracket that is closed while another is still open:\n        return False  # placeholder, replaced below\n\n    return True\n\n\ndef is_nested(string):\n    opens = 0\n    closes = 0\n    for ch in string:\n        if ch == '[':\n            opens += 1\n        elif ch == ']':\n            closes += 1\n\n    if opens < closes:\n        return False\n\n    # Total open brackets available.\n    total_opens = opens\n    balance = 0\n    # Track the maximum depth reached while we still have open brackets to \"close\" later.\n    max_depth = 0\n\n    # We greedily match each closing bracket to the earliest still-open bracket.\n    open_positions = []  # positions (indices) of unmatched '[' seen so far\n\n    for i, ch in enumerate(string):\n        if ch == '[':\n            open_positions.append(i)\n            balance += 1\n        else:  # ch == ']'\n            if open_positions:\n                # A closing bracket matches the earliest unmatched opening.\n                first_open = open_positions.pop(0)\n                # The matched pair is nested iff the closing bracket comes after a point\n                # where another open bracket was still unmatched \u2014 i.e., there exist\n                # two nested brackets. We detect nesting by checking whether, at any time,\n                # the number of opens still pending exceeds ... see logic below.\n                balance -= 1\n                # After popping one open, the depth of nesting: if there are still opens\n                # pending that were opened before this close, then the closed bracket was\n                # inside them => nested.\n                if balance > 0 and first_open < i:\n                    return True\n            else:\n                # More closes than opens up to here; but overall opens >= closes (checked),\n                # so this can't happen for a valid subsequence \u2014 but be safe:\n                pass\n\n    # If we never returned True during matching, the sequence has no nesting.\n    return False\n```",
+  "telemetry": {
+    "request_seconds": 20.235523499999545,
+    "prompt_tokens": 177,
+    "completion_tokens": 789,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-y79248hwuiragrs3spq7"
+  },
+  "association": {
+    "task_id": "HumanEval/132",
+    "task_sha256": "631dfa2c60caabb631d20f0f2f49aef0a68f0a03a744d8c7bdb7e1732bfe4499",
+    "prompt_sha256": "779be1ebbda4646d531b655270f939a8a268107cc7e1647edd44d68b91b69256",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "0 public prompt examples; exit=0; ",
+    "seconds": 0.07657399999152403
+  }
+}

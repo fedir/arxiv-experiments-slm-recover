@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE jobs(status TEXT); Return the count of rows whose status is exactly active, ignoring case. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE jobs(status TEXT); INSERT INTO jobs VALUES('active'),('done');\", \"expected\": [[1]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```sql\nSELECT COUNT(*) FROM jobs WHERE status = 'active';\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 139,
+      "total_output_tokens": 17,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 48.69409135268757,
+      "time_to_first_token_seconds": 0.113
+    }
+  },
+  "answer": "```sql\nSELECT COUNT(*) FROM jobs WHERE status = 'active';\n```",
+  "telemetry": {
+    "request_seconds": 0.4761912090034457,
+    "prompt_tokens": 139,
+    "completion_tokens": 17,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-case-status-count",
+    "task_sha256": "772e53c5259075dd18d550741109d903938f52049053ac934587ef8c68dcd29d",
+    "prompt_sha256": "756151ad3f6bb6f98f70a75a6c68011b09940ad08e58ce675036169858b51bd1",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0003087090008193627
+  }
+}

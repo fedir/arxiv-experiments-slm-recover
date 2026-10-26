@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-highest-price-ties",
+    "task_sha256": "f87b3e53dbcc339af473dac389202a1629ca8c74015c1d4e6d494ab78214a4b0",
+    "prompt_sha256": "0024638f015abf66b0e8eddda7716a98e05ab9f0080e20b4b65e56b59fd681a9",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "D-1.json"
+}

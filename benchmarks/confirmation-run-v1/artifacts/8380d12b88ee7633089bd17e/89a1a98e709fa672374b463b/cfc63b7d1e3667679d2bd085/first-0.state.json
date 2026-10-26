@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-date-window",
+    "task_sha256": "3d8a1d0a77583b3a0c63cf291e740e8e9f46555c387da4ea2ea12cda8c8c4659",
+    "prompt_sha256": "5d492fd6bf8cd7ee6c6a8981417591cbd6ba5d0a6fb61687020d7eb36c287dd3",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "record": "first-0.json"
+}

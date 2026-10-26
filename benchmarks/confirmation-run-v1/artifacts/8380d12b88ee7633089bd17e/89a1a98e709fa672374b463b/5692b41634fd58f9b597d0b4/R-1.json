@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\n\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') \u279e True\n    is_nested('[]]]]]]][[[[[]') \u279e False\n    is_nested('[][]') \u279e False\n    is_nested('[]') \u279e False\n    is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    '''\n",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef is_nested(string):\n    \"\"\"\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') \u279e True\n    is_nested('[]]]]]]][[[[[]') \u279e False\n    is_nested('[][]') \u279e False\n    is_nested('[]') \u279e False\n    is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    \"\"\"\n    stack = []\n    # We need to check for the existence of a *valid* subsequence that is nested.\n    # A sequence is considered \"nested\" if there is a pair of brackets enclosing another pair.\n    # E.g., '[[]]' has nesting, '[]' does not.\n\n    # We can iterate through the string and use a stack to track opening brackets.\n    # If we encounter a closing bracket ']':\n    # 1. If the stack is not empty and the top is '[', we have a matching pair '[]'.\n    # 2. If the stack has more than one element when we match a pair, it implies nesting occurred before or at this point.\n\n    # Let's track the structure depth.\n    depth = 0\n    has_nested = False\n\n    for char in string:\n        if char == '[':\n            depth += 1\n            # If we are already inside a structure (depth > 0) and encounter another opening bracket,\n            # this new bracket is potentially nested within the current structure.\n            if depth > 1:\n                has_nested = True\n        elif char == ']':\n            if depth > 0:\n                # We are closing a bracket.\n                depth -= 1\n            # If depth was 0 and we see ']', it's extraneous, but we ignore that for the validity check here.\n            # Since the problem implies the input is a sequence we are analyzing, we only care about the structure formed.\n            else:\n                # Unmatched ']', ignore for nesting detection based on the provided examples/constraints.\n                pass\n\n    # A valid subsequence must exist for nesting to be possible in a meaningful way.\n    # However, the examples like '[[]]' (which is valid and nested) vs '[[][]]' (valid and nested)\n    # suggest we are looking for the *potential* of nesting within a sequence that could form a valid structure.\n\n    # The crucial insight from the examples:\n    # '[]' -> False (Depth goes 1, 0. Max depth 1)\n    # '[[]]' -> True (Depth goes 1, 2, 1, 0. Max depth 2)\n    # '[[][]]' -> True (Depth goes 1, 2, 3, 2, 1, 0. Max depth 3)\n\n    # If the sequence forms a structure where at some point the depth reaches 2 or more, it means\n    # there was a bracket pair enclosing another bracket (or part of one), implying nesting.\n\n    # We need to ensure that the sequence *could* form a structure where nesting occurs,\n    # and importantly, that this nested structure is part of some valid pairing process.\n\n    # Let's re-run the simulation, tracking both depth and potential nesting markers.\n    \n    depth = 0\n    is_currently_nested = False # Tracks if we are currently inside a structure that has already encountered nesting\n    has_seen_nesting = False # Tracks if at any point, a bracket was nested within another.\n\n    for char in string:\n        if char == '[':\n            depth += 1\n            # If depth > 1, this opening bracket is inside another structure started earlier.\n            if depth >= 2:\n                has_seen_nesting = True\n        elif char == ']':\n            if depth > 0:\n                # We are closing a bracket.\n                depth -= 1\n            # If depth was 0, it's an unmatched ']'. We ignore it as per the problem context focusing on subsequence potential.\n            # If we allow unmatched brackets, the definition of \"valid subsequence\" becomes tricky.\n            # Assuming the question implies we are looking for nesting within any contiguous substring that forms part of a larger balanced sequence, \n            # or perhaps just within the input string itself.\n\n    # If we strictly follow the examples, the condition seems to be:\n    # 1. The string must contain at least one pair of matching brackets (i"
+      }
+    ],
+    "stats": {
+      "input_tokens": 182,
+      "total_output_tokens": 1023,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 44.41646405001737,
+      "time_to_first_token_seconds": 0.188
+    }
+  },
+  "answer": "```python\ndef is_nested(string):\n    \"\"\"\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') \u279e True\n    is_nested('[]]]]]]][[[[[]') \u279e False\n    is_nested('[][]') \u279e False\n    is_nested('[]') \u279e False\n    is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    \"\"\"\n    stack = []\n    # We need to check for the existence of a *valid* subsequence that is nested.\n    # A sequence is considered \"nested\" if there is a pair of brackets enclosing another pair.\n    # E.g., '[[]]' has nesting, '[]' does not.\n\n    # We can iterate through the string and use a stack to track opening brackets.\n    # If we encounter a closing bracket ']':\n    # 1. If the stack is not empty and the top is '[', we have a matching pair '[]'.\n    # 2. If the stack has more than one element when we match a pair, it implies nesting occurred before or at this point.\n\n    # Let's track the structure depth.\n    depth = 0\n    has_nested = False\n\n    for char in string:\n        if char == '[':\n            depth += 1\n            # If we are already inside a structure (depth > 0) and encounter another opening bracket,\n            # this new bracket is potentially nested within the current structure.\n            if depth > 1:\n                has_nested = True\n        elif char == ']':\n            if depth > 0:\n                # We are closing a bracket.\n                depth -= 1\n            # If depth was 0 and we see ']', it's extraneous, but we ignore that for the validity check here.\n            # Since the problem implies the input is a sequence we are analyzing, we only care about the structure formed.\n            else:\n                # Unmatched ']', ignore for nesting detection based on the provided examples/constraints.\n                pass\n\n    # A valid subsequence must exist for nesting to be possible in a meaningful way.\n    # However, the examples like '[[]]' (which is valid and nested) vs '[[][]]' (valid and nested)\n    # suggest we are looking for the *potential* of nesting within a sequence that could form a valid structure.\n\n    # The crucial insight from the examples:\n    # '[]' -> False (Depth goes 1, 0. Max depth 1)\n    # '[[]]' -> True (Depth goes 1, 2, 1, 0. Max depth 2)\n    # '[[][]]' -> True (Depth goes 1, 2, 3, 2, 1, 0. Max depth 3)\n\n    # If the sequence forms a structure where at some point the depth reaches 2 or more, it means\n    # there was a bracket pair enclosing another bracket (or part of one), implying nesting.\n\n    # We need to ensure that the sequence *could* form a structure where nesting occurs,\n    # and importantly, that this nested structure is part of some valid pairing process.\n\n    # Let's re-run the simulation, tracking both depth and potential nesting markers.\n    \n    depth = 0\n    is_currently_nested = False # Tracks if we are currently inside a structure that has already encountered nesting\n    has_seen_nesting = False # Tracks if at any point, a bracket was nested within another.\n\n    for char in string:\n        if char == '[':\n            depth += 1\n            # If depth > 1, this opening bracket is inside another structure started earlier.\n            if depth >= 2:\n                has_seen_nesting = True\n        elif char == ']':\n            if depth > 0:\n                # We are closing a bracket.\n                depth -= 1\n            # If depth was 0, it's an unmatched ']'. We ignore it as per the problem context focusing on subsequence potential.\n            # If we allow unmatched brackets, the definition of \"valid subsequence\" becomes tricky.\n            # Assuming the question implies we are looking for nesting within any contiguous substring that forms part of a larger balanced sequence, \n            # or perhaps just within the input string itself.\n\n    # If we strictly follow the examples, the condition seems to be:\n    # 1. The string must contain at least one pair of matching brackets (i",
+  "telemetry": {
+    "request_seconds": 23.235429541004123,
+    "prompt_tokens": 182,
+    "completion_tokens": 1023,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "HumanEval/132",
+    "task_sha256": "631dfa2c60caabb631d20f0f2f49aef0a68f0a03a744d8c7bdb7e1732bfe4499",
+    "prompt_sha256": "779be1ebbda4646d531b655270f939a8a268107cc7e1647edd44d68b91b69256",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "invalid Python: invalid syntax (candidate.py, line 15)",
+    "seconds": 0.00042220798786729574
+  }
+}

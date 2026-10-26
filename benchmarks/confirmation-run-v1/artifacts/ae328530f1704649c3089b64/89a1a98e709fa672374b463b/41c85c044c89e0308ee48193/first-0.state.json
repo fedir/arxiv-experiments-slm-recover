@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-having-three-visits",
+    "task_sha256": "6cda9036d21786521de892bf5f579ac80c44eb14e1a3ed63e89ed934fbaa2377",
+    "prompt_sha256": "f1f21740f0dcc6a6e638df9e9202819013dc9311405f34912219202a78d4ddd7",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "first-0.json"
+}

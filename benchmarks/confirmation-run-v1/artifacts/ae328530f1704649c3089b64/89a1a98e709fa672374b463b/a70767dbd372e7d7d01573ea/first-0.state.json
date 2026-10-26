@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-empty-sales-count",
+    "task_sha256": "35ee1cecf8c776a666a3d08b15b444082cd99e7b5c630fdc281d9a8d104b23e1",
+    "prompt_sha256": "56d4f5a752004161b3c0ba3957a7690ca672c14c9b92b84910184b1a81e02a8c",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "first-0.json"
+}

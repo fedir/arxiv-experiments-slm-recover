@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "HumanEval/91",
+    "task_sha256": "cfc0a9e458b5855a17ff3314714dcd86b567b73517dbad1204a8941ada8fa474",
+    "prompt_sha256": "a61e090615de490b73d93185eef495658a6276131c94dccb9f027b4bf3fb09e9",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/018086361691188d2994b139/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 5.628399749999517
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/018086361691188d2994b139/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 5.628418833002797
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/018086361691188d2994b139/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 5.628417290994548
+    }
+  },
+  "cell_seconds": 5.628571667009965
+}

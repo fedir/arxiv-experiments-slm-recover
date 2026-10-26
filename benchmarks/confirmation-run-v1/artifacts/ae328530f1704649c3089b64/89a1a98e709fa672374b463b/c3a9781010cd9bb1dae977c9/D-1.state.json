@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-length-filter",
+    "task_sha256": "3809dc5ebd681ba26840be14315f14ade9d6a2f9c22386d390ecfed588f3b00f",
+    "prompt_sha256": "2b720cbbba565d6d395fe42177ba9e450edc41cd046f8ae1906b03bf263ef6a4",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "D-1.json"
+}

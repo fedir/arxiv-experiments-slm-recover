@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-mzxv3ggumlih1vmbi3u28",
+    "object": "chat.completion",
+    "created": 1792959336,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef closest_integer(value):\n    number = float(value)\n    result = round(number + 0.000001) if number >= 0 else round(number - 0.000001)\n    return int(result)\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 211,
+      "completion_tokens": 60,
+      "total_tokens": 271,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\ndef closest_integer(value):\n    number = float(value)\n    result = round(number + 0.000001) if number >= 0 else round(number - 0.000001)\n    return int(result)\n```",
+  "telemetry": {
+    "request_seconds": 1.5481467089994112,
+    "prompt_tokens": 211,
+    "completion_tokens": 60,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-mzxv3ggumlih1vmbi3u28"
+  },
+  "association": {
+    "task_id": "HumanEval/99",
+    "task_sha256": "ff28470a9abf136511b1eb3e27d9554ec8e2c9ade37ca5fb2bfc1a0a17c1124e",
+    "prompt_sha256": "80fbd8d0ae3f4f4dfc6e2674ee38f0baf8b1303e3b9a849caf48a4428dde06f6",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "2 public prompt examples; exit=0; ",
+    "seconds": 0.05852620799851138
+  }
+}

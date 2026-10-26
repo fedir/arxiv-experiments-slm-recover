@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE sales(id INTEGER); Return the number of sales rows, including zero for an empty table. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE sales(id INTEGER); INSERT INTO sales VALUES(1);\", \"expected\": [[1]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-2ogsq8nfvk25bsig86uwa8",
+    "object": "chat.completion",
+    "created": 1792959503,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```sql\nSELECT COUNT(*) FROM sales;\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 134,
+      "completion_tokens": 12,
+      "total_tokens": 146,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```sql\nSELECT COUNT(*) FROM sales;\n```",
+  "telemetry": {
+    "request_seconds": 0.36430279100022744,
+    "prompt_tokens": 134,
+    "completion_tokens": 12,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-2ogsq8nfvk25bsig86uwa8"
+  },
+  "association": {
+    "task_id": "cv1-sql-empty-sales-count",
+    "task_sha256": "35ee1cecf8c776a666a3d08b15b444082cd99e7b5c630fdc281d9a8d104b23e1",
+    "prompt_sha256": "56d4f5a752004161b3c0ba3957a7690ca672c14c9b92b84910184b1a81e02a8c",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0002942080027423799
+  }
+}

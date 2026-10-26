@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE files(filename TEXT); Return filenames longer than four characters, sorted by filename. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');\", \"expected\": [[\"alpha\"]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef query_files(db):\n    \"\"\"\n    Executes a SQLite query to select filenames longer than four characters, sorted by filename.\n\n    Args:\n        db: A connection object to the SQLite database.\n\n    Returns:\n        A list of tuples, where each tuple contains the matching filenames.\n    \"\"\"\n    cursor = db.cursor()\n    # Select filename where its length is greater than 4, ordered by filename ascending.\n    sql = \"SELECT filename FROM files WHERE LENGTH(filename) > 4 ORDER BY filename;\"\n    cursor.execute(sql)\n    return cursor.fetchall()\n\nif __name__ == '__main__':\n    import sqlite3\n\n    def setup_db(db, schema_sql, insert_values):\n        cursor = db.cursor()\n        # Execute schema creation\n        cursor.executescript(schema_sql)\n        # Insert values\n        cursor.executemany(\"INSERT INTO files VALUES(?)\", [tuple(v) for v in insert_values])\n        db.commit()\n\n    # --- Test Case 1: Fixture provided in the prompt ---\n    print(\"--- Running Test Case 1 ---\")\n    conn = sqlite3.connect(':memory:')\n    try:\n        # Setup based on the fixture provided in the prompt description (though the fixture itself is minimal)\n        schema = \"CREATE TABLE files(filename TEXT);\"\n        # The provided fixture setup inserts 'alpha' and 'beta'. Neither is > 4 chars.\n        # If we strictly follow the fixture setup:\n        fixture_setup = \"CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');\"\n        setup_db(conn, fixture_setup.split(';')[0], [('alpha',), ('beta',)])\n\n        # Expected result for this fixture is [] because neither 'alpha' nor 'beta' are > 4 chars.\n        # The fixture says expected: [[\"alpha\"]], which implies the query should return 'alpha'.\n        # This is a contradiction: if the filter > 4 chars applies, 'alpha' (5 chars) passes.\n        # Let's assume the filter condition (> 4 chars) is primary, and the fixture expectation might be flawed regarding its own setup/expected match.\n        # If 'alpha' is expected, then the filter must be <= 5 chars OR the setup values must be different.\n\n        # Given the strict requirement: \"Return filenames longer than four characters\"\n        # 'alpha' has length 5. It IS longer than four characters (if counting starts at 1).\n        # Length of 'alpha' is 5. 5 > 4 is True. So 'alpha' should be returned.\n\n        # Running the query:\n        results = query_files(conn)\n        print(\"Query Results:\", results)\n\n        # Assert based on the strict interpretation of the requirement and the data:\n        assert results == [('alpha',)], \"Test Case 1 Failed based on strict interpretation (> 4 chars)\"\n\n    finally:\n        conn.close()\n\n    # --- Additional Test Case to verify behavior for clearer testing ---\n    print(\"\\n--- Running Verification Test Case ---\")\n    conn = sqlite3.connect(':memory:')\n    try:\n        # Setup with mixed lengths\n        setup_sql = \"CREATE TABLE files(filename TEXT);\"\n        insert_data = [('a',), ('b',), ('cdef',), ('gemma',), ('longfilename',)]\n        setup_db(conn, setup_sql, insert_data)\n\n        # Expected: 'gemma' (5), 'longfilename' (12). Sorted alphabetically.\n        expected_results = [('gemma',), ('longfilename',)]\n\n        # Run query\n        cursor = conn.cursor()\n        sql = \"SELECT filename FROM files WHERE LENGTH(filename) > 4 ORDER BY filename;\"\n        cursor.execute(sql)\n        actual_results = cursor.fetchall()\n\n        print(\"Verification Test Results:\", actual_results)\n        assert actual_results == expected_results, \"Verification Test Failed\"\n\n    finally:\n        conn.close()\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 138,
+      "total_output_tokens": 908,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 45.198723116319925,
+      "time_to_first_token_seconds": 0.164
+    }
+  },
+  "answer": "```python\ndef query_files(db):\n    \"\"\"\n    Executes a SQLite query to select filenames longer than four characters, sorted by filename.\n\n    Args:\n        db: A connection object to the SQLite database.\n\n    Returns:\n        A list of tuples, where each tuple contains the matching filenames.\n    \"\"\"\n    cursor = db.cursor()\n    # Select filename where its length is greater than 4, ordered by filename ascending.\n    sql = \"SELECT filename FROM files WHERE LENGTH(filename) > 4 ORDER BY filename;\"\n    cursor.execute(sql)\n    return cursor.fetchall()\n\nif __name__ == '__main__':\n    import sqlite3\n\n    def setup_db(db, schema_sql, insert_values):\n        cursor = db.cursor()\n        # Execute schema creation\n        cursor.executescript(schema_sql)\n        # Insert values\n        cursor.executemany(\"INSERT INTO files VALUES(?)\", [tuple(v) for v in insert_values])\n        db.commit()\n\n    # --- Test Case 1: Fixture provided in the prompt ---\n    print(\"--- Running Test Case 1 ---\")\n    conn = sqlite3.connect(':memory:')\n    try:\n        # Setup based on the fixture provided in the prompt description (though the fixture itself is minimal)\n        schema = \"CREATE TABLE files(filename TEXT);\"\n        # The provided fixture setup inserts 'alpha' and 'beta'. Neither is > 4 chars.\n        # If we strictly follow the fixture setup:\n        fixture_setup = \"CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');\"\n        setup_db(conn, fixture_setup.split(';')[0], [('alpha',), ('beta',)])\n\n        # Expected result for this fixture is [] because neither 'alpha' nor 'beta' are > 4 chars.\n        # The fixture says expected: [[\"alpha\"]], which implies the query should return 'alpha'.\n        # This is a contradiction: if the filter > 4 chars applies, 'alpha' (5 chars) passes.\n        # Let's assume the filter condition (> 4 chars) is primary, and the fixture expectation might be flawed regarding its own setup/expected match.\n        # If 'alpha' is expected, then the filter must be <= 5 chars OR the setup values must be different.\n\n        # Given the strict requirement: \"Return filenames longer than four characters\"\n        # 'alpha' has length 5. It IS longer than four characters (if counting starts at 1).\n        # Length of 'alpha' is 5. 5 > 4 is True. So 'alpha' should be returned.\n\n        # Running the query:\n        results = query_files(conn)\n        print(\"Query Results:\", results)\n\n        # Assert based on the strict interpretation of the requirement and the data:\n        assert results == [('alpha',)], \"Test Case 1 Failed based on strict interpretation (> 4 chars)\"\n\n    finally:\n        conn.close()\n\n    # --- Additional Test Case to verify behavior for clearer testing ---\n    print(\"\\n--- Running Verification Test Case ---\")\n    conn = sqlite3.connect(':memory:')\n    try:\n        # Setup with mixed lengths\n        setup_sql = \"CREATE TABLE files(filename TEXT);\"\n        insert_data = [('a',), ('b',), ('cdef',), ('gemma',), ('longfilename',)]\n        setup_db(conn, setup_sql, insert_data)\n\n        # Expected: 'gemma' (5), 'longfilename' (12). Sorted alphabetically.\n        expected_results = [('gemma',), ('longfilename',)]\n\n        # Run query\n        cursor = conn.cursor()\n        sql = \"SELECT filename FROM files WHERE LENGTH(filename) > 4 ORDER BY filename;\"\n        cursor.execute(sql)\n        actual_results = cursor.fetchall()\n\n        print(\"Verification Test Results:\", actual_results)\n        assert actual_results == expected_results, \"Verification Test Failed\"\n\n    finally:\n        conn.close()\n```",
+  "telemetry": {
+    "request_seconds": 20.26909595899633,
+    "prompt_tokens": 138,
+    "completion_tokens": 908,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-length-filter",
+    "task_sha256": "3809dc5ebd681ba26840be14315f14ade9d6a2f9c22386d390ecfed588f3b00f",
+    "prompt_sha256": "2eff6c94b5a449df8b7ad1878095e0f989424aebfce3eea12a83477710be7239",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.0002597920101834461
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n"
+      },
+      {
+        "role": "assistant",
+        "content": "```python\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n    num = float(value)\n    floor_num = int(num)\n\n    if num == int(num):\n        return num\n\n    # If the fractional part is exactly 0.5, round away from zero\n    if num > 0:\n        return floor_num + 1\n    else:\n        return floor_num - 1\n\n    # For non-equidistant cases, use standard rounding\n    if num - floor_num > 0.5:\n        return floor_num + 1\n    else:\n        return floor_num\n```"
+      },
+      {
+        "role": "user",
+        "content": "2 public prompt examples; exit=1; **********************************************************************\nFile \"prompt\", line 8, in public\nFailed example:\n    closest_integer(\"15.3\")\nExpected:\n    15\nGot:\n    16\nTraceback (most recent call last):\n  File \"<string>\", line 22, in <module>\nAssertionError: public prompt examples failed\n Correct the solution. Return only one code block."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-f4ukvpf5g7c8vozvhz5f26",
+    "object": "chat.completion",
+    "created": 1792959337,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n    num = float(value)\n    floor_num = int(num)\n\n    # For non-equidistant cases, use standard rounding\n    if num - floor_num > 0.5:\n        return floor_num + 1\n\n    # For equidistant cases (exactly 0.5), round away from zero\n    if num - floor_num == 0.5:\n        return floor_num + (1 if num >= 0 else -1)\n\n    return floor_num\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 606,
+      "completion_tokens": 275,
+      "total_tokens": 881,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n    num = float(value)\n    floor_num = int(num)\n\n    # For non-equidistant cases, use standard rounding\n    if num - floor_num > 0.5:\n        return floor_num + 1\n\n    # For equidistant cases (exactly 0.5), round away from zero\n    if num - floor_num == 0.5:\n        return floor_num + (1 if num >= 0 else -1)\n\n    return floor_num\n```",
+  "telemetry": {
+    "request_seconds": 7.025955166987842,
+    "prompt_tokens": 606,
+    "completion_tokens": 275,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-f4ukvpf5g7c8vozvhz5f26"
+  },
+  "association": {
+    "task_id": "HumanEval/99",
+    "task_sha256": "ff28470a9abf136511b1eb3e27d9554ec8e2c9ade37ca5fb2bfc1a0a17c1124e",
+    "prompt_sha256": "3252ea1cb65082320ae7ba080faf9a9ff31992b14df987e85b3607bc57398f48",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "2 public prompt examples; exit=0; ",
+    "seconds": 0.05713795899646357
+  }
+}

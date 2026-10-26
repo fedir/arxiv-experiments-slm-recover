@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-exists-flagged-project",
+    "task_sha256": "c8b132241c56a79efa68b5e07767c9eba88e2b40d49dc48a5effab62f765befa",
+    "prompt_sha256": "8881423b64d14dd35a4bd7a5b4a8064732c90424db6ee04987c59029371f00ce",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "first-0.json"
+}

@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "cv1-sql-highest-price-ties",
+    "task_sha256": "f87b3e53dbcc339af473dac389202a1629ca8c74015c1d4e6d494ab78214a4b0",
+    "prompt_sha256": "907538496115eccba64bfc48fa13c12d1e4705262bd7120b6a81dd5e01b5920d",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/1bf6028a6c8f7e0abe9de2d7/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.5670247079979163
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/1bf6028a6c8f7e0abe9de2d7/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/1bf6028a6c8f7e0abe9de2d7/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 5.231803665999905
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/1bf6028a6c8f7e0abe9de2d7/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/1bf6028a6c8f7e0abe9de2d7/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 2.674676417009323
+    }
+  },
+  "cell_seconds": 6.339596082994831
+}

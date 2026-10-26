@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/acf555e13610ffe1e6109ad0/D-1.json",
+  "artifact_sha256": "4a770370dac0c140d9650f43ae990e75ae7aa56da8825a89a3ff005d6d8210b9",
+  "final_grade": {
+    "passed": false,
+    "detail": "exit=0, stdout=b'apple\\nbanana\\napple\\n\\n', expected=b'apple\\nbanana\\n', stderr=b''"
+  }
+}

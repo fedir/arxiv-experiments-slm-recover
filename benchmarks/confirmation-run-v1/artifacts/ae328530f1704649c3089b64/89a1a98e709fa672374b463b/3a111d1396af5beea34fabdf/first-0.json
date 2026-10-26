@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "From people.csv with header name,status, print active names sorted. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"people.csv\": \"name,status\\nAda,active\\nBo,inactive\\n\"}, \"expected\": \"Ada\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-4xtdahrqzz6izek2bvytw",
+    "object": "chat.completion",
+    "created": 1792959551,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nawk -F, '$2==\"active\"{print $1}' people.csv | sort\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 176,
+      "completion_tokens": 23,
+      "total_tokens": 199,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nawk -F, '$2==\"active\"{print $1}' people.csv | sort\n```",
+  "telemetry": {
+    "request_seconds": 1.015252541998052,
+    "prompt_tokens": 176,
+    "completion_tokens": 23,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-4xtdahrqzz6izek2bvytw"
+  },
+  "association": {
+    "task_id": "cv1-sh-csv-active-names",
+    "task_sha256": "a7b0ef60b7209f8b59962a3de712532accd939d6e5d848f6103b6e876d1b76c4",
+    "prompt_sha256": "dab6397a13f0876ea315e2f9df1d84451fe7cc47f5ab42f2fb6195d86f00b248",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0419694579904899
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE files(filename TEXT); Return filenames longer than four characters, sorted by filename. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');\", \"expected\": [[\"alpha\"]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef get_long_filenames(conn):\n    \"\"\"\n    Returns filenames from the 'files' table that are longer than four characters, \n    sorted by filename.\n\n    Args:\n        conn: sqlite3 connection object.\n\n    Returns:\n        list of tuples: Each tuple contains the filename string.\n    \"\"\"\n    cursor = conn.cursor()\n    query = \"\"\"\n    SELECT filename FROM files WHERE length(filename) > 4 ORDER BY filename;\n    \"\"\"\n    cursor.execute(query)\n    return cursor.fetchall()\n\nif __name__ == '__main__':\n    import sqlite3\n\n    def test_get_long_filenames():\n        # Test Case 1: Fixture provided in prompt (but expecting filtered output)\n        print(\"--- Running Test Case 1 ---\")\n        conn = sqlite3.connect(':memory:')\n        cursor = conn.cursor()\n        \n        # Setup provided in prompt: [{\"setup\": \"CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');\", ...}]\n        # Note: The setup data ('alpha', 'beta') are both 5 characters long if we assume the prompt's example setup is literal,\n        # but 'alpha' is 5 and 'beta' is 4. Let's adjust the setup to match the expected output if needed, \n        # or assume the expectation is based on a different data set.\n\n        # To match the example's *expected* output [[\"alpha\"]], we must assume 'alpha' is > 4 chars and 'beta' <= 4 chars.\n        # If 'alpha' is 5, it passes. If 'beta' is 4, it fails.\n        # Let's use data that clearly demonstrates the filter:\n        setup_data = [\n            (\"short\",), \n            (\"longer\",), \n            (\"long\",) # <= 4 chars, won't pass filter if length is checked strictly\n        ]\n        \n        # Replicating the fixture's setup for testing:\n        conn.execute(\"CREATE TABLE files(filename TEXT);\")\n        # Assuming 'alpha' (5) and 'beta' (4). If expected is [[\"alpha\"]], then beta must be 4 or less.\n        conn.executemany(\"INSERT INTO files VALUES(?)\", [('alpha',), ('beta',)])\n        conn.commit()\n\n        # Execute function\n        results = get_long_filenames(conn)\n        \n        # Expected result based on the strict interpretation of the filter (length > 4) and the provided setup:\n        # 'alpha' length is 5 (> 4). 'beta' length is 4 (not > 4).\n        expected_result = [('alpha',)]\n\n        print(f\"Actual Results: {results}\")\n        print(f\"Expected Results: {expected_result}\")\n        assert results == expected_result, \"Test Failed\"\n        print(\"Test Passed!\")\n\n        conn.close()\n\n    test_get_long_filenames()\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 138,
+      "total_output_tokens": 672,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 45.310856624704684,
+      "time_to_first_token_seconds": 0.114
+    }
+  },
+  "answer": "```python\ndef get_long_filenames(conn):\n    \"\"\"\n    Returns filenames from the 'files' table that are longer than four characters, \n    sorted by filename.\n\n    Args:\n        conn: sqlite3 connection object.\n\n    Returns:\n        list of tuples: Each tuple contains the filename string.\n    \"\"\"\n    cursor = conn.cursor()\n    query = \"\"\"\n    SELECT filename FROM files WHERE length(filename) > 4 ORDER BY filename;\n    \"\"\"\n    cursor.execute(query)\n    return cursor.fetchall()\n\nif __name__ == '__main__':\n    import sqlite3\n\n    def test_get_long_filenames():\n        # Test Case 1: Fixture provided in prompt (but expecting filtered output)\n        print(\"--- Running Test Case 1 ---\")\n        conn = sqlite3.connect(':memory:')\n        cursor = conn.cursor()\n        \n        # Setup provided in prompt: [{\"setup\": \"CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');\", ...}]\n        # Note: The setup data ('alpha', 'beta') are both 5 characters long if we assume the prompt's example setup is literal,\n        # but 'alpha' is 5 and 'beta' is 4. Let's adjust the setup to match the expected output if needed, \n        # or assume the expectation is based on a different data set.\n\n        # To match the example's *expected* output [[\"alpha\"]], we must assume 'alpha' is > 4 chars and 'beta' <= 4 chars.\n        # If 'alpha' is 5, it passes. If 'beta' is 4, it fails.\n        # Let's use data that clearly demonstrates the filter:\n        setup_data = [\n            (\"short\",), \n            (\"longer\",), \n            (\"long\",) # <= 4 chars, won't pass filter if length is checked strictly\n        ]\n        \n        # Replicating the fixture's setup for testing:\n        conn.execute(\"CREATE TABLE files(filename TEXT);\")\n        # Assuming 'alpha' (5) and 'beta' (4). If expected is [[\"alpha\"]], then beta must be 4 or less.\n        conn.executemany(\"INSERT INTO files VALUES(?)\", [('alpha',), ('beta',)])\n        conn.commit()\n\n        # Execute function\n        results = get_long_filenames(conn)\n        \n        # Expected result based on the strict interpretation of the filter (length > 4) and the provided setup:\n        # 'alpha' length is 5 (> 4). 'beta' length is 4 (not > 4).\n        expected_result = [('alpha',)]\n\n        print(f\"Actual Results: {results}\")\n        print(f\"Expected Results: {expected_result}\")\n        assert results == expected_result, \"Test Failed\"\n        print(\"Test Passed!\")\n\n        conn.close()\n\n    test_get_long_filenames()\n```",
+  "telemetry": {
+    "request_seconds": 14.96033274999354,
+    "prompt_tokens": 138,
+    "completion_tokens": 672,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-length-filter",
+    "task_sha256": "3809dc5ebd681ba26840be14315f14ade9d6a2f9c22386d390ecfed588f3b00f",
+    "prompt_sha256": "2eff6c94b5a449df8b7ad1878095e0f989424aebfce3eea12a83477710be7239",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.0002690419933060184
+  }
+}

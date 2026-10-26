@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-largest-byte-file",
+    "task_sha256": "2f38e31a2e9f6073a58076abb1d5c832cf2b905ad8b5609670d7c9c6b60b6b6c",
+    "prompt_sha256": "c852a7fe58227130d6ddc3b8ceed1e234a11d037c38a4cfef809a8c3fff38039",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "first-0.json"
+}

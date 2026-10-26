@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE sales(id INTEGER); Return the number of sales rows, including zero for an empty table. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE sales(id INTEGER); INSERT INTO sales VALUES(1);\", \"expected\": [[1]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef get_sales_count():\n    \"\"\"\n    Returns a SQLite query to select the count of rows in the sales table.\n    \"\"\"\n    return \"SELECT COUNT(*) FROM sales;\"\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 137,
+      "total_output_tokens": 46,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.37254347348327,
+      "time_to_first_token_seconds": 0.113
+    }
+  },
+  "answer": "```python\ndef get_sales_count():\n    \"\"\"\n    Returns a SQLite query to select the count of rows in the sales table.\n    \"\"\"\n    return \"SELECT COUNT(*) FROM sales;\"\n```",
+  "telemetry": {
+    "request_seconds": 1.1212153329979628,
+    "prompt_tokens": 137,
+    "completion_tokens": 46,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-empty-sales-count",
+    "task_sha256": "35ee1cecf8c776a666a3d08b15b444082cd99e7b5c630fdc281d9a8d104b23e1",
+    "prompt_sha256": "56d4f5a752004161b3c0ba3957a7690ca672c14c9b92b84910184b1a81e02a8c",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.00026116700610145926
+  }
+}

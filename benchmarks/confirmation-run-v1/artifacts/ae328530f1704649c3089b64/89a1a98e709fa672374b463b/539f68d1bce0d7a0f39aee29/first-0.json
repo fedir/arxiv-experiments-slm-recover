@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "commands.txt contains literal true or false commands. Print only the commands that exit nonzero, in input order. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"commands.txt\": \"true\\nfalse\\n\"}, \"expected\": \"false\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-4i0xsg8rseyjg3zjlckpnl",
+    "object": "chat.completion",
+    "created": 1792959544,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\ngrep -v '^true$' commands.txt\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 177,
+      "completion_tokens": 15,
+      "total_tokens": 192,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\ngrep -v '^true$' commands.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.8392717499955324,
+    "prompt_tokens": 177,
+    "completion_tokens": 15,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-4i0xsg8rseyjg3zjlckpnl"
+  },
+  "association": {
+    "task_id": "cv1-sh-failed-command-names",
+    "task_sha256": "fe0d260a5538b2a2e31fdc3969351a5f90316a5e1cefb6bf2a477e669c7637e5",
+    "prompt_sha256": "c777e7d7e6871676bb6308c3d6f2e1809e6152986e5cbd64d432b1ed60fdf7f7",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.035721833002753556
+  }
+}

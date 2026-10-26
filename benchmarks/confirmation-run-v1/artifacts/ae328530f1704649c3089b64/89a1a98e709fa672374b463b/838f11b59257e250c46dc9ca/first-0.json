@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-vr7kg4lt3fejncp8hh0c3",
+    "object": "chat.completion",
+    "created": 1792959260,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef monotonic(l: list):\n    \"\"\"Return True if list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    if len(l) < 2:\n        return True\n    increasing = decreasing = True\n    for i in range(1, len(l)):\n        if l[i] < l[i - 1]:\n            increasing = False\n        elif l[i] > l[i - 1]:\n            decreasing = False\n        if not increasing and not decreasing:\n            return False\n    return True\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 136,
+      "completion_tokens": 182,
+      "total_tokens": 318,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\ndef monotonic(l: list):\n    \"\"\"Return True if list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    if len(l) < 2:\n        return True\n    increasing = decreasing = True\n    for i in range(1, len(l)):\n        if l[i] < l[i - 1]:\n            increasing = False\n        elif l[i] > l[i - 1]:\n            decreasing = False\n        if not increasing and not decreasing:\n            return False\n    return True\n```",
+  "telemetry": {
+    "request_seconds": 4.823902249991079,
+    "prompt_tokens": 136,
+    "completion_tokens": 182,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-vr7kg4lt3fejncp8hh0c3"
+  },
+  "association": {
+    "task_id": "HumanEval/57",
+    "task_sha256": "5cb39e5bd9008c0bdc0a70ce9f8db084347f44b297533b2b24a9ba223bd0fade",
+    "prompt_sha256": "4a1802fc63048098eb3a124f1e2f42cd81507e8f1597f07465e8a95e8b2e3ede",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "3 public prompt examples; exit=0; ",
+    "seconds": 0.057183041993994266
+  }
+}

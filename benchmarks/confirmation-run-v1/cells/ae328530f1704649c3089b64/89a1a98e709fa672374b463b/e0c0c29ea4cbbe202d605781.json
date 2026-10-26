@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "cv1-sh-deduplicate-adjacent-lines",
+    "task_sha256": "23cb1a363938b8a75738ce5eb81cb743a083be2e581bb89f7ec2627dfedbfffe",
+    "prompt_sha256": "61f2d531cf7cb347ec7e7171c9b03bb62f904a5f027bf8c91bfe77f89ada0527",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e0c0c29ea4cbbe202d605781/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.0153485420014476
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e0c0c29ea4cbbe202d605781/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e0c0c29ea4cbbe202d605781/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 1.505679042005795
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e0c0c29ea4cbbe202d605781/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e0c0c29ea4cbbe202d605781/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 2.3547532920056256
+    }
+  },
+  "cell_seconds": 2.8452312080044067
+}

@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "HumanEval/132",
+    "task_sha256": "631dfa2c60caabb631d20f0f2f49aef0a68f0a03a744d8c7bdb7e1732bfe4499",
+    "prompt_sha256": "779be1ebbda4646d531b655270f939a8a268107cc7e1647edd44d68b91b69256",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/5692b41634fd58f9b597d0b4/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 22.787020832998678
+    },
+    "R": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/5692b41634fd58f9b597d0b4/first-0.json",
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/5692b41634fd58f9b597d0b4/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 46.02949066599831
+    },
+    "D": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/5692b41634fd58f9b597d0b4/first-0.json",
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/5692b41634fd58f9b597d0b4/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 39.589408498999546
+    }
+  },
+  "cell_seconds": 62.83232850000786
+}

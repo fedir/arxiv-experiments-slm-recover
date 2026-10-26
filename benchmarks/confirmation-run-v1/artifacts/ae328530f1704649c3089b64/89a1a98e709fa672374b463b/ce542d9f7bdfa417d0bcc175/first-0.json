@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE projects(id INTEGER,name TEXT); CREATE TABLE issues(project_id INTEGER,flagged INTEGER); Return project names having at least one flagged issue, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE projects(id INTEGER,name TEXT); CREATE TABLE issues(project_id INTEGER,flagged INTEGER); INSERT INTO projects VALUES(1,'A'); INSERT INTO issues VALUES(1,1);\", \"expected\": [[\"A\"]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-q3mnenujgc6jjw89cht1b",
+    "object": "chat.completion",
+    "created": 1792959535,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```sql\nSELECT p.name FROM projects p JOIN issues i ON p.id = i.project_id WHERE i.flagged = 1 ORDER BY p.name;\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 172,
+      "completion_tokens": 34,
+      "total_tokens": 206,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```sql\nSELECT p.name FROM projects p JOIN issues i ON p.id = i.project_id WHERE i.flagged = 1 ORDER BY p.name;\n```",
+  "telemetry": {
+    "request_seconds": 1.2564273750031134,
+    "prompt_tokens": 172,
+    "completion_tokens": 34,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-q3mnenujgc6jjw89cht1b"
+  },
+  "association": {
+    "task_id": "cv1-sql-exists-flagged-project",
+    "task_sha256": "c8b132241c56a79efa68b5e07767c9eba88e2b40d49dc48a5effab62f765befa",
+    "prompt_sha256": "8881423b64d14dd35a4bd7a5b4a8064732c90424db6ee04987c59029371f00ce",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0006230419967323542
+  }
+}

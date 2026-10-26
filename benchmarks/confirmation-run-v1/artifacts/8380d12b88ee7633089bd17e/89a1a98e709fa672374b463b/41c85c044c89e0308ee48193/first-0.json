@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE visits(visitor TEXT); Return visitor names with at least three visits, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE visits(visitor TEXT); INSERT INTO visits VALUES('Ada'),('Ada'),('Ada'),('Ada');\", \"expected\": [[\"Ada\"]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef get_frequent_visitors(conn):\n    \"\"\"\n    Returns visitor names with at least three visits, sorted by name.\n    Uses a single read-only SELECT query against the 'visits' table.\n    \"\"\"\n    query = \"\"\"\n    SELECT visitor\n    FROM visits\n    GROUP BY visitor\n    HAVING COUNT(visitor) >= 3\n    ORDER BY visitor;\n    \"\"\"\n    cursor = conn.cursor()\n    cursor.execute(query)\n    return cursor.fetchall()\n\nif __name__ == '__main__':\n    import sqlite3\n\n    # Setup for the provided fixture example\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n\n    # Setup: CREATE TABLE visits(visitor TEXT); INSERT INTO visits VALUES('Ada'),('Ada'),('Ada'),('Ada');\n    cursor.execute(\"CREATE TABLE visits(visitor TEXT);\")\n    cursor.executemany(\"INSERT INTO visits VALUES(?)\", [('Ada'), ('Ada'), ('Ada'), ('Ada')])\n    conn.commit()\n\n    # Execution\n    results = get_frequent_visitors(conn)\n\n    # Verification (based on the fixture's expected output structure)\n    print(results)\n\n    conn.close()\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 144,
+      "total_output_tokens": 274,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 45.68907144507655,
+      "time_to_first_token_seconds": 0.163
+    }
+  },
+  "answer": "```python\ndef get_frequent_visitors(conn):\n    \"\"\"\n    Returns visitor names with at least three visits, sorted by name.\n    Uses a single read-only SELECT query against the 'visits' table.\n    \"\"\"\n    query = \"\"\"\n    SELECT visitor\n    FROM visits\n    GROUP BY visitor\n    HAVING COUNT(visitor) >= 3\n    ORDER BY visitor;\n    \"\"\"\n    cursor = conn.cursor()\n    cursor.execute(query)\n    return cursor.fetchall()\n\nif __name__ == '__main__':\n    import sqlite3\n\n    # Setup for the provided fixture example\n    conn = sqlite3.connect(':memory:')\n    cursor = conn.cursor()\n\n    # Setup: CREATE TABLE visits(visitor TEXT); INSERT INTO visits VALUES('Ada'),('Ada'),('Ada'),('Ada');\n    cursor.execute(\"CREATE TABLE visits(visitor TEXT);\")\n    cursor.executemany(\"INSERT INTO visits VALUES(?)\", [('Ada'), ('Ada'), ('Ada'), ('Ada')])\n    conn.commit()\n\n    # Execution\n    results = get_frequent_visitors(conn)\n\n    # Verification (based on the fixture's expected output structure)\n    print(results)\n\n    conn.close()\n```",
+  "telemetry": {
+    "request_seconds": 6.175530124994111,
+    "prompt_tokens": 144,
+    "completion_tokens": 274,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-having-three-visits",
+    "task_sha256": "6cda9036d21786521de892bf5f579ac80c44eb14e1a3ed63e89ed934fbaa2377",
+    "prompt_sha256": "f1f21740f0dcc6a6e638df9e9202819013dc9311405f34912219202a78d4ddd7",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.00108637499215547
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "cv1-sql-distinct-route-pairs",
+    "task_sha256": "0b03a0b6d4e6d77024ad0c8ba4e16cbf6f96c239fc3440db046214a7ee33ddce",
+    "prompt_sha256": "2b5a9c58a3bbabbaf8c99fa0e1dc9587834b45f4b5eaf97480926b61e2cf2722",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/a97663051974fa14cb3e0b83/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 2.027076083002612
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/a97663051974fa14cb3e0b83/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/a97663051974fa14cb3e0b83/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 8.759565166998073
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/a97663051974fa14cb3e0b83/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/a97663051974fa14cb3e0b83/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 3.8816866660054075
+    }
+  },
+  "cell_seconds": 10.614294999992126
+}

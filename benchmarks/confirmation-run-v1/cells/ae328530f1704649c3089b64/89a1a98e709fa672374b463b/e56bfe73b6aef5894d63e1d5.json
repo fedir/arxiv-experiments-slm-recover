@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "cv1-sql-quoted-reserved-column",
+    "task_sha256": "9c431e744e2fc5e764b1d975c5285bb15ca92f514da27fd5558470dd1d53b5ec",
+    "prompt_sha256": "733559f1e63ce5b3d2a0bf34074df4398d47ba3120db495f796916b15a8a0c38",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e56bfe73b6aef5894d63e1d5/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.8647884590027388
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e56bfe73b6aef5894d63e1d5/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.864831166996737
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/e56bfe73b6aef5894d63e1d5/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.8648273760045413
+    }
+  },
+  "cell_seconds": 0.8650805840006797
+}

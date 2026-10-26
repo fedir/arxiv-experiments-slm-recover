@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE shipments(\"order\" INTEGER); Return values from the column named order, sorted ascending. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE shipments(\\\"order\\\" INTEGER); INSERT INTO shipments VALUES(2),(1);\", \"expected\": [[1], [2]], \"ordered\": true}]\n\nASSISTANT:\n```python\ndef get_shipment_orders():\n    \"\"\"\n    Queries the shipments table to return all values from the 'order' column, sorted ascending.\n    \"\"\"\n    return \"SELECT order FROM shipments ORDER BY order ASC\"\n```\n\nUSER:\nthe query fails: OperationalError: near \"def\": syntax error Correct the solution. Return only one code block.",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef get_shipment_orders():\n    \"\"\"\n    Queries the shipments table to return all values from the 'order' column, sorted ascending.\n    \"\"\"\n    return \"SELECT order FROM shipments ORDER BY order ASC\"\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 227,
+      "total_output_tokens": 53,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.185381586019076,
+      "time_to_first_token_seconds": 0.115
+    }
+  },
+  "answer": "```python\ndef get_shipment_orders():\n    \"\"\"\n    Queries the shipments table to return all values from the 'order' column, sorted ascending.\n    \"\"\"\n    return \"SELECT order FROM shipments ORDER BY order ASC\"\n```",
+  "telemetry": {
+    "request_seconds": 1.2811438329954399,
+    "prompt_tokens": 227,
+    "completion_tokens": 53,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-quoted-reserved-column",
+    "task_sha256": "9c431e744e2fc5e764b1d975c5285bb15ca92f514da27fd5558470dd1d53b5ec",
+    "prompt_sha256": "e8e433cac66047cf213020110c8417560bdea8859c1f59fd772c3332cf5c0c1f",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.0004202919953968376
+  }
+}

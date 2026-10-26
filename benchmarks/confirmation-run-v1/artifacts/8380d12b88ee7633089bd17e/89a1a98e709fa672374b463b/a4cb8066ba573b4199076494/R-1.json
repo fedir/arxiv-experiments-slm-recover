@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); Return customer names with no matching order, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); INSERT INTO customers VALUES(1,'Ada'),(2,'Bo'); INSERT INTO orders VALUES(1);\", \"expected\": [[\"Bo\"]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```sql\nSELECT customers.name\nFROM customers\nLEFT JOIN orders ON customers.id = orders.customer_id\nWHERE orders.customer_id IS NULL\nORDER BY customers.name;\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 175,
+      "total_output_tokens": 43,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 45.21155128849635,
+      "time_to_first_token_seconds": 0.05
+    }
+  },
+  "answer": "```sql\nSELECT customers.name\nFROM customers\nLEFT JOIN orders ON customers.id = orders.customer_id\nWHERE orders.customer_id IS NULL\nORDER BY customers.name;\n```",
+  "telemetry": {
+    "request_seconds": 1.016575500005274,
+    "prompt_tokens": 175,
+    "completion_tokens": 43,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-customers-without-orders",
+    "task_sha256": "57c98fa3130be0d15b1b93608ebe64266b2f333c5a29c0f011fc6572ae739312",
+    "prompt_sha256": "361460cfb8868e05eeb668588732d689eb5332e0658d52ea3aa7cc11413178e4",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0004942079976899549
+  }
+}

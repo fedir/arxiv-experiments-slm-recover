@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/acf555e13610ffe1e6109ad0/first-0.json",
+  "artifact_sha256": "413496c3113696eeca990b0a9ad1970ca8d5ce2e307af820cebfd24613dee921",
+  "final_grade": {
+    "passed": false,
+    "detail": "exit=0, stdout=b'Apple BANANA apple \\n', expected=b'apple\\nbanana\\n', stderr=b''"
+  }
+}

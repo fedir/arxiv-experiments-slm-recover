@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/9fa962bc8bb7dd6016b8ce55/first-0.json",
+  "artifact_sha256": "bdc2fe281e9ec1236b97585f6ae400d4ea4a262f3399adbfd17da112bf00b300",
+  "final_grade": {
+    "passed": false,
+    "detail": "exit=0, stdout=b'     1:a\\n      :\\n     2:b\\n', expected=b'1:a\\n2:\\n3:b\\n', stderr=b''"
+  }
+}

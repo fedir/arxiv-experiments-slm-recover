@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "cv1-sql-coalesce-invoice-total",
+    "task_sha256": "c917f75b68ea40ec08beffccd87daf19568b2a05b86b26220086317cc5e657b2",
+    "prompt_sha256": "acf8e34dd7bb23479de90d43452ec3145a47d7a493efb4e26b0ba41b797dae45",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/f63167ffce36a9605b536d60/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.6895706250070361
+    },
+    "R": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/f63167ffce36a9605b536d60/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.6895931250182912
+    },
+    "D": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/f63167ffce36a9605b536d60/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 0.6895910420134896
+    }
+  },
+  "cell_seconds": 0.6898046670103213
+}

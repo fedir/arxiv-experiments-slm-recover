@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE queue(label TEXT,priority INTEGER); Return labels ordered by priority ascending, with NULL priorities last, then label. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE queue(label TEXT,priority INTEGER); INSERT INTO queue VALUES('a',2),('b',1);\", \"expected\": [[\"b\"], [\"a\"]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-9fzo5r7qjp7rf3xsgoxamb",
+    "object": "chat.completion",
+    "created": 1792959487,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\nimport sqlite3\n\n\ndef query(cursor):\n    cursor.execute(\"\"\"\n        SELECT label FROM queue\n        WHERE priority IS NULL OR priority >= ALL(\n            SELECT priority FROM queue WHERE priority IS NOT NULL\n        )\n        ORDER BY\n            CASE WHEN priority IS NULL THEN 1 ELSE 0 END,\n            COALESCE(\n                (SELECT MIN(priority) FROM queue WHERE priority IS NOT NULL),\n                -999999999\n            ),\n            label\n    \"\"\")\n    return cursor.execute(\"SELECT label FROM queue ORDER BY priority, label\").fetchall()\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 152,
+      "completion_tokens": 131,
+      "total_tokens": 283,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\nimport sqlite3\n\n\ndef query(cursor):\n    cursor.execute(\"\"\"\n        SELECT label FROM queue\n        WHERE priority IS NULL OR priority >= ALL(\n            SELECT priority FROM queue WHERE priority IS NOT NULL\n        )\n        ORDER BY\n            CASE WHEN priority IS NULL THEN 1 ELSE 0 END,\n            COALESCE(\n                (SELECT MIN(priority) FROM queue WHERE priority IS NOT NULL),\n                -999999999\n            ),\n            label\n    \"\"\")\n    return cursor.execute(\"SELECT label FROM queue ORDER BY priority, label\").fetchall()\n```",
+  "telemetry": {
+    "request_seconds": 3.0122950000077253,
+    "prompt_tokens": 152,
+    "completion_tokens": 131,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-9fzo5r7qjp7rf3xsgoxamb"
+  },
+  "association": {
+    "task_id": "cv1-sql-nulls-last-labels",
+    "task_sha256": "f604f0d12026657df19a1f2f0a27fd3c7d604374c3697fae8b855426b3aa0b1d",
+    "prompt_sha256": "de802d84724e64f3644212c1670f0d5f473ff3a56082f36e3f97d60d02f0ed9e",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"import\": syntax error",
+    "seconds": 0.0003221660008421168
+  }
+}

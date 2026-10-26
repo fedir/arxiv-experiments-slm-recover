@@ -1,0 +1,23 @@
+{
+  "primary_endpoint": "selected-answer final-test pass fraction; all 72 tasks equally weighted",
+  "contrasts": [
+    "R-N",
+    "D-R"
+  ],
+  "models": [
+    "ornith",
+    "gemma"
+  ],
+  "meaningful_effect_pp": 10,
+  "blocks": 1,
+  "unit": "question; no repeated-task independence claim",
+  "uncertainty": "10000 stratified paired question bootstrap draws, category sizes fixed at 40/16/16; percentile 95% CI",
+  "tests": "two-sided exact McNemar; Holm correction across four model/contrast p-values",
+  "sensitivity": "template-cluster bootstrap within category; descriptive category results",
+  "bootstrap_seed": 20261025,
+  "bootstrap_draws": 10000,
+  "precision": "resource-constrained fixed cohort; not powered for small effects. Worst-case normal 95% half-width for a single success proportion is about 11.6 pp at n=72, and a paired difference up to 23.1 pp. Six-task pilot does not provide a stable power estimate.",
+  "failure_rule": "no exclusions; missing/empty/truncated/error/unresolved candidates score failed; final tests never drive recovery",
+  "budget": "one block, 1024 output tokens per candidate, at most 3 unique requests per task/model (shared first + R + D); 432 total unique request maximum; 120 s request timeout; 1800 s dispatch window per model",
+  "scope": "fixed two-model finite benchmark comparison; no superiority/equivalence promise or optional stopping"
+}

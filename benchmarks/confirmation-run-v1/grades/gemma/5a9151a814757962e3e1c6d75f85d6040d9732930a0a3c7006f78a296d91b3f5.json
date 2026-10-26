@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/8478d597339298b65ab414ae/R-1.json",
+  "artifact_sha256": "a8b0c3510f0e59b582c6be5beb9e4c734f0d2f8749b1aedb7c2d6517a71cddb6",
+  "final_grade": {
+    "passed": false,
+    "detail": "returned [('c',), ('a',), ('z',), ('b',)] (4 rows), expected [('c',), ('a',), ('b',), ('z',)] (4 rows)"
+  }
+}

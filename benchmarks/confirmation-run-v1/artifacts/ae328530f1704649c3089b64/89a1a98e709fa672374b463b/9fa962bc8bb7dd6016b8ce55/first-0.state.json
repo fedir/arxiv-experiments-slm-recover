@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-line-prefix-number",
+    "task_sha256": "7bb0530493e3a0f248a6857623b66ec19db4c1980ca4291b3e9aea26a5432755",
+    "prompt_sha256": "6b0ec4cf468ac1c713dba33e1f704e10774020f53111a2c7ed40e8345337f465",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "first-0.json"
+}

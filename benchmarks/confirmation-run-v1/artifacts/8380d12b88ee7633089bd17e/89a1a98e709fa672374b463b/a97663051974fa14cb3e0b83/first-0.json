@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE routes(origin TEXT,destination TEXT); Return distinct origin and destination pairs, sorted by origin then destination. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE routes(origin TEXT,destination TEXT); INSERT INTO routes VALUES('A','B'),('B','C');\", \"expected\": [[\"A\", \"B\"], [\"B\", \"C\"]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```sql\nSELECT origin, destination FROM routes ORDER BY origin, destination;\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 159,
+      "total_output_tokens": 18,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 48.750448148650946,
+      "time_to_first_token_seconds": 0.163
+    }
+  },
+  "answer": "```sql\nSELECT origin, destination FROM routes ORDER BY origin, destination;\n```",
+  "telemetry": {
+    "request_seconds": 0.5461074170016218,
+    "prompt_tokens": 159,
+    "completion_tokens": 18,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-distinct-route-pairs",
+    "task_sha256": "0b03a0b6d4e6d77024ad0c8ba4e16cbf6f96c239fc3440db046214a7ee33ddce",
+    "prompt_sha256": "2b5a9c58a3bbabbaf8c99fa0e1dc9587834b45f4b5eaf97480926b61e2cf2722",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.00031624999246560037
+  }
+}

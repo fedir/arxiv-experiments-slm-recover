@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-distinct-route-pairs",
+    "task_sha256": "0b03a0b6d4e6d77024ad0c8ba4e16cbf6f96c239fc3440db046214a7ee33ddce",
+    "prompt_sha256": "3082a8a813b41d859486530573097507b5e4a3ca43cc3d1e60e65b4debec0c11",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "D-1.json"
+}

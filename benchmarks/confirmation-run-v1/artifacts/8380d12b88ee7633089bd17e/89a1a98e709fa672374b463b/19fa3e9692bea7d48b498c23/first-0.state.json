@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "HumanEval/34",
+    "task_sha256": "622e68fcb21c968a6f15d6d0ca01682dd1b8d809f0a0129333e10b5102b0e742",
+    "prompt_sha256": "79f532e6f888209eb27cff043cd36e23c029a36c46979bbc05b5ad486815370d",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "record": "first-0.json"
+}

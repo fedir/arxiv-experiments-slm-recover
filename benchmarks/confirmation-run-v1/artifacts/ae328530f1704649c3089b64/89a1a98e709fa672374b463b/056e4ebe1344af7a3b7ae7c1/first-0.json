@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print regular filenames ending in .txt, including names with spaces, sorted one per line. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"a.txt\": \"x\", \"b.txt\": \"y\"}, \"expected\": \"a.txt\\nb.txt\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-k9pa3cyhveird679z6jexf",
+    "object": "chat.completion",
+    "created": 1792959543,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nls *.txt\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 182,
+      "completion_tokens": 9,
+      "total_tokens": 191,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nls *.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.7049614160059718,
+    "prompt_tokens": 182,
+    "completion_tokens": 9,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-k9pa3cyhveird679z6jexf"
+  },
+  "association": {
+    "task_id": "cv1-sh-sorted-space-filenames",
+    "task_sha256": "16a86294b5bd1e115b7d8b14ab9323d3e57541a73f856a31d79aef6daa756330",
+    "prompt_sha256": "3242c934a129164a029b4a37163ab37f0e486b848657ccfc39e97613818d6588",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.040549792000092566
+  }
+}

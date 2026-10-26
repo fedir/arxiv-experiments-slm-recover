@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\n\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(n - 1):\n            a, b = b, a + b\n        return b\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 99,
+      "total_output_tokens": 127,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.937827992117484,
+      "time_to_first_token_seconds": 0.087
+    }
+  },
+  "answer": "```python\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(n - 1):\n            a, b = b, a + b\n        return b\n```",
+  "telemetry": {
+    "request_seconds": 2.8072357089986326,
+    "prompt_tokens": 99,
+    "completion_tokens": 127,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "HumanEval/55",
+    "task_sha256": "cc496e9f104bb5e8c387fef3109ee4e2c778882ced8e109dc8d8bc3ed2af0c5f",
+    "prompt_sha256": "f99eced15180675a12f9b752f18e49c6c37aa4da78e3c35a7b9606aadf020ffa",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "3 public prompt examples; exit=0; ",
+    "seconds": 0.06230033301108051
+  }
+}

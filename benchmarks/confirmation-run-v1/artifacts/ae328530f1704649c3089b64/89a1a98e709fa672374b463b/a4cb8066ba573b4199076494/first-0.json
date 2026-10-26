@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); Return customer names with no matching order, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); INSERT INTO customers VALUES(1,'Ada'),(2,'Bo'); INSERT INTO orders VALUES(1);\", \"expected\": [[\"Bo\"]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-4wmkzmjjfybu8v0g66ez3o",
+    "object": "chat.completion",
+    "created": 1792959505,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```sql\nSELECT name FROM customers WHERE id NOT IN (SELECT customer_id FROM orders) ORDER BY name COLLATE BINARY;\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 165,
+      "completion_tokens": 29,
+      "total_tokens": 194,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```sql\nSELECT name FROM customers WHERE id NOT IN (SELECT customer_id FROM orders) ORDER BY name COLLATE BINARY;\n```",
+  "telemetry": {
+    "request_seconds": 1.0843346670008032,
+    "prompt_tokens": 165,
+    "completion_tokens": 29,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-4wmkzmjjfybu8v0g66ez3o"
+  },
+  "association": {
+    "task_id": "cv1-sql-customers-without-orders",
+    "task_sha256": "57c98fa3130be0d15b1b93608ebe64266b2f333c5a29c0f011fc6572ae739312",
+    "prompt_sha256": "361460cfb8868e05eeb668588732d689eb5332e0658d52ea3aa7cc11413178e4",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.00035687501076608896
+  }
+}

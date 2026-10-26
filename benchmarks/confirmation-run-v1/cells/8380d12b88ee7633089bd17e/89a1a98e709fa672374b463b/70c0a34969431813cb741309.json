@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "HumanEval/36",
+    "task_sha256": "1c552301a8c359c34dbe442ea35470b6ffb37eefc21ac1e0e7f4f19d35f0be2c",
+    "prompt_sha256": "a71ade9a3e6051582c45e870a7c68084ff02d9766c9ac3ecd7d8de93434567c1",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/70c0a34969431813cb741309/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 3.6204246249981225
+    },
+    "R": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/70c0a34969431813cb741309/first-0.json",
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/70c0a34969431813cb741309/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 7.36181316699367
+    },
+    "D": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/70c0a34969431813cb741309/first-0.json",
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/70c0a34969431813cb741309/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 7.4533997909893515
+    }
+  },
+  "cell_seconds": 11.19492637499934
+}

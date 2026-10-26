@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\n\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```python\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n    largest = 1\n    d = 2\n    temp_n = n\n    while d * d <= temp_n:\n        if temp_n % d == 0:\n            largest = d\n            while temp_n % d == 0:\n                temp_n //= d\n        d += 1\n    if temp_n > 1:\n        largest = temp_n\n    return largest\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 118,
+      "total_output_tokens": 172,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 46.70880355097184,
+      "time_to_first_token_seconds": 0.111
+    }
+  },
+  "answer": "```python\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n    largest = 1\n    d = 2\n    temp_n = n\n    while d * d <= temp_n:\n        if temp_n % d == 0:\n            largest = d\n            while temp_n % d == 0:\n                temp_n //= d\n        d += 1\n    if temp_n > 1:\n        largest = temp_n\n    return largest\n```",
+  "telemetry": {
+    "request_seconds": 3.808608791005099,
+    "prompt_tokens": 118,
+    "completion_tokens": 172,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "HumanEval/59",
+    "task_sha256": "26e0889e3981f84783aa8a5291f04f2ed1658c8fa792047c2e0f3cb4015e9b80",
+    "prompt_sha256": "2226065e4a8aacd33ba44b2e51f435dbc0148bb520010fd5e2a86aed492ef2ab",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "2 public prompt examples; exit=0; ",
+    "seconds": 0.05880633399647195
+  }
+}

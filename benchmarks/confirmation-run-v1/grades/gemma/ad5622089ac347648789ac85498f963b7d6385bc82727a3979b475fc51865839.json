@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/3d3ec17a24b40567e660ca0a/first-0.json",
+  "artifact_sha256": "b57bbfa8f38523a0aef139199516e1160c80deb8070d8604dce1123d8adfb358",
+  "final_grade": {
+    "passed": false,
+    "detail": "exit=0, stdout=b'', expected=b'z\\n', stderr=b'ls: *.txt: No such file or directory\\n'"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "For integers stored one per nonempty line in amounts.txt, print the running total after each line, preserving order. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"amounts.txt\": \"2\\n3\\n\"}, \"expected\": \"2\\n5\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-jfl1m1hq7kfb6lziq5tao",
+    "object": "chat.completion",
+    "created": 1792959542,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nawk '{s+=$1; print s}' amounts.txt\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 182,
+      "completion_tokens": 18,
+      "total_tokens": 200,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nawk '{s+=$1; print s}' amounts.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.9055513750063255,
+    "prompt_tokens": 182,
+    "completion_tokens": 18,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-jfl1m1hq7kfb6lziq5tao"
+  },
+  "association": {
+    "task_id": "cv1-sh-cumulative-integer-totals",
+    "task_sha256": "523e549f8519664105bc3a07f29be64b0efa5dfae22581e855d1ce85cbd3e9d6",
+    "prompt_sha256": "aa04a4d6c87ceebdebfb452c8bc121190ae1c28be6e2290e153f4d95a0992c3e",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.03632208300405182
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nFrom people.csv with header name,status, print active names sorted. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"people.csv\": \"name,status\\nAda,active\\nBo,inactive\\n\"}, \"expected\": \"Ada\\n\"}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```bash\nawk -F',' 'NR>1 {if ($2 == \"active\") print $1}' people.csv | sort\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 185,
+      "total_output_tokens": 31,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 47.369183109391294,
+      "time_to_first_token_seconds": 0.162
+    }
+  },
+  "answer": "```bash\nawk -F',' 'NR>1 {if ($2 == \"active\") print $1}' people.csv | sort\n```",
+  "telemetry": {
+    "request_seconds": 0.8291642499971204,
+    "prompt_tokens": 185,
+    "completion_tokens": 31,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sh-csv-active-names",
+    "task_sha256": "a7b0ef60b7209f8b59962a3de712532accd939d6e5d848f6103b6e876d1b76c4",
+    "prompt_sha256": "dab6397a13f0876ea315e2f9df1d84451fe7cc47f5ab42f2fb6195d86f00b248",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.017279125007917173
+  }
+}

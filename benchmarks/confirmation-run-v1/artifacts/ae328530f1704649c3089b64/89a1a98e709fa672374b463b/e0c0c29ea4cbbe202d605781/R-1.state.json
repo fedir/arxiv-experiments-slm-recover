@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-deduplicate-adjacent-lines",
+    "task_sha256": "23cb1a363938b8a75738ce5eb81cb743a083be2e581bb89f7ec2627dfedbfffe",
+    "prompt_sha256": "61f2d531cf7cb347ec7e7171c9b03bb62f904a5f027bf8c91bfe77f89ada0527",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "R-1.json"
+}

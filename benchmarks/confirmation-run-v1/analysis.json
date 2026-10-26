@@ -1,0 +1,1805 @@
+{
+  "root": "confirmation-run-v1",
+  "scope": "72-task one-block two-model confirmation",
+  "analysis_plan": {
+    "primary_endpoint": "selected-answer final-test pass fraction; all 72 tasks equally weighted",
+    "contrasts": [
+      "R-N",
+      "D-R"
+    ],
+    "models": [
+      "ornith",
+      "gemma"
+    ],
+    "meaningful_effect_pp": 10,
+    "blocks": 1,
+    "unit": "question; no repeated-task independence claim",
+    "uncertainty": "10000 stratified paired question bootstrap draws, category sizes fixed at 40/16/16; percentile 95% CI",
+    "tests": "two-sided exact McNemar; Holm correction across four model/contrast p-values",
+    "sensitivity": "template-cluster bootstrap within category; descriptive category results",
+    "bootstrap_seed": 20261025,
+    "bootstrap_draws": 10000,
+    "precision": "resource-constrained fixed cohort; not powered for small effects. Worst-case normal 95% half-width for a single success proportion is about 11.6 pp at n=72, and a paired difference up to 23.1 pp. Six-task pilot does not provide a stable power estimate.",
+    "failure_rule": "no exclusions; missing/empty/truncated/error/unresolved candidates score failed; final tests never drive recovery",
+    "budget": "one block, 1024 output tokens per candidate, at most 3 unique requests per task/model (shared first + R + D); 432 total unique request maximum; 120 s request timeout; 1800 s dispatch window per model",
+    "scope": "fixed two-model finite benchmark comparison; no superiority/equivalence promise or optional stopping"
+  },
+  "models": {
+    "ornith": {
+      "tasks": 72,
+      "rows": [
+        {
+          "task_id": "HumanEval/5",
+          "category": "python",
+          "template_cluster": "HumanEval/5",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/8",
+          "category": "python",
+          "template_cluster": "HumanEval/8",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/10",
+          "category": "python",
+          "template_cluster": "HumanEval/10",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/11",
+          "category": "python",
+          "template_cluster": "HumanEval/11",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/13",
+          "category": "python",
+          "template_cluster": "HumanEval/13",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/15",
+          "category": "python",
+          "template_cluster": "HumanEval/15",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/17",
+          "category": "python",
+          "template_cluster": "HumanEval/17",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/18",
+          "category": "python",
+          "template_cluster": "HumanEval/18",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/19",
+          "category": "python",
+          "template_cluster": "HumanEval/19",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/21",
+          "category": "python",
+          "template_cluster": "HumanEval/21",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/25",
+          "category": "python",
+          "template_cluster": "HumanEval/25",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/34",
+          "category": "python",
+          "template_cluster": "HumanEval/34",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/36",
+          "category": "python",
+          "template_cluster": "HumanEval/36",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/50",
+          "category": "python",
+          "template_cluster": "HumanEval/50",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/55",
+          "category": "python",
+          "template_cluster": "HumanEval/55",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/57",
+          "category": "python",
+          "template_cluster": "HumanEval/57",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/58",
+          "category": "python",
+          "template_cluster": "HumanEval/58",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/59",
+          "category": "python",
+          "template_cluster": "HumanEval/59",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/65",
+          "category": "python",
+          "template_cluster": "HumanEval/65",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/69",
+          "category": "python",
+          "template_cluster": "HumanEval/69",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/82",
+          "category": "python",
+          "template_cluster": "HumanEval/82",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/83",
+          "category": "python",
+          "template_cluster": "HumanEval/83",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/86",
+          "category": "python",
+          "template_cluster": "HumanEval/86",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/91",
+          "category": "python",
+          "template_cluster": "HumanEval/91",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/93",
+          "category": "python",
+          "template_cluster": "HumanEval/93",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/97",
+          "category": "python",
+          "template_cluster": "HumanEval/97",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/99",
+          "category": "python",
+          "template_cluster": "HumanEval/99",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/104",
+          "category": "python",
+          "template_cluster": "HumanEval/104",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/107",
+          "category": "python",
+          "template_cluster": "HumanEval/107",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/108",
+          "category": "python",
+          "template_cluster": "HumanEval/108",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/112",
+          "category": "python",
+          "template_cluster": "HumanEval/112",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/113",
+          "category": "python",
+          "template_cluster": "HumanEval/113",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/118",
+          "category": "python",
+          "template_cluster": "HumanEval/118",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/120",
+          "category": "python",
+          "template_cluster": "HumanEval/120",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/123",
+          "category": "python",
+          "template_cluster": "HumanEval/123",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/126",
+          "category": "python",
+          "template_cluster": "HumanEval/126",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/132",
+          "category": "python",
+          "template_cluster": "HumanEval/132",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/146",
+          "category": "python",
+          "template_cluster": "HumanEval/146",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/149",
+          "category": "python",
+          "template_cluster": "HumanEval/149",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/161",
+          "category": "python",
+          "template_cluster": "HumanEval/161",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-nonnull-score-count",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-coalesce-invoice-total",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-highest-price-ties",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-nulls-last-labels",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-quoted-reserved-column",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-empty-sales-count",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-customers-without-orders",
+          "category": "sql",
+          "template_cluster": "sql-relational",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-distinct-route-pairs",
+          "category": "sql",
+          "template_cluster": "sql-relational",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-per-team-top-score",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-case-status-count",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-date-window",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-having-three-visits",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-exists-flagged-project",
+          "category": "sql",
+          "template_cluster": "sql-relational",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-union-all-source-count",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-length-filter",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-average-nonnull",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-cumulative-integer-totals",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-sorted-space-filenames",
+          "category": "shell",
+          "template_cluster": "shell-file-selection",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-newline-record-count",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-failed-command-names",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-first-fields",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-unique-casefold-words",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-largest-byte-file",
+          "category": "shell",
+          "template_cluster": "shell-file-selection",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-csv-active-names",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-line-prefix-number",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-deduplicate-adjacent-lines",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-matching-extension-count",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-reverse-fields",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-nonoverlapping-literal-count",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-last-nonempty-line",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-tab-column-sum",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-literal-bracket-search",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        }
+      ],
+      "passed": {
+        "N": 37,
+        "R": 43,
+        "D": 38
+      },
+      "available": {
+        "N": 37,
+        "R": 43,
+        "D": 38
+      },
+      "category": {
+        "python": {
+          "N": 22,
+          "R": 25,
+          "D": 23
+        },
+        "sql": {
+          "N": 8,
+          "R": 9,
+          "D": 8
+        },
+        "shell": {
+          "N": 7,
+          "R": 9,
+          "D": 7
+        }
+      },
+      "effects": [
+        {
+          "contrast": "R-N",
+          "effect_pp": 8.333333333333332,
+          "ci95_pp": [
+            2.7777777777777777,
+            15.277777777777779
+          ],
+          "template_ci95_pp": [
+            3.1019577930333075,
+            16.194625998547565
+          ],
+          "discordant_improved": 6,
+          "discordant_worsened": 0,
+          "p_exact": 0.03125,
+          "model": "ornith",
+          "p_holm": 0.125
+        },
+        {
+          "contrast": "D-R",
+          "effect_pp": -6.944444444444445,
+          "ci95_pp": [
+            -12.5,
+            -1.3888888888888888
+          ],
+          "template_ci95_pp": [
+            -14.285714285714285,
+            -2.5584795321637426
+          ],
+          "discordant_improved": 0,
+          "discordant_worsened": 5,
+          "p_exact": 0.0625,
+          "model": "ornith",
+          "p_holm": 0.1875
+        }
+      ],
+      "recorded_requests": 108,
+      "false_accepts": 25,
+      "false_rejects": 0,
+      "policy_cost_mean": {
+        "N": {
+          "full_loop_seconds": 3.9314845936943232,
+          "prompt_tokens": 167.29166666666666,
+          "completion_tokens": 141.13888888888889,
+          "reasoning_tokens": 0,
+          "verification_seconds": 0.044659997652666386
+        },
+        "R": {
+          "full_loop_seconds": 4.579235098319462,
+          "prompt_tokens": 208.95833333333334,
+          "completion_tokens": 167.69444444444446,
+          "reasoning_tokens": 0,
+          "verification_seconds": 0.05185417762469216
+        },
+        "D": {
+          "full_loop_seconds": 4.711710060736449,
+          "prompt_tokens": 260.09722222222223,
+          "completion_tokens": 170.97222222222223,
+          "reasoning_tokens": 0,
+          "verification_seconds": 0.0520273848334101
+        }
+      },
+      "truncations": 1,
+      "http_errors": 0
+    },
+    "gemma": {
+      "tasks": 72,
+      "rows": [
+        {
+          "task_id": "HumanEval/5",
+          "category": "python",
+          "template_cluster": "HumanEval/5",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/8",
+          "category": "python",
+          "template_cluster": "HumanEval/8",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/10",
+          "category": "python",
+          "template_cluster": "HumanEval/10",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/11",
+          "category": "python",
+          "template_cluster": "HumanEval/11",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/13",
+          "category": "python",
+          "template_cluster": "HumanEval/13",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/15",
+          "category": "python",
+          "template_cluster": "HumanEval/15",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/17",
+          "category": "python",
+          "template_cluster": "HumanEval/17",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/18",
+          "category": "python",
+          "template_cluster": "HumanEval/18",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/19",
+          "category": "python",
+          "template_cluster": "HumanEval/19",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/21",
+          "category": "python",
+          "template_cluster": "HumanEval/21",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/25",
+          "category": "python",
+          "template_cluster": "HumanEval/25",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/34",
+          "category": "python",
+          "template_cluster": "HumanEval/34",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/36",
+          "category": "python",
+          "template_cluster": "HumanEval/36",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/50",
+          "category": "python",
+          "template_cluster": "HumanEval/50",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/55",
+          "category": "python",
+          "template_cluster": "HumanEval/55",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/57",
+          "category": "python",
+          "template_cluster": "HumanEval/57",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/58",
+          "category": "python",
+          "template_cluster": "HumanEval/58",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/59",
+          "category": "python",
+          "template_cluster": "HumanEval/59",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/65",
+          "category": "python",
+          "template_cluster": "HumanEval/65",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/69",
+          "category": "python",
+          "template_cluster": "HumanEval/69",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/82",
+          "category": "python",
+          "template_cluster": "HumanEval/82",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/83",
+          "category": "python",
+          "template_cluster": "HumanEval/83",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/86",
+          "category": "python",
+          "template_cluster": "HumanEval/86",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/91",
+          "category": "python",
+          "template_cluster": "HumanEval/91",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/93",
+          "category": "python",
+          "template_cluster": "HumanEval/93",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/97",
+          "category": "python",
+          "template_cluster": "HumanEval/97",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/99",
+          "category": "python",
+          "template_cluster": "HumanEval/99",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "HumanEval/104",
+          "category": "python",
+          "template_cluster": "HumanEval/104",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/107",
+          "category": "python",
+          "template_cluster": "HumanEval/107",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/108",
+          "category": "python",
+          "template_cluster": "HumanEval/108",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/112",
+          "category": "python",
+          "template_cluster": "HumanEval/112",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/113",
+          "category": "python",
+          "template_cluster": "HumanEval/113",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/118",
+          "category": "python",
+          "template_cluster": "HumanEval/118",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/120",
+          "category": "python",
+          "template_cluster": "HumanEval/120",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/123",
+          "category": "python",
+          "template_cluster": "HumanEval/123",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/126",
+          "category": "python",
+          "template_cluster": "HumanEval/126",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/132",
+          "category": "python",
+          "template_cluster": "HumanEval/132",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/146",
+          "category": "python",
+          "template_cluster": "HumanEval/146",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/149",
+          "category": "python",
+          "template_cluster": "HumanEval/149",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "HumanEval/161",
+          "category": "python",
+          "template_cluster": "HumanEval/161",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-nonnull-score-count",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-coalesce-invoice-total",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-highest-price-ties",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-nulls-last-labels",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-quoted-reserved-column",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-empty-sales-count",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-customers-without-orders",
+          "category": "sql",
+          "template_cluster": "sql-relational",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-distinct-route-pairs",
+          "category": "sql",
+          "template_cluster": "sql-relational",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-per-team-top-score",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-case-status-count",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-date-window",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-having-three-visits",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-exists-flagged-project",
+          "category": "sql",
+          "template_cluster": "sql-relational",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sql-union-all-source-count",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-length-filter",
+          "category": "sql",
+          "template_cluster": "sql-filter-order",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sql-average-nonnull",
+          "category": "sql",
+          "template_cluster": "sql-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-cumulative-integer-totals",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-sorted-space-filenames",
+          "category": "shell",
+          "template_cluster": "shell-file-selection",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-newline-record-count",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-failed-command-names",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-first-fields",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-unique-casefold-words",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-largest-byte-file",
+          "category": "shell",
+          "template_cluster": "shell-file-selection",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-csv-active-names",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-line-prefix-number",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-deduplicate-adjacent-lines",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-matching-extension-count",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-reverse-fields",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-nonoverlapping-literal-count",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-last-nonempty-line",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        },
+        {
+          "task_id": "cv1-sh-tab-column-sum",
+          "category": "shell",
+          "template_cluster": "shell-aggregation",
+          "N": 1,
+          "N_available": 1,
+          "R": 1,
+          "R_available": 1,
+          "D": 1,
+          "D_available": 1
+        },
+        {
+          "task_id": "cv1-sh-literal-bracket-search",
+          "category": "shell",
+          "template_cluster": "shell-text-transform",
+          "N": 0,
+          "N_available": 0,
+          "R": 0,
+          "R_available": 0,
+          "D": 0,
+          "D_available": 0
+        }
+      ],
+      "passed": {
+        "N": 40,
+        "R": 45,
+        "D": 46
+      },
+      "available": {
+        "N": 40,
+        "R": 45,
+        "D": 46
+      },
+      "category": {
+        "python": {
+          "N": 30,
+          "R": 33,
+          "D": 33
+        },
+        "sql": {
+          "N": 4,
+          "R": 5,
+          "D": 5
+        },
+        "shell": {
+          "N": 6,
+          "R": 7,
+          "D": 8
+        }
+      },
+      "effects": [
+        {
+          "contrast": "R-N",
+          "effect_pp": 6.944444444444445,
+          "ci95_pp": [
+            1.3888888888888888,
+            13.88888888888889
+          ],
+          "template_ci95_pp": [
+            1.3888888888888888,
+            13.746438746438747
+          ],
+          "discordant_improved": 5,
+          "discordant_worsened": 0,
+          "p_exact": 0.0625,
+          "model": "gemma",
+          "p_holm": 0.1875
+        },
+        {
+          "contrast": "D-R",
+          "effect_pp": 1.3888888888888888,
+          "ci95_pp": [
+            -4.166666666666666,
+            8.333333333333332
+          ],
+          "template_ci95_pp": [
+            -4.166666666666666,
+            10.493827160493826
+          ],
+          "discordant_improved": 3,
+          "discordant_worsened": 2,
+          "p_exact": 1.0,
+          "model": "gemma",
+          "p_holm": 1.0
+        }
+      ],
+      "recorded_requests": 118,
+      "false_accepts": 11,
+      "false_rejects": 0,
+      "policy_cost_mean": {
+        "N": {
+          "full_loop_seconds": 6.960815083861437,
+          "prompt_tokens": 171.70833333333334,
+          "completion_tokens": 307.1388888888889,
+          "reasoning_tokens": 0,
+          "verification_seconds": 0.03432076215156283
+        },
+        "R": {
+          "full_loop_seconds": 9.45347184952819,
+          "prompt_tokens": 223.19444444444446,
+          "completion_tokens": 417.77777777777777,
+          "reasoning_tokens": 0,
+          "verification_seconds": 0.03875286570736433
+        },
+        "D": {
+          "full_loop_seconds": 9.26890457236267,
+          "prompt_tokens": 368.6111111111111,
+          "completion_tokens": 403.8611111111111,
+          "reasoning_tokens": 0,
+          "verification_seconds": 0.04105911688727954
+        }
+      },
+      "truncations": 0,
+      "http_errors": 0
+    }
+  }
+}

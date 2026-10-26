@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE invoices(amount INTEGER); Return the total invoice amount, treating NULL amounts as zero. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE invoices(amount INTEGER); INSERT INTO invoices VALUES(2),(NULL),(5);\", \"expected\": [[7]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-cbewnafxa6t8rlp3kwe2sr",
+    "object": "chat.completion",
+    "created": 1792959468,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```sql\nSELECT SUM(COALESCE(amount, 0)) FROM invoices;\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 136,
+      "completion_tokens": 20,
+      "total_tokens": 156,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```sql\nSELECT SUM(COALESCE(amount, 0)) FROM invoices;\n```",
+  "telemetry": {
+    "request_seconds": 0.8847952080104733,
+    "prompt_tokens": 136,
+    "completion_tokens": 20,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-cbewnafxa6t8rlp3kwe2sr"
+  },
+  "association": {
+    "task_id": "cv1-sql-coalesce-invoice-total",
+    "task_sha256": "c917f75b68ea40ec08beffccd87daf19568b2a05b86b26220086317cc5e657b2",
+    "prompt_sha256": "acf8e34dd7bb23479de90d43452ec3145a47d7a493efb4e26b0ba41b797dae45",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0001833749993238598
+  }
+}

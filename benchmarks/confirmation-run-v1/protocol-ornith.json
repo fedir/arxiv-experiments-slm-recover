@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "frozen": true,
+  "frozen_at": "2026-10-25T19:58:02.834799+00:00",
+  "public_manifest_sha256": "8303c00c3ed6db12986f4f803cd5d2917f178ee0659b90c088402ba5585dd146",
+  "private_manifest_sha256": "59ae756ac6df2e9c272322c3bb4ee2870307acc2d7bf22c208ace0698b68e3cf",
+  "analysis_plan_sha256": "f1ed7ff09aeac2191f1a9140128aaeb6e9cafa0aa58f708e2925f7b36d62ac9e",
+  "policies": [
+    "N",
+    "R",
+    "D"
+  ],
+  "model_id": "ornith-confirmation",
+  "model_key": "ornith-1.5-9b-mlx",
+  "transport": "openai",
+  "endpoint": "http://localhost:1234/v1/chat/completions",
+  "blocks": [
+    "block-1"
+  ],
+  "block_seeds": {
+    "block-1": 142
+  },
+  "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+  "request_parameters": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "reasoning": "Gemma native off; Ornith thinking-off requested/unknown; seeds requested, not deterministic",
+  "request_timeout_seconds": 120,
+  "machine_time_seconds": 1800,
+  "context_length": 8192,
+  "max_attempts_per_policy": 2,
+  "source_sha256": {
+    "collect.py": "866727a4a2e9c06b758ad103152a143baf8fa0c61b7ac2c4ffad43f0167a4276",
+    "public_checks.py": "5b5783445c4b05149b2d0883af0f2134096a348f7bb06ab3a2c18aa58cafdcb7",
+    "../run.py": "f9bc9a2839364e04a9673a5a20eb01ba5981a9ce98e45bb25d3da6f2a18255c7",
+    "final_grader.py": "e1ea6638800ece1d3631f7381ec887e3ff2e91f977db2df538c85db0c5e148cc",
+    "assurance.py": "8fa32f3c9b5614b0bcb35c448b314faa963a2cd33eff4733edff8336621aa94a",
+    "practical_tasks.py": "dab97f9f025d15773c3aab02fd8d68e06653c81afba65908646c89d0aa926c49",
+    "prepare_humaneval.py": "a0ba394509622bf6cdea983d0613c0d9e3f8d22f5061d49041ecfd70d12f9b8a",
+    "freeze.py": "87bbdf2b4dc35cfe914c9b48c60e4eda644d5b92198a5aa809c422cb64d10532",
+    "analyze_confirmation.py": "4c2d95fd1b7185c385ef7e4a57f1821f42e14852fa0baf084d158bcecd5abb93",
+    "preflight.py": "bea07826d899eddb4302411a864c0219f9df5403c5fe153bf0a7ef9f28f6e45d",
+    "PROTOCOL.md": "ea26783e16789f3d5fcfb4043528730b703346e5b32a8fe1ac866c5d69a5c5d1",
+    "VALIDATION.md": "73ef301a5a781427c8f8318f4795f94590f265883f9e08fc721df5e39b03687c"
+  },
+  "model_files_sha256": {
+    "model.safetensors": "c022a4c4b8de62c75306e2442fd78161ff49bce85fe7abb308c5ad5d04454a26",
+    "config.json": "7ddc5bb8c3057edaa0a3337c1721312a8f3d28ad587b77dd6ac075876929d95d",
+    "model.safetensors.index.json": "215f9abadc1cea4d465b01c036dffcac5a84c2fb2386777863eff6928b91ed0b",
+    "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "tokenizer_config.json": "386ba246ba3dfa4d3a21d8bc8712eba38de558e5ac94c2c90436d8f94d519d5e"
+  },
+  "software": {
+    "python": "3.12.8 (v3.12.8:2dc476bcb91, Dec  3 2024, 14:43:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "pre_run_gate": "all reference/mutation/public-boundary/transport/resumption controls passed offline; no final outcomes used"
+}

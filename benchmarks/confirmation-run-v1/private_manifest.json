@@ -1,0 +1,1264 @@
+{
+  "schema_version": 1,
+  "visibility": "final-only",
+  "tasks": [
+    {
+      "id": "cv1-sql-nonnull-score-count",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-01",
+      "template_cluster": "sql-aggregation",
+      "prompt": "SQLite schema: CREATE TABLE results(score INTEGER); Count non-NULL score values. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT COUNT(score) FROM results",
+      "mutation": "SELECT COUNT(*) FROM results",
+      "public": [
+        {
+          "setup": "CREATE TABLE results(score INTEGER); INSERT INTO results VALUES(1),(NULL),(3);",
+          "expected": [
+            [
+              2
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE results(score INTEGER); INSERT INTO results VALUES(NULL),(4),(NULL);",
+          "expected": [
+            [
+              1
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE results(score INTEGER);\nINSERT INTO \"results\" VALUES(NULL);\nINSERT INTO \"results\" VALUES(4);\nINSERT INTO \"results\" VALUES(NULL);",
+          "expected": [
+            [
+              1
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-coalesce-invoice-total",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-02",
+      "template_cluster": "sql-aggregation",
+      "prompt": "SQLite schema: CREATE TABLE invoices(amount INTEGER); Return the total invoice amount, treating NULL amounts as zero. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT COALESCE(SUM(amount),0) FROM invoices",
+      "mutation": "SELECT SUM(amount) FROM invoices",
+      "public": [
+        {
+          "setup": "CREATE TABLE invoices(amount INTEGER); INSERT INTO invoices VALUES(2),(NULL),(5);",
+          "expected": [
+            [
+              7
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE invoices(amount INTEGER); INSERT INTO invoices VALUES(NULL),(NULL);",
+          "expected": [
+            [
+              0
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE invoices(amount INTEGER);\nINSERT INTO \"invoices\" VALUES(NULL);\nINSERT INTO \"invoices\" VALUES(NULL);",
+          "expected": [
+            [
+              0
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-highest-price-ties",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-03",
+      "template_cluster": "sql-filter-order",
+      "prompt": "SQLite schema: CREATE TABLE products(name TEXT,price INTEGER); Return every product with the highest price, ordered by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT name FROM products WHERE price=(SELECT MAX(price) FROM products) ORDER BY name",
+      "mutation": "SELECT name FROM products ORDER BY price DESC LIMIT 1",
+      "public": [
+        {
+          "setup": "CREATE TABLE products(name TEXT,price INTEGER); INSERT INTO products VALUES('a',3),('b',8);",
+          "expected": [
+            [
+              "b"
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE products(name TEXT,price INTEGER); INSERT INTO products VALUES('z',9),('a',9),('b',1);",
+          "expected": [
+            [
+              "a"
+            ],
+            [
+              "z"
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE products(name TEXT,price INTEGER);\nINSERT INTO \"products\" VALUES('b',1);\nINSERT INTO \"products\" VALUES('a',9);\nINSERT INTO \"products\" VALUES('z',9);",
+          "expected": [
+            [
+              "a"
+            ],
+            [
+              "z"
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-nulls-last-labels",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-04",
+      "template_cluster": "sql-filter-order",
+      "prompt": "SQLite schema: CREATE TABLE queue(label TEXT,priority INTEGER); Return labels ordered by priority ascending, with NULL priorities last, then label. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT label FROM queue ORDER BY priority IS NULL,priority,label",
+      "mutation": "SELECT label FROM queue ORDER BY priority,label",
+      "public": [
+        {
+          "setup": "CREATE TABLE queue(label TEXT,priority INTEGER); INSERT INTO queue VALUES('a',2),('b',1);",
+          "expected": [
+            [
+              "b"
+            ],
+            [
+              "a"
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE queue(label TEXT,priority INTEGER); INSERT INTO queue VALUES('z',NULL),('a',2),('b',NULL),('c',1);",
+          "expected": [
+            [
+              "c"
+            ],
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "z"
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE queue(label TEXT,priority INTEGER);\nINSERT INTO \"queue\" VALUES('c',1);\nINSERT INTO \"queue\" VALUES('b',NULL);\nINSERT INTO \"queue\" VALUES('a',2);\nINSERT INTO \"queue\" VALUES('z',NULL);",
+          "expected": [
+            [
+              "c"
+            ],
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "z"
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-quoted-reserved-column",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-05",
+      "template_cluster": "sql-filter-order",
+      "prompt": "SQLite schema: CREATE TABLE shipments(\"order\" INTEGER); Return values from the column named order, sorted ascending. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT \"order\" FROM shipments ORDER BY \"order\"",
+      "mutation": "SELECT order FROM shipments",
+      "public": [
+        {
+          "setup": "CREATE TABLE shipments(\"order\" INTEGER); INSERT INTO shipments VALUES(2),(1);",
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE shipments(\"order\" INTEGER); INSERT INTO shipments VALUES(7);",
+          "expected": [
+            [
+              7
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE shipments(\"order\" INTEGER);\nINSERT INTO \"shipments\" VALUES(7);",
+          "expected": [
+            [
+              7
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-empty-sales-count",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-06",
+      "template_cluster": "sql-aggregation",
+      "prompt": "SQLite schema: CREATE TABLE sales(id INTEGER); Return the number of sales rows, including zero for an empty table. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT COUNT(*) FROM sales",
+      "mutation": "SELECT 1 FROM sales",
+      "public": [
+        {
+          "setup": "CREATE TABLE sales(id INTEGER); INSERT INTO sales VALUES(1);",
+          "expected": [
+            [
+              1
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE sales(id INTEGER);",
+          "expected": [
+            [
+              0
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE sales(id INTEGER);",
+          "expected": [
+            [
+              0
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-customers-without-orders",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-07",
+      "template_cluster": "sql-relational",
+      "prompt": "SQLite schema: CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); Return customer names with no matching order, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT c.name FROM customers c LEFT JOIN orders o ON o.customer_id=c.id WHERE o.customer_id IS NULL ORDER BY c.name",
+      "mutation": "SELECT name FROM customers ORDER BY name",
+      "public": [
+        {
+          "setup": "CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); INSERT INTO customers VALUES(1,'Ada'),(2,'Bo'); INSERT INTO orders VALUES(1);",
+          "expected": [
+            [
+              "Bo"
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE customers(id INTEGER,name TEXT); CREATE TABLE orders(customer_id INTEGER); INSERT INTO customers VALUES(1,'Cy'),(2,'Dee'),(3,'Eve'); INSERT INTO orders VALUES(2);",
+          "expected": [
+            [
+              "Cy"
+            ],
+            [
+              "Eve"
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE customers(id INTEGER,name TEXT);\nINSERT INTO \"customers\" VALUES(3,'Eve');\nINSERT INTO \"customers\" VALUES(2,'Dee');\nINSERT INTO \"customers\" VALUES(1,'Cy');\nCREATE TABLE orders(customer_id INTEGER);\nINSERT INTO \"orders\" VALUES(2);",
+          "expected": [
+            [
+              "Cy"
+            ],
+            [
+              "Eve"
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-distinct-route-pairs",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-08",
+      "template_cluster": "sql-relational",
+      "prompt": "SQLite schema: CREATE TABLE routes(origin TEXT,destination TEXT); Return distinct origin and destination pairs, sorted by origin then destination. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT DISTINCT origin,destination FROM routes ORDER BY origin,destination",
+      "mutation": "SELECT origin,destination FROM routes ORDER BY origin,destination",
+      "public": [
+        {
+          "setup": "CREATE TABLE routes(origin TEXT,destination TEXT); INSERT INTO routes VALUES('A','B'),('B','C');",
+          "expected": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "B",
+              "C"
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE routes(origin TEXT,destination TEXT); INSERT INTO routes VALUES('A','B'),('A','B'),('A','C');",
+          "expected": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "A",
+              "C"
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE routes(origin TEXT,destination TEXT);\nINSERT INTO \"routes\" VALUES('A','C');\nINSERT INTO \"routes\" VALUES('A','B');\nINSERT INTO \"routes\" VALUES('A','B');",
+          "expected": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "A",
+              "C"
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-per-team-top-score",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-09",
+      "template_cluster": "sql-aggregation",
+      "prompt": "SQLite schema: CREATE TABLE games(team TEXT,score INTEGER); Return each team and its maximum score, sorted by team. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT team,MAX(score) FROM games GROUP BY team ORDER BY team",
+      "mutation": "SELECT team,score FROM games GROUP BY team ORDER BY team",
+      "public": [
+        {
+          "setup": "CREATE TABLE games(team TEXT,score INTEGER); INSERT INTO games VALUES('A',2),('B',4);",
+          "expected": [
+            [
+              "A",
+              2
+            ],
+            [
+              "B",
+              4
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE games(team TEXT,score INTEGER); INSERT INTO games VALUES('A',2),('A',9),('B',4);",
+          "expected": [
+            [
+              "A",
+              9
+            ],
+            [
+              "B",
+              4
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE games(team TEXT,score INTEGER);\nINSERT INTO \"games\" VALUES('B',4);\nINSERT INTO \"games\" VALUES('A',9);\nINSERT INTO \"games\" VALUES('A',2);",
+          "expected": [
+            [
+              "A",
+              9
+            ],
+            [
+              "B",
+              4
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-case-status-count",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-10",
+      "template_cluster": "sql-filter-order",
+      "prompt": "SQLite schema: CREATE TABLE jobs(status TEXT); Return the count of rows whose status is exactly active, ignoring case. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT COUNT(*) FROM jobs WHERE lower(status)='active'",
+      "mutation": "SELECT COUNT(*) FROM jobs WHERE status='active'",
+      "public": [
+        {
+          "setup": "CREATE TABLE jobs(status TEXT); INSERT INTO jobs VALUES('active'),('done');",
+          "expected": [
+            [
+              1
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE jobs(status TEXT); INSERT INTO jobs VALUES('ACTIVE'),('Active'),('done');",
+          "expected": [
+            [
+              2
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE jobs(status TEXT);\nINSERT INTO \"jobs\" VALUES('done');\nINSERT INTO \"jobs\" VALUES('Active');\nINSERT INTO \"jobs\" VALUES('ACTIVE');",
+          "expected": [
+            [
+              2
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-date-window",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-11",
+      "template_cluster": "sql-filter-order",
+      "prompt": "SQLite schema: CREATE TABLE events(id INTEGER,day TEXT); Return event ids dated from 2024-03-01 through 2024-03-31 inclusive, ordered by id. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT id FROM events WHERE day>='2024-03-01' AND day<='2024-03-31' ORDER BY id",
+      "mutation": "SELECT id FROM events WHERE day>'2024-03-01' AND day<'2024-03-31' ORDER BY id",
+      "public": [
+        {
+          "setup": "CREATE TABLE events(id INTEGER,day TEXT); INSERT INTO events VALUES(1,'2024-03-10');",
+          "expected": [
+            [
+              1
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE events(id INTEGER,day TEXT); INSERT INTO events VALUES(1,'2024-02-29'),(2,'2024-03-01'),(3,'2024-03-31'),(4,'2024-04-01');",
+          "expected": [
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE events(id INTEGER,day TEXT);\nINSERT INTO \"events\" VALUES(4,'2024-04-01');\nINSERT INTO \"events\" VALUES(3,'2024-03-31');\nINSERT INTO \"events\" VALUES(2,'2024-03-01');\nINSERT INTO \"events\" VALUES(1,'2024-02-29');",
+          "expected": [
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-having-three-visits",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-12",
+      "template_cluster": "sql-aggregation",
+      "prompt": "SQLite schema: CREATE TABLE visits(visitor TEXT); Return visitor names with at least three visits, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT visitor FROM visits GROUP BY visitor HAVING COUNT(*)>=3 ORDER BY visitor",
+      "mutation": "SELECT visitor FROM visits GROUP BY visitor HAVING COUNT(*)>3 ORDER BY visitor",
+      "public": [
+        {
+          "setup": "CREATE TABLE visits(visitor TEXT); INSERT INTO visits VALUES('Ada'),('Ada'),('Ada'),('Ada');",
+          "expected": [
+            [
+              "Ada"
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE visits(visitor TEXT); INSERT INTO visits VALUES('Bo'),('Bo'),('Bo'),('Cy'),('Cy');",
+          "expected": [
+            [
+              "Bo"
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE visits(visitor TEXT);\nINSERT INTO \"visits\" VALUES('Cy');\nINSERT INTO \"visits\" VALUES('Cy');\nINSERT INTO \"visits\" VALUES('Bo');\nINSERT INTO \"visits\" VALUES('Bo');\nINSERT INTO \"visits\" VALUES('Bo');",
+          "expected": [
+            [
+              "Bo"
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-exists-flagged-project",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-13",
+      "template_cluster": "sql-relational",
+      "prompt": "SQLite schema: CREATE TABLE projects(id INTEGER,name TEXT); CREATE TABLE issues(project_id INTEGER,flagged INTEGER); Return project names having at least one flagged issue, sorted by name. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT p.name FROM projects p WHERE EXISTS(SELECT 1 FROM issues i WHERE i.project_id=p.id AND i.flagged=1) ORDER BY p.name",
+      "mutation": "SELECT p.name FROM projects p JOIN issues i ON i.project_id=p.id WHERE i.flagged=1 ORDER BY p.name",
+      "public": [
+        {
+          "setup": "CREATE TABLE projects(id INTEGER,name TEXT); CREATE TABLE issues(project_id INTEGER,flagged INTEGER); INSERT INTO projects VALUES(1,'A'); INSERT INTO issues VALUES(1,1);",
+          "expected": [
+            [
+              "A"
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE projects(id INTEGER,name TEXT); CREATE TABLE issues(project_id INTEGER,flagged INTEGER); INSERT INTO projects VALUES(1,'A'),(2,'B'); INSERT INTO issues VALUES(1,1),(1,1),(2,0);",
+          "expected": [
+            [
+              "A"
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE issues(project_id INTEGER,flagged INTEGER);\nINSERT INTO \"issues\" VALUES(2,0);\nINSERT INTO \"issues\" VALUES(1,1);\nINSERT INTO \"issues\" VALUES(1,1);\nCREATE TABLE projects(id INTEGER,name TEXT);\nINSERT INTO \"projects\" VALUES(2,'B');\nINSERT INTO \"projects\" VALUES(1,'A');",
+          "expected": [
+            [
+              "A"
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-union-all-source-count",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-14",
+      "template_cluster": "sql-aggregation",
+      "prompt": "SQLite schema: CREATE TABLE current_log(id INTEGER); CREATE TABLE archived_log(id INTEGER); Return the total number of rows across current and archived logs. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT (SELECT COUNT(*) FROM current_log)+(SELECT COUNT(*) FROM archived_log)",
+      "mutation": "SELECT COUNT(*) FROM current_log UNION SELECT COUNT(*) FROM archived_log",
+      "public": [
+        {
+          "setup": "CREATE TABLE current_log(id INTEGER); CREATE TABLE archived_log(id INTEGER); INSERT INTO current_log VALUES(1); INSERT INTO archived_log VALUES(2);",
+          "expected": [
+            [
+              2
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE current_log(id INTEGER); CREATE TABLE archived_log(id INTEGER); INSERT INTO current_log VALUES(1),(2); INSERT INTO archived_log VALUES(3),(4),(5);",
+          "expected": [
+            [
+              5
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE archived_log(id INTEGER);\nINSERT INTO \"archived_log\" VALUES(5);\nINSERT INTO \"archived_log\" VALUES(4);\nINSERT INTO \"archived_log\" VALUES(3);\nCREATE TABLE current_log(id INTEGER);\nINSERT INTO \"current_log\" VALUES(2);\nINSERT INTO \"current_log\" VALUES(1);",
+          "expected": [
+            [
+              5
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-length-filter",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-15",
+      "template_cluster": "sql-filter-order",
+      "prompt": "SQLite schema: CREATE TABLE files(filename TEXT); Return filenames longer than four characters, sorted by filename. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT filename FROM files WHERE length(filename)>4 ORDER BY filename",
+      "mutation": "SELECT filename FROM files WHERE length(filename)>=4 ORDER BY filename",
+      "public": [
+        {
+          "setup": "CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');",
+          "expected": [
+            [
+              "alpha"
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('four'),('three'),('seven');",
+          "expected": [
+            [
+              "seven"
+            ],
+            [
+              "three"
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE files(filename TEXT);\nINSERT INTO \"files\" VALUES('seven');\nINSERT INTO \"files\" VALUES('three');\nINSERT INTO \"files\" VALUES('four');",
+          "expected": [
+            [
+              "seven"
+            ],
+            [
+              "three"
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sql-average-nonnull",
+      "category": "sql",
+      "type": "sql",
+      "task_cluster": "sql-task-16",
+      "template_cluster": "sql-aggregation",
+      "prompt": "SQLite schema: CREATE TABLE readings(temp REAL); Return the average non-NULL temperature rounded to two decimals. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.",
+      "reference": "SELECT ROUND(AVG(temp),2) FROM readings",
+      "mutation": "SELECT ROUND(SUM(temp)/COUNT(*),2) FROM readings",
+      "public": [
+        {
+          "setup": "CREATE TABLE readings(temp REAL); INSERT INTO readings VALUES(2.0),(4.0);",
+          "expected": [
+            [
+              3.0
+            ]
+          ],
+          "ordered": true
+        }
+      ],
+      "final": [
+        {
+          "setup": "CREATE TABLE readings(temp REAL); INSERT INTO readings VALUES(2.0),(NULL),(5.0);",
+          "expected": [
+            [
+              3.5
+            ]
+          ],
+          "ordered": true
+        },
+        {
+          "setup": "CREATE TABLE readings(temp REAL);\nINSERT INTO \"readings\" VALUES(5.0);\nINSERT INTO \"readings\" VALUES(NULL);\nINSERT INTO \"readings\" VALUES(2.0);",
+          "expected": [
+            [
+              3.5
+            ]
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-cumulative-integer-totals",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-01",
+      "template_cluster": "shell-aggregation",
+      "prompt": "For integers stored one per nonempty line in amounts.txt, print the running total after each line, preserving order. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk '{s+=$1; print s}' amounts.txt",
+      "mutation": "awk '{s+=$1} END {print s}' amounts.txt",
+      "public": [
+        {
+          "files": {
+            "amounts.txt": "2\n3\n"
+          },
+          "expected": "2\n5\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "amounts.txt": "4\n-6\n3\n0\n"
+          },
+          "expected": "4\n-2\n1\n1\n"
+        },
+        {
+          "files": {
+            "amounts.txt": "0\n-2\n7\n"
+          },
+          "expected": "0\n-2\n5\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-sorted-space-filenames",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-02",
+      "template_cluster": "shell-file-selection",
+      "prompt": "Print regular filenames ending in .txt, including names with spaces, sorted one per line. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "find . -maxdepth 1 -type f -name '*.txt' -print | sed 's|^./||' | sort",
+      "mutation": "find . -maxdepth 1 -type f -name '*.txt' -print | sort",
+      "public": [
+        {
+          "files": {
+            "a.txt": "x",
+            "b.txt": "y"
+          },
+          "expected": "a.txt\nb.txt\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "two words.txt": "x",
+            "a.txt": "y",
+            "skip.md": "z"
+          },
+          "expected": "a.txt\ntwo words.txt\n"
+        },
+        {
+          "files": {
+            "a b.txt": "",
+            "z.txt": "x",
+            "skip.log": ""
+          },
+          "expected": "a b.txt\nz.txt\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-newline-record-count",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-03",
+      "template_cluster": "shell-aggregation",
+      "prompt": "Print the number of newline-delimited records in records.txt; an unterminated final record still counts. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk 'END {print NR}' records.txt",
+      "mutation": "wc -l < records.txt",
+      "public": [
+        {
+          "files": {
+            "records.txt": "a\nb\n"
+          },
+          "expected": "2\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "records.txt": "a\nb"
+          },
+          "expected": "2\n"
+        },
+        {
+          "files": {
+            "records.txt": ""
+          },
+          "expected": "0\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-failed-command-names",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-04",
+      "template_cluster": "shell-text-transform",
+      "prompt": "commands.txt contains literal true or false commands. Print only the commands that exit nonzero, in input order. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "grep '^false$' commands.txt",
+      "mutation": "cat commands.txt",
+      "public": [
+        {
+          "files": {
+            "commands.txt": "true\nfalse\n"
+          },
+          "expected": "false\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "commands.txt": "true\nfalse\nfalse\n"
+          },
+          "expected": "false\nfalse\n"
+        },
+        {
+          "files": {
+            "commands.txt": "false\ntrue\nfalse\n"
+          },
+          "expected": "false\nfalse\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-first-fields",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-05",
+      "template_cluster": "shell-text-transform",
+      "prompt": "Print the first colon-separated field of each nonempty line in users.txt. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk -F: 'NF {print $1}' users.txt",
+      "mutation": "cut -d: -f1 users.txt",
+      "public": [
+        {
+          "files": {
+            "users.txt": "ada:1\nbo:2\n"
+          },
+          "expected": "ada\nbo\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "users.txt": "ada:1\n\nbo:2\n"
+          },
+          "expected": "ada\nbo\n"
+        },
+        {
+          "files": {
+            "users.txt": "x:1:2\n\ny:3\n"
+          },
+          "expected": "x\ny\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-unique-casefold-words",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-06",
+      "template_cluster": "shell-text-transform",
+      "prompt": "Print unique words from words.txt case-insensitively, as lowercase, sorted. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "tr '[:upper:]' '[:lower:]' < words.txt | sort -u",
+      "mutation": "sort -u words.txt",
+      "public": [
+        {
+          "files": {
+            "words.txt": "a\nb\n"
+          },
+          "expected": "a\nb\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "words.txt": "Apple\napple\nBANANA\n"
+          },
+          "expected": "apple\nbanana\n"
+        },
+        {
+          "files": {
+            "words.txt": "Z\na\nZ\nA\n"
+          },
+          "expected": "a\nz\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-largest-byte-file",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-07",
+      "template_cluster": "shell-file-selection",
+      "prompt": "Print the name of the largest regular file in the current directory; choose the lexicographically greatest full filename on ties. At least one regular file exists. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "for f in ./*; do [ -f \"$f\" ] && printf '%s %s\\n' \"$(wc -c < \"$f\" | tr -d ' ')\" \"$f\"; done | sort -n -k1,1 -k2,2 | tail -n 1 | sed 's/^[0-9]* \\.\\///'",
+      "mutation": "ls | head -n 1",
+      "public": [
+        {
+          "files": {
+            "a": "x",
+            "b": "xx"
+          },
+          "expected": "b\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "a file": "123",
+            "z": "123",
+            "tiny": "x"
+          },
+          "expected": "z\n"
+        },
+        {
+          "files": {
+            "z two": "abc",
+            "a one": "abc",
+            "smaller": "a"
+          },
+          "expected": "z two\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-csv-active-names",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-08",
+      "template_cluster": "shell-text-transform",
+      "prompt": "From people.csv with header name,status, print active names sorted. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk -F, 'NR>1 && $2==\"active\" {print $1}' people.csv | sort",
+      "mutation": "grep active people.csv | cut -d, -f1",
+      "public": [
+        {
+          "files": {
+            "people.csv": "name,status\nAda,active\nBo,inactive\n"
+          },
+          "expected": "Ada\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "people.csv": "name,status\nAda,active\nZed,inactive\nAnn,active\n"
+          },
+          "expected": "Ada\nAnn\n"
+        },
+        {
+          "files": {
+            "people.csv": "name,status\nZ,active\nA,active\nB,inactive\n"
+          },
+          "expected": "A\nZ\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-line-prefix-number",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-09",
+      "template_cluster": "shell-text-transform",
+      "prompt": "Prefix every line of input.txt, including blank lines, with its 1-based number and a colon. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk '{print NR \":\" $0}' input.txt",
+      "mutation": "nl -ba input.txt",
+      "public": [
+        {
+          "files": {
+            "input.txt": "a\nb\n"
+          },
+          "expected": "1:a\n2:b\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "input.txt": "a\n\nb\n"
+          },
+          "expected": "1:a\n2:\n3:b\n"
+        },
+        {
+          "files": {
+            "input.txt": "\n x \n"
+          },
+          "expected": "1:\n2: x \n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-deduplicate-adjacent-lines",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-10",
+      "template_cluster": "shell-text-transform",
+      "prompt": "Print text.txt after removing only adjacent duplicate lines. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "uniq text.txt",
+      "mutation": "sort -u text.txt",
+      "public": [
+        {
+          "files": {
+            "text.txt": "a\na\nb\n"
+          },
+          "expected": "a\nb\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "text.txt": "b\na\nb\n"
+          },
+          "expected": "b\na\nb\n"
+        },
+        {
+          "files": {
+            "text.txt": "\n\nx\nx\ny\nx\n"
+          },
+          "expected": "\nx\ny\nx\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-matching-extension-count",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-11",
+      "template_cluster": "shell-aggregation",
+      "prompt": "Print the count of .log files, including zero when none exist. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "find . -maxdepth 1 -type f -name '*.log' | wc -l | tr -d ' '",
+      "mutation": "find . -maxdepth 1 -type f | wc -l | tr -d ' '",
+      "public": [
+        {
+          "files": {
+            "a.log": "x"
+          },
+          "expected": "1\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "note.txt": "x"
+          },
+          "expected": "0\n"
+        },
+        {
+          "files": {
+            "a.log": "",
+            "b.log": "",
+            "x.txt": ""
+          },
+          "expected": "2\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-reverse-fields",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-12",
+      "template_cluster": "shell-text-transform",
+      "prompt": "For each nonempty comma-separated line in pairs.csv, print its two fields in reverse order. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk -F, 'NF {print $2 \",\" $1}' pairs.csv",
+      "mutation": "awk -F, '{print $2 \",\" $1}' pairs.csv",
+      "public": [
+        {
+          "files": {
+            "pairs.csv": "a,b\n"
+          },
+          "expected": "b,a\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "pairs.csv": "a,b\n\nc,d\n"
+          },
+          "expected": "b,a\nd,c\n"
+        },
+        {
+          "files": {
+            "pairs.csv": "x,y\n\na,b\n"
+          },
+          "expected": "y,x\nb,a\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-nonoverlapping-literal-count",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-13",
+      "template_cluster": "shell-aggregation",
+      "prompt": "Print the number of lines in data.txt containing the literal substring a.b (not a regular expression), including zero when none match. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk 'index($0,\"a.b\") {n++} END {print n+0}' data.txt",
+      "mutation": "grep -c 'a.b' data.txt",
+      "public": [
+        {
+          "files": {
+            "data.txt": "a.b\na.b a.b\n"
+          },
+          "expected": "2\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "data.txt": "axb\na-b\nzzz\n"
+          },
+          "expected": "0\n"
+        },
+        {
+          "files": {
+            "data.txt": "a.b\naxb\na.b a.b\n"
+          },
+          "expected": "2\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-last-nonempty-line",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-14",
+      "template_cluster": "shell-text-transform",
+      "prompt": "Print the last nonempty line in log.txt after trimming trailing whitespace. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "sed -e 's/[[:space:]]*$//' -e '/[^[:space:]]/!d' log.txt | tail -n 1",
+      "mutation": "tail -n 1 log.txt",
+      "public": [
+        {
+          "files": {
+            "log.txt": "one\ntwo\n"
+          },
+          "expected": "two\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "log.txt": "one\ntwo  \n \n"
+          },
+          "expected": "two\n"
+        },
+        {
+          "files": {
+            "log.txt": "\n  \nx \n\n"
+          },
+          "expected": "x\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-tab-column-sum",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-15",
+      "template_cluster": "shell-aggregation",
+      "prompt": "Print the integer sum of the second tab-separated column in values.tsv, skipping its header. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "awk -F'\\t' 'NR>1 {s+=$2} END {print s+0}' values.tsv",
+      "mutation": "awk -F'\\t' '{s+=$2} END {print s}' values.tsv",
+      "public": [
+        {
+          "files": {
+            "values.tsv": "name\t0\na\t2\n"
+          },
+          "expected": "2\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "values.tsv": "name\t1\na\t2\nb\t5\n"
+          },
+          "expected": "7\n"
+        },
+        {
+          "files": {
+            "values.tsv": "name\t10\nx\t-3\ny\t4\n"
+          },
+          "expected": "1\n"
+        }
+      ]
+    },
+    {
+      "id": "cv1-sh-literal-bracket-search",
+      "category": "shell",
+      "type": "shell",
+      "task_cluster": "shell-task-16",
+      "template_cluster": "shell-text-transform",
+      "prompt": "Print lines from search.txt containing the literal text [ok]. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.",
+      "reference": "grep -F '[ok]' search.txt",
+      "mutation": "grep '[ok]' search.txt",
+      "public": [
+        {
+          "files": {
+            "search.txt": "[ok] yes\nno\n"
+          },
+          "expected": "[ok] yes\n"
+        }
+      ],
+      "final": [
+        {
+          "files": {
+            "search.txt": "[ok] yes\no only\nk maybe\n"
+          },
+          "expected": "[ok] yes\n"
+        },
+        {
+          "files": {
+            "search.txt": "[ok]\nx[ok]y\nno\n"
+          },
+          "expected": "[ok]\nx[ok]y\n"
+        }
+      ]
+    }
+  ]
+}

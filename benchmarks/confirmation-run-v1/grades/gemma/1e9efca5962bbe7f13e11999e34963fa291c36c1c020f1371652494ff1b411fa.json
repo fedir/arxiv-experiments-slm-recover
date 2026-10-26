@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/8478d597339298b65ab414ae/D-1.json",
+  "artifact_sha256": "9c52e859aaa7e88b51cf41a065753b30b153e007e90d65a43264b01db592f5f5",
+  "final_grade": {
+    "passed": false,
+    "detail": "the query fails: OperationalError: near \"def\": syntax error"
+  }
+}

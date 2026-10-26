@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/9fa962bc8bb7dd6016b8ce55/R-1.json",
+  "artifact_sha256": "931e8e82c46fbfe9fe96c6c493f8dbc4e32e27d5394a5572e46d6ce6b6c5df85",
+  "final_grade": {
+    "passed": false,
+    "detail": "exit=2, stdout=b'', expected=b'1:a\\n2:\\n3:b\\n', stderr=b'/bin/bash: -c: line 0: unexpected EOF while looking for matching `\"\\'\\n/bin/bash: -c: line 1: syntax error: unexpected end of file\\n'"
+  }
+}

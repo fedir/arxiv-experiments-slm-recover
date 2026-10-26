@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "cv1-sql-exists-flagged-project",
+    "task_sha256": "c8b132241c56a79efa68b5e07767c9eba88e2b40d49dc48a5effab62f765befa",
+    "prompt_sha256": "8881423b64d14dd35a4bd7a5b4a8064732c90424db6ee04987c59029371f00ce",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/ce542d9f7bdfa417d0bcc175/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.4072731670021312
+    },
+    "R": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/ce542d9f7bdfa417d0bcc175/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.4073002920049476
+    },
+    "D": {
+      "attempts": [
+        "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/ce542d9f7bdfa417d0bcc175/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.4072962510108482
+    }
+  },
+  "cell_seconds": 1.4074757499911357
+}

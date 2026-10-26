@@ -1,0 +1,4634 @@
+{
+  "schema_version": 1,
+  "scope": "post-review precision/configuration/cost; not a new confirmatory decision rule",
+  "source_cohort": "confirmation-run-v1",
+  "models": {
+    "ornith": {
+      "intervals": [
+        {
+          "contrast": "R-N",
+          "bounds_pp": [
+            -23.93041904396689,
+            37.62532279179682
+          ],
+          "component_alpha": 0.0020833333333333333,
+          "components": 24,
+          "nominal_familywise_confidence": 0.95,
+          "strata": {
+            "python": {
+              "n": 40,
+              "improved": 3,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                0.0049446399910218035,
+                0.2871245229342848
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.15774573434338496
+              ]
+            },
+            "sql": {
+              "n": 16,
+              "improved": 1,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                6.513597721284571e-05,
+                0.4479064213566203
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ]
+            },
+            "shell": {
+              "n": 16,
+              "improved": 2,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                0.0029876173417861937,
+                0.5274217969385246
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ]
+            }
+          },
+          "contains_zero": true,
+          "contains_plus_10pp": true,
+          "contains_minus_10pp": true,
+          "effect_pp": 8.333333333333332,
+          "p_exact": 0.03125,
+          "p_holm": 0.125,
+          "ci95_pp": [
+            2.7777777777777777,
+            15.277777777777779
+          ]
+        },
+        {
+          "contrast": "D-R",
+          "bounds_pp": [
+            -35.530590626956545,
+            24.13996029013019
+          ],
+          "component_alpha": 0.0020833333333333333,
+          "components": 24,
+          "nominal_familywise_confidence": 0.95,
+          "strata": {
+            "python": {
+              "n": 40,
+              "improved": 0,
+              "worsened": 2,
+              "improved_probability_bounds": [
+                0.0,
+                0.15774573434338496
+              ],
+              "worsened_probability_bounds": [
+                0.0011728975600823468,
+                0.24941934396715998
+              ]
+            },
+            "sql": {
+              "n": 16,
+              "improved": 0,
+              "worsened": 1,
+              "improved_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ],
+              "worsened_probability_bounds": [
+                6.513597721284571e-05,
+                0.4479064213566203
+              ]
+            },
+            "shell": {
+              "n": 16,
+              "improved": 0,
+              "worsened": 2,
+              "improved_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ],
+              "worsened_probability_bounds": [
+                0.0029876173417861937,
+                0.5274217969385246
+              ]
+            }
+          },
+          "contains_zero": true,
+          "contains_plus_10pp": true,
+          "contains_minus_10pp": true,
+          "effect_pp": -6.944444444444445,
+          "p_exact": 0.0625,
+          "p_holm": 0.1875,
+          "ci95_pp": [
+            -12.5,
+            -1.3888888888888888
+          ]
+        }
+      ],
+      "cost_contrasts": [
+        {
+          "contrast": "R-N",
+          "tasks": 72,
+          "net_additional_passes": 6,
+          "repairs": 6,
+          "regressions": 0,
+          "delta": {
+            "prompt_tokens": 3000.0,
+            "completion_tokens": 1912.0,
+            "full_loop_seconds": 46.63803633300995
+          },
+          "per_net_additional_pass": {
+            "prompt_tokens": 500.0,
+            "completion_tokens": 318.6666666666667,
+            "full_loop_seconds": 7.773006055501658
+          }
+        },
+        {
+          "contrast": "D-N",
+          "tasks": 72,
+          "net_additional_passes": 1,
+          "repairs": 1,
+          "regressions": 0,
+          "delta": {
+            "prompt_tokens": 6682.0,
+            "completion_tokens": 2148.0,
+            "full_loop_seconds": 56.17623362703307
+          },
+          "per_net_additional_pass": {
+            "prompt_tokens": 6682.0,
+            "completion_tokens": 2148.0,
+            "full_loop_seconds": 56.17623362703307
+          }
+        }
+      ],
+      "task_cost_rows": [
+        {
+          "task_id": "HumanEval/5",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.9920044999889797,
+              "prompt_tokens": 138,
+              "completion_tokens": 138
+            },
+            "R": {
+              "full_loop_seconds": 3.9920292499882635,
+              "prompt_tokens": 138,
+              "completion_tokens": 138
+            },
+            "D": {
+              "full_loop_seconds": 3.9920255829929374,
+              "prompt_tokens": 138,
+              "completion_tokens": 138
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/8",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.8738219579972792,
+              "prompt_tokens": 160,
+              "completion_tokens": 148
+            },
+            "R": {
+              "full_loop_seconds": 3.8738461250031833,
+              "prompt_tokens": 160,
+              "completion_tokens": 148
+            },
+            "D": {
+              "full_loop_seconds": 3.873842415996478,
+              "prompt_tokens": 160,
+              "completion_tokens": 148
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/10",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.2110075840028,
+              "prompt_tokens": 194,
+              "completion_tokens": 195
+            },
+            "R": {
+              "full_loop_seconds": 10.059906791997491,
+              "prompt_tokens": 388,
+              "completion_tokens": 397
+            },
+            "D": {
+              "full_loop_seconds": 10.535264709003968,
+              "prompt_tokens": 691,
+              "completion_tokens": 394
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/11",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.8264205409941496,
+              "prompt_tokens": 127,
+              "completion_tokens": 98
+            },
+            "R": {
+              "full_loop_seconds": 5.685750415999792,
+              "prompt_tokens": 254,
+              "completion_tokens": 210
+            },
+            "D": {
+              "full_loop_seconds": 5.766678874992067,
+              "prompt_tokens": 465,
+              "completion_tokens": 199
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/13",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.493308957986301,
+              "prompt_tokens": 115,
+              "completion_tokens": 123
+            },
+            "R": {
+              "full_loop_seconds": 3.4933292079804232,
+              "prompt_tokens": 115,
+              "completion_tokens": 123
+            },
+            "D": {
+              "full_loop_seconds": 3.4933258749806555,
+              "prompt_tokens": 115,
+              "completion_tokens": 123
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/15",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.7038502500072354,
+              "prompt_tokens": 114,
+              "completion_tokens": 92
+            },
+            "R": {
+              "full_loop_seconds": 2.703871333011193,
+              "prompt_tokens": 114,
+              "completion_tokens": 92
+            },
+            "D": {
+              "full_loop_seconds": 2.7038701670098817,
+              "prompt_tokens": 114,
+              "completion_tokens": 92
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/17",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.299844792010845,
+              "prompt_tokens": 218,
+              "completion_tokens": 231
+            },
+            "R": {
+              "full_loop_seconds": 6.299863542008097,
+              "prompt_tokens": 218,
+              "completion_tokens": 231
+            },
+            "D": {
+              "full_loop_seconds": 6.299860834013089,
+              "prompt_tokens": 218,
+              "completion_tokens": 231
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/18",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.434299207990989,
+              "prompt_tokens": 133,
+              "completion_tokens": 161
+            },
+            "R": {
+              "full_loop_seconds": 4.4343191660009325,
+              "prompt_tokens": 133,
+              "completion_tokens": 161
+            },
+            "D": {
+              "full_loop_seconds": 4.434315791993868,
+              "prompt_tokens": 133,
+              "completion_tokens": 161
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/19",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.4223945410049055,
+              "prompt_tokens": 150,
+              "completion_tokens": 243
+            },
+            "R": {
+              "full_loop_seconds": 6.422415833018022,
+              "prompt_tokens": 150,
+              "completion_tokens": 243
+            },
+            "D": {
+              "full_loop_seconds": 6.422410874001798,
+              "prompt_tokens": 150,
+              "completion_tokens": 243
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/21",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.524871874993551,
+              "prompt_tokens": 169,
+              "completion_tokens": 165
+            },
+            "R": {
+              "full_loop_seconds": 4.524893791996874,
+              "prompt_tokens": 169,
+              "completion_tokens": 165
+            },
+            "D": {
+              "full_loop_seconds": 4.524888291984098,
+              "prompt_tokens": 169,
+              "completion_tokens": 165
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/25",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.85538033299963,
+              "prompt_tokens": 177,
+              "completion_tokens": 215
+            },
+            "R": {
+              "full_loop_seconds": 5.8554004579928005,
+              "prompt_tokens": 177,
+              "completion_tokens": 215
+            },
+            "D": {
+              "full_loop_seconds": 5.855398332991172,
+              "prompt_tokens": 177,
+              "completion_tokens": 215
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/34",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.605570917003206,
+              "prompt_tokens": 120,
+              "completion_tokens": 87
+            },
+            "R": {
+              "full_loop_seconds": 2.6055920840008184,
+              "prompt_tokens": 120,
+              "completion_tokens": 87
+            },
+            "D": {
+              "full_loop_seconds": 2.605588375008665,
+              "prompt_tokens": 120,
+              "completion_tokens": 87
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/36",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.576263916998869,
+              "prompt_tokens": 129,
+              "completion_tokens": 126
+            },
+            "R": {
+              "full_loop_seconds": 3.5762833330081776,
+              "prompt_tokens": 129,
+              "completion_tokens": 126
+            },
+            "D": {
+              "full_loop_seconds": 3.576282416994218,
+              "prompt_tokens": 129,
+              "completion_tokens": 126
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/50",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.7262917080079205,
+              "prompt_tokens": 139,
+              "completion_tokens": 133
+            },
+            "R": {
+              "full_loop_seconds": 3.7263106250029523,
+              "prompt_tokens": 139,
+              "completion_tokens": 133
+            },
+            "D": {
+              "full_loop_seconds": 3.7263074580114335,
+              "prompt_tokens": 139,
+              "completion_tokens": 133
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/55",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.0300757920049364,
+              "prompt_tokens": 100,
+              "completion_tokens": 107
+            },
+            "R": {
+              "full_loop_seconds": 3.030095125999651,
+              "prompt_tokens": 100,
+              "completion_tokens": 107
+            },
+            "D": {
+              "full_loop_seconds": 3.0300951250101207,
+              "prompt_tokens": 100,
+              "completion_tokens": 107
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/57",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.883754459006013,
+              "prompt_tokens": 136,
+              "completion_tokens": 182
+            },
+            "R": {
+              "full_loop_seconds": 4.8837725420016795,
+              "prompt_tokens": 136,
+              "completion_tokens": 182
+            },
+            "D": {
+              "full_loop_seconds": 4.883769751002546,
+              "prompt_tokens": 136,
+              "completion_tokens": 182
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/58",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.961752166986116,
+              "prompt_tokens": 169,
+              "completion_tokens": 142
+            },
+            "R": {
+              "full_loop_seconds": 3.961772624985315,
+              "prompt_tokens": 169,
+              "completion_tokens": 142
+            },
+            "D": {
+              "full_loop_seconds": 3.9617694999906234,
+              "prompt_tokens": 169,
+              "completion_tokens": 142
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/59",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.353547624996281,
+              "prompt_tokens": 113,
+              "completion_tokens": 165
+            },
+            "R": {
+              "full_loop_seconds": 4.353567375001148,
+              "prompt_tokens": 113,
+              "completion_tokens": 165
+            },
+            "D": {
+              "full_loop_seconds": 4.3535652499849675,
+              "prompt_tokens": 113,
+              "completion_tokens": 165
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/65",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.396884332993068,
+              "prompt_tokens": 133,
+              "completion_tokens": 165
+            },
+            "R": {
+              "full_loop_seconds": 4.396904957990046,
+              "prompt_tokens": 133,
+              "completion_tokens": 165
+            },
+            "D": {
+              "full_loop_seconds": 4.39690174999123,
+              "prompt_tokens": 133,
+              "completion_tokens": 165
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/69",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.98056483300752,
+              "prompt_tokens": 210,
+              "completion_tokens": 221
+            },
+            "R": {
+              "full_loop_seconds": 5.980583208001917,
+              "prompt_tokens": 210,
+              "completion_tokens": 221
+            },
+            "D": {
+              "full_loop_seconds": 5.980581917014206,
+              "prompt_tokens": 210,
+              "completion_tokens": 221
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/82",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.7839999999996508,
+              "prompt_tokens": 122,
+              "completion_tokens": 140
+            },
+            "R": {
+              "full_loop_seconds": 3.7840187499969034,
+              "prompt_tokens": 122,
+              "completion_tokens": 140
+            },
+            "D": {
+              "full_loop_seconds": 3.7840159999905154,
+              "prompt_tokens": 122,
+              "completion_tokens": 140
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/83",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.883668000009493,
+              "prompt_tokens": 87,
+              "completion_tokens": 190
+            },
+            "R": {
+              "full_loop_seconds": 4.8836922500049695,
+              "prompt_tokens": 87,
+              "completion_tokens": 190
+            },
+            "D": {
+              "full_loop_seconds": 4.883687792011187,
+              "prompt_tokens": 87,
+              "completion_tokens": 190
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/86",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.313388708003913,
+              "prompt_tokens": 179,
+              "completion_tokens": 29
+            },
+            "R": {
+              "full_loop_seconds": 1.3134068329964066,
+              "prompt_tokens": 179,
+              "completion_tokens": 29
+            },
+            "D": {
+              "full_loop_seconds": 1.3134051660163095,
+              "prompt_tokens": 179,
+              "completion_tokens": 29
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/91",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.628399749999517,
+              "prompt_tokens": 154,
+              "completion_tokens": 212
+            },
+            "R": {
+              "full_loop_seconds": 5.628418833002797,
+              "prompt_tokens": 154,
+              "completion_tokens": 212
+            },
+            "D": {
+              "full_loop_seconds": 5.628417290994548,
+              "prompt_tokens": 154,
+              "completion_tokens": 212
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/93",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 25.193425000004936,
+              "prompt_tokens": 156,
+              "completion_tokens": 1023
+            },
+            "R": {
+              "full_loop_seconds": 25.19344675001048,
+              "prompt_tokens": 156,
+              "completion_tokens": 1023
+            },
+            "D": {
+              "full_loop_seconds": 25.193443500000285,
+              "prompt_tokens": 156,
+              "completion_tokens": 1023
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/97",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.878678332999698,
+              "prompt_tokens": 161,
+              "completion_tokens": 139
+            },
+            "R": {
+              "full_loop_seconds": 3.878699583001435,
+              "prompt_tokens": 161,
+              "completion_tokens": 139
+            },
+            "D": {
+              "full_loop_seconds": 3.8786969579959987,
+              "prompt_tokens": 161,
+              "completion_tokens": 139
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/99",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 7.6453895829909015,
+              "prompt_tokens": 211,
+              "completion_tokens": 287
+            },
+            "R": {
+              "full_loop_seconds": 9.256951874995138,
+              "prompt_tokens": 422,
+              "completion_tokens": 347
+            },
+            "D": {
+              "full_loop_seconds": 14.731887540998287,
+              "prompt_tokens": 817,
+              "completion_tokens": 562
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/104",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.524971916995128,
+              "prompt_tokens": 163,
+              "completion_tokens": 167
+            },
+            "R": {
+              "full_loop_seconds": 4.524992250997457,
+              "prompt_tokens": 163,
+              "completion_tokens": 167
+            },
+            "D": {
+              "full_loop_seconds": 4.524990124991746,
+              "prompt_tokens": 163,
+              "completion_tokens": 167
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/107",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 8.4437914579903,
+              "prompt_tokens": 267,
+              "completion_tokens": 323
+            },
+            "R": {
+              "full_loop_seconds": 8.443811123986961,
+              "prompt_tokens": 267,
+              "completion_tokens": 323
+            },
+            "D": {
+              "full_loop_seconds": 8.443808374984656,
+              "prompt_tokens": 267,
+              "completion_tokens": 323
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/108",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.305292417004239,
+              "prompt_tokens": 173,
+              "completion_tokens": 232
+            },
+            "R": {
+              "full_loop_seconds": 11.92322716700437,
+              "prompt_tokens": 346,
+              "completion_tokens": 460
+            },
+            "D": {
+              "full_loop_seconds": 12.655889251007466,
+              "prompt_tokens": 852,
+              "completion_tokens": 464
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/112",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.903264874999877,
+              "prompt_tokens": 209,
+              "completion_tokens": 216
+            },
+            "R": {
+              "full_loop_seconds": 5.903285208987654,
+              "prompt_tokens": 209,
+              "completion_tokens": 216
+            },
+            "D": {
+              "full_loop_seconds": 5.903282291998039,
+              "prompt_tokens": 209,
+              "completion_tokens": 216
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/113",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.556322667005588,
+              "prompt_tokens": 230,
+              "completion_tokens": 242
+            },
+            "R": {
+              "full_loop_seconds": 13.504716834009741,
+              "prompt_tokens": 460,
+              "completion_tokens": 517
+            },
+            "D": {
+              "full_loop_seconds": 14.445132125008968,
+              "prompt_tokens": 1113,
+              "completion_tokens": 521
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/118",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 7.749885500001255,
+              "prompt_tokens": 197,
+              "completion_tokens": 286
+            },
+            "R": {
+              "full_loop_seconds": 7.7499067909957375,
+              "prompt_tokens": 197,
+              "completion_tokens": 286
+            },
+            "D": {
+              "full_loop_seconds": 7.749902666997514,
+              "prompt_tokens": 197,
+              "completion_tokens": 286
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/120",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.998302082996815,
+              "prompt_tokens": 276,
+              "completion_tokens": 247
+            },
+            "R": {
+              "full_loop_seconds": 6.998321249993751,
+              "prompt_tokens": 276,
+              "completion_tokens": 247
+            },
+            "D": {
+              "full_loop_seconds": 6.998318916987046,
+              "prompt_tokens": 276,
+              "completion_tokens": 247
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/123",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 8.286804874995141,
+              "prompt_tokens": 280,
+              "completion_tokens": 302
+            },
+            "R": {
+              "full_loop_seconds": 8.286824625000008,
+              "prompt_tokens": 280,
+              "completion_tokens": 302
+            },
+            "D": {
+              "full_loop_seconds": 8.28682249999838,
+              "prompt_tokens": 280,
+              "completion_tokens": 302
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/126",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 8.650106832996244,
+              "prompt_tokens": 292,
+              "completion_tokens": 317
+            },
+            "R": {
+              "full_loop_seconds": 8.650128040986601,
+              "prompt_tokens": 292,
+              "completion_tokens": 317
+            },
+            "D": {
+              "full_loop_seconds": 8.650124666004558,
+              "prompt_tokens": 292,
+              "completion_tokens": 317
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/132",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 20.31504691700684,
+              "prompt_tokens": 177,
+              "completion_tokens": 789
+            },
+            "R": {
+              "full_loop_seconds": 20.31506583400187,
+              "prompt_tokens": 177,
+              "completion_tokens": 789
+            },
+            "D": {
+              "full_loop_seconds": 20.315064459005953,
+              "prompt_tokens": 177,
+              "completion_tokens": 789
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/146",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.523814250002033,
+              "prompt_tokens": 172,
+              "completion_tokens": 77
+            },
+            "R": {
+              "full_loop_seconds": 2.523834583014832,
+              "prompt_tokens": 172,
+              "completion_tokens": 77
+            },
+            "D": {
+              "full_loop_seconds": 2.5238315830065403,
+              "prompt_tokens": 172,
+              "completion_tokens": 77
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/149",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.3952600409975275,
+              "prompt_tokens": 240,
+              "completion_tokens": 231
+            },
+            "R": {
+              "full_loop_seconds": 6.395279082003981,
+              "prompt_tokens": 240,
+              "completion_tokens": 231
+            },
+            "D": {
+              "full_loop_seconds": 6.395276625000406,
+              "prompt_tokens": 240,
+              "completion_tokens": 231
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/161",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.44155524999951,
+              "prompt_tokens": 158,
+              "completion_tokens": 117
+            },
+            "R": {
+              "full_loop_seconds": 3.441574166994542,
+              "prompt_tokens": 158,
+              "completion_tokens": 117
+            },
+            "D": {
+              "full_loop_seconds": 3.4415720410033828,
+              "prompt_tokens": 158,
+              "completion_tokens": 117
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-nonnull-score-count",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.7224229580024257,
+              "prompt_tokens": 131,
+              "completion_tokens": 13
+            },
+            "R": {
+              "full_loop_seconds": 0.7224406239984091,
+              "prompt_tokens": 131,
+              "completion_tokens": 13
+            },
+            "D": {
+              "full_loop_seconds": 0.7224380830157315,
+              "prompt_tokens": 131,
+              "completion_tokens": 13
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-coalesce-invoice-total",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8867479160107905,
+              "prompt_tokens": 136,
+              "completion_tokens": 20
+            },
+            "R": {
+              "full_loop_seconds": 0.8867653750057798,
+              "prompt_tokens": 136,
+              "completion_tokens": 20
+            },
+            "D": {
+              "full_loop_seconds": 0.8867630820168415,
+              "prompt_tokens": 136,
+              "completion_tokens": 20
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-highest-price-ties",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.5670247079979163,
+              "prompt_tokens": 146,
+              "completion_tokens": 44
+            },
+            "R": {
+              "full_loop_seconds": 5.231803665999905,
+              "prompt_tokens": 292,
+              "completion_tokens": 190
+            },
+            "D": {
+              "full_loop_seconds": 2.674676417009323,
+              "prompt_tokens": 372,
+              "completion_tokens": 84
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-nulls-last-labels",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 11.473426750002545,
+              "prompt_tokens": 152,
+              "completion_tokens": 473
+            },
+            "R": {
+              "full_loop_seconds": 14.490359250004985,
+              "prompt_tokens": 304,
+              "completion_tokens": 604
+            },
+            "D": {
+              "full_loop_seconds": 22.85229579200677,
+              "prompt_tokens": 813,
+              "completion_tokens": 975
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-quoted-reserved-column",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8647884590027388,
+              "prompt_tokens": 140,
+              "completion_tokens": 19
+            },
+            "R": {
+              "full_loop_seconds": 0.864831166996737,
+              "prompt_tokens": 140,
+              "completion_tokens": 19
+            },
+            "D": {
+              "full_loop_seconds": 0.8648273760045413,
+              "prompt_tokens": 140,
+              "completion_tokens": 19
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-empty-sales-count",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.159026665991405,
+              "prompt_tokens": 134,
+              "completion_tokens": 35
+            },
+            "R": {
+              "full_loop_seconds": 1.5279897500004154,
+              "prompt_tokens": 268,
+              "completion_tokens": 47
+            },
+            "D": {
+              "full_loop_seconds": 2.021789040984004,
+              "prompt_tokens": 339,
+              "completion_tokens": 66
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-customers-without-orders",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0880509580019861,
+              "prompt_tokens": 165,
+              "completion_tokens": 29
+            },
+            "R": {
+              "full_loop_seconds": 1.0880688750039553,
+              "prompt_tokens": 165,
+              "completion_tokens": 29
+            },
+            "D": {
+              "full_loop_seconds": 1.0880662500130711,
+              "prompt_tokens": 165,
+              "completion_tokens": 29
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-distinct-route-pairs",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.027076083002612,
+              "prompt_tokens": 155,
+              "completion_tokens": 72
+            },
+            "R": {
+              "full_loop_seconds": 8.759565166998073,
+              "prompt_tokens": 310,
+              "completion_tokens": 373
+            },
+            "D": {
+              "full_loop_seconds": 3.8816866660054075,
+              "prompt_tokens": 418,
+              "completion_tokens": 148
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-per-team-top-score",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.3689071249973495,
+              "prompt_tokens": 154,
+              "completion_tokens": 42
+            },
+            "R": {
+              "full_loop_seconds": 4.791902416996891,
+              "prompt_tokens": 308,
+              "completion_tokens": 193
+            },
+            "D": {
+              "full_loop_seconds": 2.38869308399444,
+              "prompt_tokens": 386,
+              "completion_tokens": 80
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-case-status-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.080490207998082,
+              "prompt_tokens": 136,
+              "completion_tokens": 168
+            },
+            "R": {
+              "full_loop_seconds": 6.498326165994513,
+              "prompt_tokens": 272,
+              "completion_tokens": 273
+            },
+            "D": {
+              "full_loop_seconds": 7.948278541996842,
+              "prompt_tokens": 476,
+              "completion_tokens": 335
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-date-window",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.4157489170029294,
+              "prompt_tokens": 171,
+              "completion_tokens": 44
+            },
+            "R": {
+              "full_loop_seconds": 1.4158532500005094,
+              "prompt_tokens": 171,
+              "completion_tokens": 44
+            },
+            "D": {
+              "full_loop_seconds": 1.4158443750056904,
+              "prompt_tokens": 171,
+              "completion_tokens": 44
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-having-three-visits",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.9719901670032414,
+              "prompt_tokens": 140,
+              "completion_tokens": 24
+            },
+            "R": {
+              "full_loop_seconds": 0.972070251009427,
+              "prompt_tokens": 140,
+              "completion_tokens": 24
+            },
+            "D": {
+              "full_loop_seconds": 0.9720614590041805,
+              "prompt_tokens": 140,
+              "completion_tokens": 24
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-exists-flagged-project",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.2645167080045212,
+              "prompt_tokens": 172,
+              "completion_tokens": 34
+            },
+            "R": {
+              "full_loop_seconds": 1.2646184579934925,
+              "prompt_tokens": 172,
+              "completion_tokens": 34
+            },
+            "D": {
+              "full_loop_seconds": 1.2646134990063729,
+              "prompt_tokens": 172,
+              "completion_tokens": 34
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-union-all-source-count",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0177765000116779,
+              "prompt_tokens": 157,
+              "completion_tokens": 26
+            },
+            "R": {
+              "full_loop_seconds": 1.0179029170103604,
+              "prompt_tokens": 157,
+              "completion_tokens": 26
+            },
+            "D": {
+              "full_loop_seconds": 1.0178758750116685,
+              "prompt_tokens": 157,
+              "completion_tokens": 26
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-length-filter",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.4382500409992645,
+              "prompt_tokens": 134,
+              "completion_tokens": 48
+            },
+            "R": {
+              "full_loop_seconds": 2.5145250409987057,
+              "prompt_tokens": 268,
+              "completion_tokens": 92
+            },
+            "D": {
+              "full_loop_seconds": 2.5012336660001893,
+              "prompt_tokens": 352,
+              "completion_tokens": 88
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-average-nonnull",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.9519958750024671,
+              "prompt_tokens": 140,
+              "completion_tokens": 23
+            },
+            "R": {
+              "full_loop_seconds": 0.9520706250041258,
+              "prompt_tokens": 140,
+              "completion_tokens": 23
+            },
+            "D": {
+              "full_loop_seconds": 0.9520668749901233,
+              "prompt_tokens": 140,
+              "completion_tokens": 23
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-cumulative-integer-totals",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.9474964580003871,
+              "prompt_tokens": 182,
+              "completion_tokens": 18
+            },
+            "R": {
+              "full_loop_seconds": 0.947514666011557,
+              "prompt_tokens": 182,
+              "completion_tokens": 18
+            },
+            "D": {
+              "full_loop_seconds": 0.9475118749978719,
+              "prompt_tokens": 182,
+              "completion_tokens": 18
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-sorted-space-filenames",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.7494884170009755,
+              "prompt_tokens": 182,
+              "completion_tokens": 9
+            },
+            "R": {
+              "full_loop_seconds": 0.7495092500030296,
+              "prompt_tokens": 182,
+              "completion_tokens": 9
+            },
+            "D": {
+              "full_loop_seconds": 0.7495062090019928,
+              "prompt_tokens": 182,
+              "completion_tokens": 9
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-newline-record-count",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8819605839962605,
+              "prompt_tokens": 176,
+              "completion_tokens": 15
+            },
+            "R": {
+              "full_loop_seconds": 0.8819813339941902,
+              "prompt_tokens": 176,
+              "completion_tokens": 15
+            },
+            "D": {
+              "full_loop_seconds": 0.8819784590014024,
+              "prompt_tokens": 176,
+              "completion_tokens": 15
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-failed-command-names",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8792377909994684,
+              "prompt_tokens": 177,
+              "completion_tokens": 15
+            },
+            "R": {
+              "full_loop_seconds": 0.8792589989898261,
+              "prompt_tokens": 177,
+              "completion_tokens": 15
+            },
+            "D": {
+              "full_loop_seconds": 0.8792559569992591,
+              "prompt_tokens": 177,
+              "completion_tokens": 15
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-first-fields",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0360335419973126,
+              "prompt_tokens": 177,
+              "completion_tokens": 22
+            },
+            "R": {
+              "full_loop_seconds": 1.036051667004358,
+              "prompt_tokens": 177,
+              "completion_tokens": 22
+            },
+            "D": {
+              "full_loop_seconds": 1.036049083006219,
+              "prompt_tokens": 177,
+              "completion_tokens": 22
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-unique-casefold-words",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0619053330010502,
+              "prompt_tokens": 175,
+              "completion_tokens": 23
+            },
+            "R": {
+              "full_loop_seconds": 1.5249595420027617,
+              "prompt_tokens": 350,
+              "completion_tokens": 37
+            },
+            "D": {
+              "full_loop_seconds": 1.915766791003989,
+              "prompt_tokens": 417,
+              "completion_tokens": 49
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-largest-byte-file",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.1937208750023274,
+              "prompt_tokens": 189,
+              "completion_tokens": 30
+            },
+            "R": {
+              "full_loop_seconds": 2.052153417011141,
+              "prompt_tokens": 378,
+              "completion_tokens": 63
+            },
+            "D": {
+              "full_loop_seconds": 1.9507424579933286,
+              "prompt_tokens": 446,
+              "completion_tokens": 54
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-csv-active-names",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0611586669983808,
+              "prompt_tokens": 176,
+              "completion_tokens": 23
+            },
+            "R": {
+              "full_loop_seconds": 1.0611795419972623,
+              "prompt_tokens": 176,
+              "completion_tokens": 23
+            },
+            "D": {
+              "full_loop_seconds": 1.0611760840110946,
+              "prompt_tokens": 176,
+              "completion_tokens": 23
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-line-prefix-number",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0996698749950156,
+              "prompt_tokens": 181,
+              "completion_tokens": 25
+            },
+            "R": {
+              "full_loop_seconds": 1.882630624982994,
+              "prompt_tokens": 362,
+              "completion_tokens": 54
+            },
+            "D": {
+              "full_loop_seconds": 1.8704603749938542,
+              "prompt_tokens": 430,
+              "completion_tokens": 50
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-deduplicate-adjacent-lines",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0153485420014476,
+              "prompt_tokens": 170,
+              "completion_tokens": 24
+            },
+            "R": {
+              "full_loop_seconds": 1.505679042005795,
+              "prompt_tokens": 340,
+              "completion_tokens": 40
+            },
+            "D": {
+              "full_loop_seconds": 2.3547532920056256,
+              "prompt_tokens": 484,
+              "completion_tokens": 65
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-matching-extension-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.0843447910010582,
+              "prompt_tokens": 167,
+              "completion_tokens": 27
+            },
+            "R": {
+              "full_loop_seconds": 1.8246687909995671,
+              "prompt_tokens": 334,
+              "completion_tokens": 54
+            },
+            "D": {
+              "full_loop_seconds": 2.0299976660026005,
+              "prompt_tokens": 405,
+              "completion_tokens": 57
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-reverse-fields",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.987744375001057,
+              "prompt_tokens": 175,
+              "completion_tokens": 20
+            },
+            "R": {
+              "full_loop_seconds": 0.9877629580005305,
+              "prompt_tokens": 175,
+              "completion_tokens": 20
+            },
+            "D": {
+              "full_loop_seconds": 0.9877609160030261,
+              "prompt_tokens": 175,
+              "completion_tokens": 20
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-nonoverlapping-literal-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.9285525829909602,
+              "prompt_tokens": 186,
+              "completion_tokens": 17
+            },
+            "R": {
+              "full_loop_seconds": 0.9285722490021726,
+              "prompt_tokens": 186,
+              "completion_tokens": 17
+            },
+            "D": {
+              "full_loop_seconds": 0.9285700829932466,
+              "prompt_tokens": 186,
+              "completion_tokens": 17
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-last-nonempty-line",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.2294980419974308,
+              "prompt_tokens": 171,
+              "completion_tokens": 34
+            },
+            "R": {
+              "full_loop_seconds": 1.2295163329981733,
+              "prompt_tokens": 171,
+              "completion_tokens": 34
+            },
+            "D": {
+              "full_loop_seconds": 1.2295137919863919,
+              "prompt_tokens": 171,
+              "completion_tokens": 34
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-tab-column-sum",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.1888666250015376,
+              "prompt_tokens": 178,
+              "completion_tokens": 29
+            },
+            "R": {
+              "full_loop_seconds": 1.188886125004501,
+              "prompt_tokens": 178,
+              "completion_tokens": 29
+            },
+            "D": {
+              "full_loop_seconds": 1.1888827090006089,
+              "prompt_tokens": 178,
+              "completion_tokens": 29
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-literal-bracket-search",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8503454589954345,
+              "prompt_tokens": 172,
+              "completion_tokens": 14
+            },
+            "R": {
+              "full_loop_seconds": 1.565399917002651,
+              "prompt_tokens": 344,
+              "completion_tokens": 40
+            },
+            "D": {
+              "full_loop_seconds": 1.6136753749888157,
+              "prompt_tokens": 406,
+              "completion_tokens": 36
+            }
+          }
+        }
+      ]
+    },
+    "gemma": {
+      "intervals": [
+        {
+          "contrast": "R-N",
+          "bounds_pp": [
+            -23.995363074290744,
+            35.85831444553228
+          ],
+          "component_alpha": 0.0020833333333333333,
+          "components": 24,
+          "nominal_familywise_confidence": 0.95,
+          "strata": {
+            "python": {
+              "n": 40,
+              "improved": 3,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                0.0049446399910218035,
+                0.2871245229342848
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.15774573434338496
+              ]
+            },
+            "sql": {
+              "n": 16,
+              "improved": 1,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                6.513597721284571e-05,
+                0.4479064213566203
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ]
+            },
+            "shell": {
+              "n": 16,
+              "improved": 1,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                6.513597721284571e-05,
+                0.4479064213566203
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ]
+            }
+          },
+          "contains_zero": true,
+          "contains_plus_10pp": true,
+          "contains_minus_10pp": true,
+          "effect_pp": 6.944444444444445,
+          "p_exact": 0.0625,
+          "p_holm": 0.1875,
+          "ci95_pp": [
+            1.3888888888888888,
+            13.88888888888889
+          ]
+        },
+        {
+          "contrast": "D-R",
+          "bounds_pp": [
+            -29.299330099046276,
+            31.499599435169223
+          ],
+          "component_alpha": 0.0020833333333333333,
+          "components": 24,
+          "nominal_familywise_confidence": 0.95,
+          "strata": {
+            "python": {
+              "n": 40,
+              "improved": 2,
+              "worsened": 2,
+              "improved_probability_bounds": [
+                0.0011728975600823468,
+                0.24941934396715998
+              ],
+              "worsened_probability_bounds": [
+                0.0011728975600823468,
+                0.24941934396715998
+              ]
+            },
+            "sql": {
+              "n": 16,
+              "improved": 0,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ]
+            },
+            "shell": {
+              "n": 16,
+              "improved": 1,
+              "worsened": 0,
+              "improved_probability_bounds": [
+                6.513597721284571e-05,
+                0.4479064213566203
+              ],
+              "worsened_probability_bounds": [
+                0.0,
+                0.3489594372083006
+              ]
+            }
+          },
+          "contains_zero": true,
+          "contains_plus_10pp": true,
+          "contains_minus_10pp": true,
+          "effect_pp": 1.3888888888888888,
+          "p_exact": 1.0,
+          "p_holm": 1.0,
+          "ci95_pp": [
+            -4.166666666666666,
+            8.333333333333332
+          ]
+        }
+      ],
+      "cost_contrasts": [
+        {
+          "contrast": "R-N",
+          "tasks": 72,
+          "net_additional_passes": 5,
+          "repairs": 5,
+          "regressions": 0,
+          "delta": {
+            "prompt_tokens": 3707.0,
+            "completion_tokens": 7966.0,
+            "full_loop_seconds": 179.47128712800622
+          },
+          "per_net_additional_pass": {
+            "prompt_tokens": 741.4,
+            "completion_tokens": 1593.2,
+            "full_loop_seconds": 35.894257425601246
+          }
+        },
+        {
+          "contrast": "D-N",
+          "tasks": 72,
+          "net_additional_passes": 6,
+          "repairs": 6,
+          "regressions": 0,
+          "delta": {
+            "prompt_tokens": 14177.0,
+            "completion_tokens": 6964.0,
+            "full_loop_seconds": 166.18244317208882
+          },
+          "per_net_additional_pass": {
+            "prompt_tokens": 2362.8333333333335,
+            "completion_tokens": 1160.6666666666667,
+            "full_loop_seconds": 27.697073862014804
+          }
+        }
+      ],
+      "task_cost_rows": [
+        {
+          "task_id": "HumanEval/5",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.683183166998788,
+              "prompt_tokens": 144,
+              "completion_tokens": 159
+            },
+            "R": {
+              "full_loop_seconds": 3.683204291999573,
+              "prompt_tokens": 144,
+              "completion_tokens": 159
+            },
+            "D": {
+              "full_loop_seconds": 3.6832011670048814,
+              "prompt_tokens": 144,
+              "completion_tokens": 159
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/8",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.9387690000003204,
+              "prompt_tokens": 165,
+              "completion_tokens": 174
+            },
+            "R": {
+              "full_loop_seconds": 3.9387888750061393,
+              "prompt_tokens": 165,
+              "completion_tokens": 174
+            },
+            "D": {
+              "full_loop_seconds": 3.938785749996896,
+              "prompt_tokens": 165,
+              "completion_tokens": 174
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/10",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 8.096155000006547,
+              "prompt_tokens": 194,
+              "completion_tokens": 364
+            },
+            "R": {
+              "full_loop_seconds": 8.096174417005386,
+              "prompt_tokens": 194,
+              "completion_tokens": 364
+            },
+            "D": {
+              "full_loop_seconds": 8.096171875004075,
+              "prompt_tokens": 194,
+              "completion_tokens": 364
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/11",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.253810750000412,
+              "prompt_tokens": 130,
+              "completion_tokens": 233
+            },
+            "R": {
+              "full_loop_seconds": 5.253829124994809,
+              "prompt_tokens": 130,
+              "completion_tokens": 233
+            },
+            "D": {
+              "full_loop_seconds": 5.253828042012174,
+              "prompt_tokens": 130,
+              "completion_tokens": 233
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/13",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.313884542003507,
+              "prompt_tokens": 117,
+              "completion_tokens": 100
+            },
+            "R": {
+              "full_loop_seconds": 2.313906251001754,
+              "prompt_tokens": 117,
+              "completion_tokens": 100
+            },
+            "D": {
+              "full_loop_seconds": 2.3139023749972694,
+              "prompt_tokens": 117,
+              "completion_tokens": 100
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/15",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.53333587499219,
+              "prompt_tokens": 119,
+              "completion_tokens": 157
+            },
+            "R": {
+              "full_loop_seconds": 3.533354999992298,
+              "prompt_tokens": 119,
+              "completion_tokens": 157
+            },
+            "D": {
+              "full_loop_seconds": 3.533353957987856,
+              "prompt_tokens": 119,
+              "completion_tokens": 157
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/17",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 22.506930582996574,
+              "prompt_tokens": 222,
+              "completion_tokens": 1023
+            },
+            "R": {
+              "full_loop_seconds": 29.273409415996866,
+              "prompt_tokens": 444,
+              "completion_tokens": 1321
+            },
+            "D": {
+              "full_loop_seconds": 46.153573167001014,
+              "prompt_tokens": 1502,
+              "completion_tokens": 2046
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/18",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 9.394979165997938,
+              "prompt_tokens": 139,
+              "completion_tokens": 420
+            },
+            "R": {
+              "full_loop_seconds": 9.395001166005386,
+              "prompt_tokens": 139,
+              "completion_tokens": 420
+            },
+            "D": {
+              "full_loop_seconds": 9.394998749994556,
+              "prompt_tokens": 139,
+              "completion_tokens": 420
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/19",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 12.92874129100528,
+              "prompt_tokens": 154,
+              "completion_tokens": 584
+            },
+            "R": {
+              "full_loop_seconds": 12.928761415998451,
+              "prompt_tokens": 154,
+              "completion_tokens": 584
+            },
+            "D": {
+              "full_loop_seconds": 12.928758333000587,
+              "prompt_tokens": 154,
+              "completion_tokens": 584
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/21",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 7.264160708000418,
+              "prompt_tokens": 176,
+              "completion_tokens": 324
+            },
+            "R": {
+              "full_loop_seconds": 7.264179958001478,
+              "prompt_tokens": 176,
+              "completion_tokens": 324
+            },
+            "D": {
+              "full_loop_seconds": 7.264177749995724,
+              "prompt_tokens": 176,
+              "completion_tokens": 324
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/25",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.084874540989404,
+              "prompt_tokens": 178,
+              "completion_tokens": 225
+            },
+            "R": {
+              "full_loop_seconds": 5.084893499995815,
+              "prompt_tokens": 178,
+              "completion_tokens": 225
+            },
+            "D": {
+              "full_loop_seconds": 5.084890873986296,
+              "prompt_tokens": 178,
+              "completion_tokens": 225
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/34",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.1417173329973593,
+              "prompt_tokens": 121,
+              "completion_tokens": 92
+            },
+            "R": {
+              "full_loop_seconds": 2.1417359999904875,
+              "prompt_tokens": 121,
+              "completion_tokens": 92
+            },
+            "D": {
+              "full_loop_seconds": 2.1417337080056313,
+              "prompt_tokens": 121,
+              "completion_tokens": 92
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/36",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.6204246249981225,
+              "prompt_tokens": 127,
+              "completion_tokens": 160
+            },
+            "R": {
+              "full_loop_seconds": 7.36181316699367,
+              "prompt_tokens": 254,
+              "completion_tokens": 329
+            },
+            "D": {
+              "full_loop_seconds": 7.4533997909893515,
+              "prompt_tokens": 561,
+              "completion_tokens": 320
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/50",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.232599958006176,
+              "prompt_tokens": 145,
+              "completion_tokens": 140
+            },
+            "R": {
+              "full_loop_seconds": 3.232619791000616,
+              "prompt_tokens": 145,
+              "completion_tokens": 140
+            },
+            "D": {
+              "full_loop_seconds": 3.23261704100878,
+              "prompt_tokens": 145,
+              "completion_tokens": 140
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/55",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 2.872575291999965,
+              "prompt_tokens": 99,
+              "completion_tokens": 127
+            },
+            "R": {
+              "full_loop_seconds": 2.87259445800737,
+              "prompt_tokens": 99,
+              "completion_tokens": 127
+            },
+            "D": {
+              "full_loop_seconds": 2.8725921669974923,
+              "prompt_tokens": 99,
+              "completion_tokens": 127
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/57",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.063526541998726,
+              "prompt_tokens": 131,
+              "completion_tokens": 180
+            },
+            "R": {
+              "full_loop_seconds": 4.063546458986821,
+              "prompt_tokens": 131,
+              "completion_tokens": 180
+            },
+            "D": {
+              "full_loop_seconds": 4.063543459007633,
+              "prompt_tokens": 131,
+              "completion_tokens": 180
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/58",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.9772666659991955,
+              "prompt_tokens": 170,
+              "completion_tokens": 175
+            },
+            "R": {
+              "full_loop_seconds": 3.977284916007193,
+              "prompt_tokens": 170,
+              "completion_tokens": 175
+            },
+            "D": {
+              "full_loop_seconds": 3.9772833739989437,
+              "prompt_tokens": 170,
+              "completion_tokens": 175
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/59",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.870540042000357,
+              "prompt_tokens": 118,
+              "completion_tokens": 172
+            },
+            "R": {
+              "full_loop_seconds": 3.8705603340058587,
+              "prompt_tokens": 118,
+              "completion_tokens": 172
+            },
+            "D": {
+              "full_loop_seconds": 3.8705584580020513,
+              "prompt_tokens": 118,
+              "completion_tokens": 172
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/65",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 22.441954624999198,
+              "prompt_tokens": 137,
+              "completion_tokens": 1023
+            },
+            "R": {
+              "full_loop_seconds": 45.22222325000621,
+              "prompt_tokens": 274,
+              "completion_tokens": 2046
+            },
+            "D": {
+              "full_loop_seconds": 40.01581145900127,
+              "prompt_tokens": 1332,
+              "completion_tokens": 1757
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/69",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 11.993012457998702,
+              "prompt_tokens": 214,
+              "completion_tokens": 528
+            },
+            "R": {
+              "full_loop_seconds": 11.993032541009597,
+              "prompt_tokens": 214,
+              "completion_tokens": 528
+            },
+            "D": {
+              "full_loop_seconds": 11.993029874996864,
+              "prompt_tokens": 214,
+              "completion_tokens": 528
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/82",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 12.262868375008111,
+              "prompt_tokens": 128,
+              "completion_tokens": 543
+            },
+            "R": {
+              "full_loop_seconds": 12.2628897500108,
+              "prompt_tokens": 128,
+              "completion_tokens": 543
+            },
+            "D": {
+              "full_loop_seconds": 12.26288450001448,
+              "prompt_tokens": 128,
+              "completion_tokens": 543
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/83",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 22.452967833000002,
+              "prompt_tokens": 91,
+              "completion_tokens": 1023
+            },
+            "R": {
+              "full_loop_seconds": 45.02927549999731,
+              "prompt_tokens": 182,
+              "completion_tokens": 2046
+            },
+            "D": {
+              "full_loop_seconds": 36.65454795799451,
+              "prompt_tokens": 1239,
+              "completion_tokens": 1616
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/86",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 17.20554616699519,
+              "prompt_tokens": 183,
+              "completion_tokens": 775
+            },
+            "R": {
+              "full_loop_seconds": 17.205567166995024,
+              "prompt_tokens": 183,
+              "completion_tokens": 775
+            },
+            "D": {
+              "full_loop_seconds": 17.20556420799403,
+              "prompt_tokens": 183,
+              "completion_tokens": 775
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/91",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 8.7350532499986,
+              "prompt_tokens": 159,
+              "completion_tokens": 392
+            },
+            "R": {
+              "full_loop_seconds": 8.735072332987329,
+              "prompt_tokens": 159,
+              "completion_tokens": 392
+            },
+            "D": {
+              "full_loop_seconds": 8.735070334005286,
+              "prompt_tokens": 159,
+              "completion_tokens": 392
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/93",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 22.573015583009692,
+              "prompt_tokens": 164,
+              "completion_tokens": 1023
+            },
+            "R": {
+              "full_loop_seconds": 45.53999562500394,
+              "prompt_tokens": 328,
+              "completion_tokens": 2046
+            },
+            "D": {
+              "full_loop_seconds": 46.633129958005156,
+              "prompt_tokens": 1386,
+              "completion_tokens": 2046
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/97",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 5.462761834001867,
+              "prompt_tokens": 163,
+              "completion_tokens": 232
+            },
+            "R": {
+              "full_loop_seconds": 5.462780542002292,
+              "prompt_tokens": 163,
+              "completion_tokens": 232
+            },
+            "D": {
+              "full_loop_seconds": 5.462778293003794,
+              "prompt_tokens": 163,
+              "completion_tokens": 232
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/99",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 13.68284483300522,
+              "prompt_tokens": 211,
+              "completion_tokens": 600
+            },
+            "R": {
+              "full_loop_seconds": 13.682862790999934,
+              "prompt_tokens": 211,
+              "completion_tokens": 600
+            },
+            "D": {
+              "full_loop_seconds": 13.682860083004925,
+              "prompt_tokens": 211,
+              "completion_tokens": 600
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/104",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 4.473751124998671,
+              "prompt_tokens": 170,
+              "completion_tokens": 193
+            },
+            "R": {
+              "full_loop_seconds": 4.473768500000006,
+              "prompt_tokens": 170,
+              "completion_tokens": 193
+            },
+            "D": {
+              "full_loop_seconds": 4.473766458002501,
+              "prompt_tokens": 170,
+              "completion_tokens": 193
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/107",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 15.029667290989892,
+              "prompt_tokens": 263,
+              "completion_tokens": 642
+            },
+            "R": {
+              "full_loop_seconds": 15.029685457993764,
+              "prompt_tokens": 263,
+              "completion_tokens": 642
+            },
+            "D": {
+              "full_loop_seconds": 15.029683248983929,
+              "prompt_tokens": 263,
+              "completion_tokens": 642
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/108",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 22.67564487500931,
+              "prompt_tokens": 179,
+              "completion_tokens": 1023
+            },
+            "R": {
+              "full_loop_seconds": 45.512023625007714,
+              "prompt_tokens": 358,
+              "completion_tokens": 2009
+            },
+            "D": {
+              "full_loop_seconds": 34.357702542009065,
+              "prompt_tokens": 1415,
+              "completion_tokens": 1501
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/112",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 7.033379333006451,
+              "prompt_tokens": 213,
+              "completion_tokens": 310
+            },
+            "R": {
+              "full_loop_seconds": 7.033400458007236,
+              "prompt_tokens": 213,
+              "completion_tokens": 310
+            },
+            "D": {
+              "full_loop_seconds": 7.033396832994185,
+              "prompt_tokens": 213,
+              "completion_tokens": 310
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/113",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 21.2614518749906,
+              "prompt_tokens": 235,
+              "completion_tokens": 929
+            },
+            "R": {
+              "full_loop_seconds": 21.261469874996692,
+              "prompt_tokens": 235,
+              "completion_tokens": 929
+            },
+            "D": {
+              "full_loop_seconds": 21.26146733398491,
+              "prompt_tokens": 235,
+              "completion_tokens": 929
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/118",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 10.972232790998532,
+              "prompt_tokens": 205,
+              "completion_tokens": 481
+            },
+            "R": {
+              "full_loop_seconds": 10.97225208200689,
+              "prompt_tokens": 205,
+              "completion_tokens": 481
+            },
+            "D": {
+              "full_loop_seconds": 10.972248915990349,
+              "prompt_tokens": 205,
+              "completion_tokens": 481
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/120",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 17.04265791599755,
+              "prompt_tokens": 276,
+              "completion_tokens": 732
+            },
+            "R": {
+              "full_loop_seconds": 17.042677415985963,
+              "prompt_tokens": 276,
+              "completion_tokens": 732
+            },
+            "D": {
+              "full_loop_seconds": 17.042675582008087,
+              "prompt_tokens": 276,
+              "completion_tokens": 732
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/123",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 8.85926537499472,
+              "prompt_tokens": 287,
+              "completion_tokens": 385
+            },
+            "R": {
+              "full_loop_seconds": 8.859286083999905,
+              "prompt_tokens": 287,
+              "completion_tokens": 385
+            },
+            "D": {
+              "full_loop_seconds": 8.85928329199669,
+              "prompt_tokens": 287,
+              "completion_tokens": 385
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/126",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 13.732090666002478,
+              "prompt_tokens": 302,
+              "completion_tokens": 603
+            },
+            "R": {
+              "full_loop_seconds": 13.732110749013373,
+              "prompt_tokens": 302,
+              "completion_tokens": 603
+            },
+            "D": {
+              "full_loop_seconds": 13.732108458003495,
+              "prompt_tokens": 302,
+              "completion_tokens": 603
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/132",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 22.787020832998678,
+              "prompt_tokens": 182,
+              "completion_tokens": 1023
+            },
+            "R": {
+              "full_loop_seconds": 46.02949066599831,
+              "prompt_tokens": 364,
+              "completion_tokens": 2046
+            },
+            "D": {
+              "full_loop_seconds": 39.589408498999546,
+              "prompt_tokens": 1437,
+              "completion_tokens": 1719
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/146",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 7.3201357499929145,
+              "prompt_tokens": 176,
+              "completion_tokens": 324
+            },
+            "R": {
+              "full_loop_seconds": 7.320158499991521,
+              "prompt_tokens": 176,
+              "completion_tokens": 324
+            },
+            "D": {
+              "full_loop_seconds": 7.320153749984456,
+              "prompt_tokens": 176,
+              "completion_tokens": 324
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/149",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 9.671681291001732,
+              "prompt_tokens": 245,
+              "completion_tokens": 426
+            },
+            "R": {
+              "full_loop_seconds": 9.671699290993274,
+              "prompt_tokens": 245,
+              "completion_tokens": 426
+            },
+            "D": {
+              "full_loop_seconds": 9.671697208003025,
+              "prompt_tokens": 245,
+              "completion_tokens": 426
+            }
+          }
+        },
+        {
+          "task_id": "HumanEval/161",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 11.672023374994751,
+              "prompt_tokens": 162,
+              "completion_tokens": 518
+            },
+            "R": {
+              "full_loop_seconds": 11.672042040983797,
+              "prompt_tokens": 162,
+              "completion_tokens": 518
+            },
+            "D": {
+              "full_loop_seconds": 11.672039583005244,
+              "prompt_tokens": 162,
+              "completion_tokens": 518
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-nonnull-score-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.147646166995401,
+              "prompt_tokens": 134,
+              "completion_tokens": 267
+            },
+            "R": {
+              "full_loop_seconds": 12.571510166992084,
+              "prompt_tokens": 268,
+              "completion_tokens": 555
+            },
+            "D": {
+              "full_loop_seconds": 12.4257937509974,
+              "prompt_tokens": 567,
+              "completion_tokens": 534
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-coalesce-invoice-total",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.6895706250070361,
+              "prompt_tokens": 139,
+              "completion_tokens": 24
+            },
+            "R": {
+              "full_loop_seconds": 0.6895931250182912,
+              "prompt_tokens": 139,
+              "completion_tokens": 24
+            },
+            "D": {
+              "full_loop_seconds": 0.6895910420134896,
+              "prompt_tokens": 139,
+              "completion_tokens": 24
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-highest-price-ties",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.7083586660010042,
+              "prompt_tokens": 150,
+              "completion_tokens": 26
+            },
+            "R": {
+              "full_loop_seconds": 0.7124367490032455,
+              "prompt_tokens": 150,
+              "completion_tokens": 26
+            },
+            "D": {
+              "full_loop_seconds": 0.7084071240096819,
+              "prompt_tokens": 150,
+              "completion_tokens": 26
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-nulls-last-labels",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.79182604199741,
+              "prompt_tokens": 156,
+              "completion_tokens": 299
+            },
+            "R": {
+              "full_loop_seconds": 7.445262250010273,
+              "prompt_tokens": 312,
+              "completion_tokens": 327
+            },
+            "D": {
+              "full_loop_seconds": 22.08970587600197,
+              "prompt_tokens": 643,
+              "completion_tokens": 965
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-quoted-reserved-column",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.3260807500046212,
+              "prompt_tokens": 142,
+              "completion_tokens": 53
+            },
+            "R": {
+              "full_loop_seconds": 2.5995618750021094,
+              "prompt_tokens": 284,
+              "completion_tokens": 109
+            },
+            "D": {
+              "full_loop_seconds": 2.6143900000170106,
+              "prompt_tokens": 369,
+              "completion_tokens": 106
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-empty-sales-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.1244054999988293,
+              "prompt_tokens": 137,
+              "completion_tokens": 46
+            },
+            "R": {
+              "full_loop_seconds": 2.238100417001988,
+              "prompt_tokens": 274,
+              "completion_tokens": 95
+            },
+            "D": {
+              "full_loop_seconds": 2.2580509999970673,
+              "prompt_tokens": 352,
+              "completion_tokens": 92
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-customers-without-orders",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.26940858400485,
+              "prompt_tokens": 175,
+              "completion_tokens": 275
+            },
+            "R": {
+              "full_loop_seconds": 7.289894834000734,
+              "prompt_tokens": 350,
+              "completion_tokens": 318
+            },
+            "D": {
+              "full_loop_seconds": 7.426451209015795,
+              "prompt_tokens": 657,
+              "completion_tokens": 314
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-distinct-route-pairs",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.5507165410090238,
+              "prompt_tokens": 159,
+              "completion_tokens": 18
+            },
+            "R": {
+              "full_loop_seconds": 0.5507595829985803,
+              "prompt_tokens": 159,
+              "completion_tokens": 18
+            },
+            "D": {
+              "full_loop_seconds": 0.5507555829972262,
+              "prompt_tokens": 159,
+              "completion_tokens": 18
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-per-team-top-score",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.5481095419963822,
+              "prompt_tokens": 158,
+              "completion_tokens": 19
+            },
+            "R": {
+              "full_loop_seconds": 0.5481360419944394,
+              "prompt_tokens": 158,
+              "completion_tokens": 19
+            },
+            "D": {
+              "full_loop_seconds": 0.5481327500019688,
+              "prompt_tokens": 158,
+              "completion_tokens": 19
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-case-status-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.4798997089965269,
+              "prompt_tokens": 139,
+              "completion_tokens": 17
+            },
+            "R": {
+              "full_loop_seconds": 0.47992687599617057,
+              "prompt_tokens": 139,
+              "completion_tokens": 17
+            },
+            "D": {
+              "full_loop_seconds": 0.47992429199803155,
+              "prompt_tokens": 139,
+              "completion_tokens": 17
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-date-window",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 8.626456707992475,
+              "prompt_tokens": 174,
+              "completion_tokens": 385
+            },
+            "R": {
+              "full_loop_seconds": 11.414878998984932,
+              "prompt_tokens": 348,
+              "completion_tokens": 504
+            },
+            "D": {
+              "full_loop_seconds": 12.451892416982446,
+              "prompt_tokens": 765,
+              "completion_tokens": 540
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-having-three-visits",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 6.181877541996073,
+              "prompt_tokens": 144,
+              "completion_tokens": 274
+            },
+            "R": {
+              "full_loop_seconds": 10.127469416998792,
+              "prompt_tokens": 288,
+              "completion_tokens": 452
+            },
+            "D": {
+              "full_loop_seconds": 8.972128875990165,
+              "prompt_tokens": 594,
+              "completion_tokens": 387
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-exists-flagged-project",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 1.4072731670021312,
+              "prompt_tokens": 182,
+              "completion_tokens": 56
+            },
+            "R": {
+              "full_loop_seconds": 1.4073002920049476,
+              "prompt_tokens": 182,
+              "completion_tokens": 56
+            },
+            "D": {
+              "full_loop_seconds": 1.4072962510108482,
+              "prompt_tokens": 182,
+              "completion_tokens": 56
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-union-all-source-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 3.7986028750019614,
+              "prompt_tokens": 168,
+              "completion_tokens": 167
+            },
+            "R": {
+              "full_loop_seconds": 9.887398792008753,
+              "prompt_tokens": 336,
+              "completion_tokens": 442
+            },
+            "D": {
+              "full_loop_seconds": 5.817200042001787,
+              "prompt_tokens": 535,
+              "completion_tokens": 249
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-length-filter",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 14.963567708007758,
+              "prompt_tokens": 138,
+              "completion_tokens": 672
+            },
+            "R": {
+              "full_loop_seconds": 35.23543687500933,
+              "prompt_tokens": 276,
+              "completion_tokens": 1580
+            },
+            "D": {
+              "full_loop_seconds": 18.44226341601461,
+              "prompt_tokens": 980,
+              "completion_tokens": 796
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sql-average-nonnull",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 13.537848624997423,
+              "prompt_tokens": 143,
+              "completion_tokens": 606
+            },
+            "R": {
+              "full_loop_seconds": 20.359945791991777,
+              "prompt_tokens": 286,
+              "completion_tokens": 909
+            },
+            "D": {
+              "full_loop_seconds": 27.69449049999821,
+              "prompt_tokens": 924,
+              "completion_tokens": 1216
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-cumulative-integer-totals",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.6166474589990685,
+              "prompt_tokens": 187,
+              "completion_tokens": 19
+            },
+            "R": {
+              "full_loop_seconds": 0.6166742929926841,
+              "prompt_tokens": 187,
+              "completion_tokens": 19
+            },
+            "D": {
+              "full_loop_seconds": 0.6166708759992616,
+              "prompt_tokens": 187,
+              "completion_tokens": 19
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-sorted-space-filenames",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.7907176669978071,
+              "prompt_tokens": 188,
+              "completion_tokens": 28
+            },
+            "R": {
+              "full_loop_seconds": 0.7907427089958219,
+              "prompt_tokens": 188,
+              "completion_tokens": 28
+            },
+            "D": {
+              "full_loop_seconds": 0.790739208998275,
+              "prompt_tokens": 188,
+              "completion_tokens": 28
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-newline-record-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.452041292010108,
+              "prompt_tokens": 183,
+              "completion_tokens": 13
+            },
+            "R": {
+              "full_loop_seconds": 0.7883946670044679,
+              "prompt_tokens": 366,
+              "completion_tokens": 26
+            },
+            "D": {
+              "full_loop_seconds": 0.85777704200882,
+              "prompt_tokens": 423,
+              "completion_tokens": 27
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-failed-command-names",
+          "scores": {
+            "N": 0,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.825614500005031,
+              "prompt_tokens": 183,
+              "completion_tokens": 30
+            },
+            "R": {
+              "full_loop_seconds": 1.7024278750031954,
+              "prompt_tokens": 366,
+              "completion_tokens": 67
+            },
+            "D": {
+              "full_loop_seconds": 1.2775417090160772,
+              "prompt_tokens": 442,
+              "completion_tokens": 45
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-first-fields",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.5633783330122242,
+              "prompt_tokens": 184,
+              "completion_tokens": 18
+            },
+            "R": {
+              "full_loop_seconds": 0.5634041670127772,
+              "prompt_tokens": 184,
+              "completion_tokens": 18
+            },
+            "D": {
+              "full_loop_seconds": 0.5634000830177683,
+              "prompt_tokens": 184,
+              "completion_tokens": 18
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-unique-casefold-words",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.7200050840037875,
+              "prompt_tokens": 180,
+              "completion_tokens": 25
+            },
+            "R": {
+              "full_loop_seconds": 0.720029334013816,
+              "prompt_tokens": 180,
+              "completion_tokens": 25
+            },
+            "D": {
+              "full_loop_seconds": 0.7200261680118274,
+              "prompt_tokens": 180,
+              "completion_tokens": 25
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-largest-byte-file",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8513566659967182,
+              "prompt_tokens": 190,
+              "completion_tokens": 31
+            },
+            "R": {
+              "full_loop_seconds": 1.9699081250000745,
+              "prompt_tokens": 380,
+              "completion_tokens": 79
+            },
+            "D": {
+              "full_loop_seconds": 1.3948853320034686,
+              "prompt_tokens": 463,
+              "completion_tokens": 50
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-csv-active-names",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8491360409971094,
+              "prompt_tokens": 185,
+              "completion_tokens": 31
+            },
+            "R": {
+              "full_loop_seconds": 0.8491617079998832,
+              "prompt_tokens": 185,
+              "completion_tokens": 31
+            },
+            "D": {
+              "full_loop_seconds": 0.8491573330102256,
+              "prompt_tokens": 185,
+              "completion_tokens": 31
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-line-prefix-number",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.6555952920025447,
+              "prompt_tokens": 190,
+              "completion_tokens": 22
+            },
+            "R": {
+              "full_loop_seconds": 1.6707936669990886,
+              "prompt_tokens": 380,
+              "completion_tokens": 66
+            },
+            "D": {
+              "full_loop_seconds": 1.0622785419982392,
+              "prompt_tokens": 461,
+              "completion_tokens": 35
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-deduplicate-adjacent-lines",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.5389542500051903,
+              "prompt_tokens": 175,
+              "completion_tokens": 17
+            },
+            "R": {
+              "full_loop_seconds": 0.5389774580107769,
+              "prompt_tokens": 175,
+              "completion_tokens": 17
+            },
+            "D": {
+              "full_loop_seconds": 0.5389748750021681,
+              "prompt_tokens": 175,
+              "completion_tokens": 17
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-matching-extension-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.5608205839962466,
+              "prompt_tokens": 170,
+              "completion_tokens": 19
+            },
+            "R": {
+              "full_loop_seconds": 1.0292011259880383,
+              "prompt_tokens": 340,
+              "completion_tokens": 38
+            },
+            "D": {
+              "full_loop_seconds": 1.276899874996161,
+              "prompt_tokens": 418,
+              "completion_tokens": 46
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-reverse-fields",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8881130000081612,
+              "prompt_tokens": 182,
+              "completion_tokens": 33
+            },
+            "R": {
+              "full_loop_seconds": 0.8881381250103004,
+              "prompt_tokens": 182,
+              "completion_tokens": 33
+            },
+            "D": {
+              "full_loop_seconds": 0.8881355840130709,
+              "prompt_tokens": 182,
+              "completion_tokens": 33
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-nonoverlapping-literal-count",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.5453405000007479,
+              "prompt_tokens": 195,
+              "completion_tokens": 17
+            },
+            "R": {
+              "full_loop_seconds": 0.5453647920076037,
+              "prompt_tokens": 195,
+              "completion_tokens": 17
+            },
+            "D": {
+              "full_loop_seconds": 0.5453615420119604,
+              "prompt_tokens": 195,
+              "completion_tokens": 17
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-last-nonempty-line",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.7641640419897158,
+              "prompt_tokens": 175,
+              "completion_tokens": 27
+            },
+            "R": {
+              "full_loop_seconds": 0.7641889999940759,
+              "prompt_tokens": 175,
+              "completion_tokens": 27
+            },
+            "D": {
+              "full_loop_seconds": 0.7641850840009283,
+              "prompt_tokens": 175,
+              "completion_tokens": 27
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-tab-column-sum",
+          "scores": {
+            "N": 1,
+            "R": 1,
+            "D": 1
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.8312090000108583,
+              "prompt_tokens": 186,
+              "completion_tokens": 30
+            },
+            "R": {
+              "full_loop_seconds": 0.8312336250091903,
+              "prompt_tokens": 186,
+              "completion_tokens": 30
+            },
+            "D": {
+              "full_loop_seconds": 0.8312307080050232,
+              "prompt_tokens": 186,
+              "completion_tokens": 30
+            }
+          }
+        },
+        {
+          "task_id": "cv1-sh-literal-bracket-search",
+          "scores": {
+            "N": 0,
+            "R": 0,
+            "D": 0
+          },
+          "costs": {
+            "N": {
+              "full_loop_seconds": 0.45544104199507274,
+              "prompt_tokens": 178,
+              "completion_tokens": 13
+            },
+            "R": {
+              "full_loop_seconds": 0.7942976249905769,
+              "prompt_tokens": 356,
+              "completion_tokens": 26
+            },
+            "D": {
+              "full_loop_seconds": 0.8887127079942729,
+              "prompt_tokens": 419,
+              "completion_tokens": 27
+            }
+          }
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "ornith": {
+      "preflight_time_utc": "2026-10-25T20:13:01.499290+00:00",
+      "ram_bytes": 25769803776,
+      "memory_free_percent": 52,
+      "swap_used_recorded_M": 1716.0,
+      "power_ac": true,
+      "thermal_status": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+      "backend_advertised_selected": "mlx-llm-mac-arm64-apple-metal-advsimd@1.13.1",
+      "python_recorded_at_freeze": "3.12.8 (v3.12.8:2dc476bcb91, Dec  3 2024, 14:43:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+      "os_recorded_at_freeze": "macOS-26.6.2-arm64-arm-64bit",
+      "repository_directory": "ornith-ai/Ornith-1.5-9B-MLX-4bit",
+      "upstream_revision": "not attested at collection",
+      "loaded_model": {
+        "type": "llm",
+        "publisher": "ornith-ai",
+        "key": "ornith-1.5-9b-mlx",
+        "display_name": "Ornith 1.5 9B",
+        "architecture": "qwen3_5",
+        "quantization": {
+          "name": "4bit",
+          "bits_per_weight": 4
+        },
+        "size_bytes": 5059930227,
+        "params_string": "9B",
+        "loaded_instances": [
+          {
+            "id": "ornith-confirmation",
+            "config": {
+              "context_length": 8192,
+              "parallel": 1
+            }
+          }
+        ],
+        "max_context_length": 262144,
+        "format": "mlx",
+        "capabilities": {
+          "vision": false,
+          "trained_for_tool_use": true
+        },
+        "description": null
+      },
+      "request_parameters": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "max_tokens": 1024,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "transport": "openai",
+      "context_length": 8192,
+      "max_attempts_per_policy": 2,
+      "request_timeout_seconds": 120,
+      "dispatch_window_seconds": 1800,
+      "model_files_sha256": {
+        "model.safetensors": "c022a4c4b8de62c75306e2442fd78161ff49bce85fe7abb308c5ad5d04454a26",
+        "config.json": "7ddc5bb8c3057edaa0a3337c1721312a8f3d28ad587b77dd6ac075876929d95d",
+        "model.safetensors.index.json": "215f9abadc1cea4d465b01c036dffcac5a84c2fb2386777863eff6928b91ed0b",
+        "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+        "tokenizer_config.json": "386ba246ba3dfa4d3a21d8bc8712eba38de558e5ac94c2c90436d8f94d519d5e"
+      },
+      "warmup": "no deliberate benchmark warmup; model loaded before collection; latency includes cold first-request effects",
+      "quantization_checkpoint_config": {
+        "default": {
+          "bits": 4,
+          "group_size": 64,
+          "mode": "affine"
+        },
+        "layer_override_count": 0,
+        "override_bits_counts": {},
+        "overrides": {}
+      },
+      "checkpoint_config_provenance": "post-review retrieval of exact bytes matching the pre-collection SHA-256; not effective kernel attestation",
+      "lm_studio_application_version": null,
+      "underlying_mlx_library_version": null,
+      "effective_sampler_settings": null,
+      "prefix_cache_state": null,
+      "background_load_control": null,
+      "cpu_brand_at_primary_preflight": null
+    },
+    "gemma": {
+      "preflight_time_utc": "2026-10-25T19:58:38.252686+00:00",
+      "ram_bytes": 25769803776,
+      "memory_free_percent": 42,
+      "swap_used_recorded_M": 1716.0,
+      "power_ac": true,
+      "thermal_status": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+      "backend_advertised_selected": "mlx-llm-mac-arm64-apple-metal-advsimd@1.13.1",
+      "python_recorded_at_freeze": "3.12.8 (v3.12.8:2dc476bcb91, Dec  3 2024, 14:43:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+      "os_recorded_at_freeze": "macOS-26.6.2-arm64-arm-64bit",
+      "repository_directory": "lmstudio-community/gemma-4-E4B-it-MLX-4bit",
+      "upstream_revision": "not attested at collection",
+      "loaded_model": {
+        "type": "llm",
+        "publisher": "google",
+        "key": "google/gemma-4-e4b",
+        "display_name": "Gemma 4 E4B",
+        "architecture": "gemma4",
+        "quantization": {
+          "name": "4bit",
+          "bits_per_weight": 4
+        },
+        "size_bytes": 6861915950,
+        "params_string": "4B",
+        "loaded_instances": [
+          {
+            "id": "gemma-confirmation",
+            "config": {
+              "context_length": 8192,
+              "parallel": 1
+            }
+          }
+        ],
+        "max_context_length": 131072,
+        "format": "mlx",
+        "capabilities": {
+          "vision": true,
+          "trained_for_tool_use": true,
+          "reasoning": {
+            "allowed_options": [
+              "off",
+              "on"
+            ],
+            "default": "on"
+          }
+        },
+        "description": null,
+        "variants": [
+          "google/gemma-4-e4b@4bit"
+        ],
+        "selected_variant": "google/gemma-4-e4b@4bit"
+      },
+      "request_parameters": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "max_tokens": 1024,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "transport": "native",
+      "context_length": 8192,
+      "max_attempts_per_policy": 2,
+      "request_timeout_seconds": 120,
+      "dispatch_window_seconds": 1800,
+      "model_files_sha256": {
+        "model-00001-of-00002.safetensors": "e58e5ed66324cdc0ce22f51d4d71a9b2db8c24f666278d1b71c3440a18c0f163",
+        "model-00002-of-00002.safetensors": "5ae9ab6d6e86dd4d8f7eb6957eb7ad151121431df3855516e89c185824d640cf",
+        "config.json": "8b2b956fab049146585c693a08d1cd625cef8c84d8eb7ea556cf826d0565b92a",
+        "generation_config.json": "d4226bbe3117d2d253ba4609720ba82c6c4ce4627a9a6ae05387c78983ac03de",
+        "model.safetensors.index.json": "edfcf22ac78bded1b0518358c2672596f9267d361c433fad7e593f7238bc15cb",
+        "processor_config.json": "1bd0d00776284f369c1eff5fb631e865dfcdca861e0b7d60dbef27fcf37436a8",
+        "tokenizer.json": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+        "tokenizer_config.json": "16f4a5a617a11af24b4bf474109800989e7d2b5b1ca22f73a561ec2398308e8d"
+      },
+      "warmup": "no deliberate benchmark warmup; model loaded before collection; latency includes cold first-request effects",
+      "quantization_checkpoint_config": {
+        "default": {
+          "bits": 4,
+          "group_size": 64,
+          "mode": "affine"
+        },
+        "layer_override_count": 126,
+        "override_bits_counts": {
+          "8": 126
+        },
+        "overrides": {
+          "language_model.model.layers.0.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.0.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.0.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.1.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.1.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.1.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.2.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.2.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.2.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.3.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.3.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.3.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.4.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.4.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.4.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.5.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.5.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.5.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.6.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.6.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.6.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.7.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.7.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.7.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.8.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.8.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.8.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.9.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.9.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.9.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.10.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.10.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.10.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.11.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.11.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.11.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.12.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.12.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.12.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.13.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.13.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.13.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.14.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.14.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.14.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.15.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.15.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.15.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.16.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.16.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.16.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.17.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.17.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.17.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.18.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.18.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.18.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.19.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.19.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.19.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.20.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.20.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.20.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.21.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.21.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.21.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.22.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.22.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.22.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.23.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.23.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.23.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.24.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.24.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.24.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.25.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.25.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.25.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.26.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.26.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.26.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.27.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.27.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.27.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.28.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.28.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.28.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.29.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.29.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.29.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.30.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.30.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.30.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.31.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.31.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.31.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.32.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.32.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.32.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.33.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.33.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.33.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.34.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.34.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.34.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.35.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.35.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.35.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.36.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.36.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.36.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.37.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.37.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.37.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.38.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.38.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.38.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.39.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.39.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.39.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.40.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.40.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.40.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.41.mlp.gate_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.41.mlp.down_proj": {
+            "group_size": 64,
+            "bits": 8
+          },
+          "language_model.model.layers.41.mlp.up_proj": {
+            "group_size": 64,
+            "bits": 8
+          }
+        }
+      },
+      "checkpoint_config_provenance": "post-review retrieval of exact bytes matching the pre-collection SHA-256; not effective kernel attestation",
+      "lm_studio_application_version": null,
+      "underlying_mlx_library_version": null,
+      "effective_sampler_settings": null,
+      "prefix_cache_state": null,
+      "background_load_control": null,
+      "cpu_brand_at_primary_preflight": null
+    }
+  },
+  "interval_method": {
+    "alpha": 0.05,
+    "contrasts": 4,
+    "families": 3,
+    "component_intervals": 24,
+    "working_model": "independent identically distributed task pairs within each family; not cluster-robust or repeated-block uncertainty"
+  },
+  "pilot_processor_evidence": {
+    "chip": "Apple M4 Pro",
+    "time": "2026-10-25T20:24:36+0100",
+    "source": "pilot-ornith-v2/environment-start.json",
+    "status": "same-session pilot; not re-measured in primary preflights"
+  },
+  "manifest_sha256": "a67dd2119c3bb85cf1f70cfce23521793a58746c728cafabcc90b2546f99fa86"
+}

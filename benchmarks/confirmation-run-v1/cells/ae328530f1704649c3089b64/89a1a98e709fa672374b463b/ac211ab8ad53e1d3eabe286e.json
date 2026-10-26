@@ -1,0 +1,38 @@
+{
+  "association": {
+    "task_id": "HumanEval/99",
+    "task_sha256": "ff28470a9abf136511b1eb3e27d9554ec8e2c9ade37ca5fb2bfc1a0a17c1124e",
+    "prompt_sha256": "80fbd8d0ae3f4f4dfc6e2674ee38f0baf8b1303e3b9a849caf48a4428dde06f6",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/ac211ab8ad53e1d3eabe286e/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 7.6453895829909015
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/ac211ab8ad53e1d3eabe286e/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/ac211ab8ad53e1d3eabe286e/R-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 9.256951874995138
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/ac211ab8ad53e1d3eabe286e/first-0.json",
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/ac211ab8ad53e1d3eabe286e/D-1.json"
+      ],
+      "selected": 1,
+      "full_loop_seconds": 14.731887540998287
+    }
+  },
+  "cell_seconds": 16.343591583005036
+}

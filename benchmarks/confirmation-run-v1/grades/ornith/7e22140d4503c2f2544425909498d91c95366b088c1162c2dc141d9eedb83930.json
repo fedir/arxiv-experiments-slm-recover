@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/a37a469026972e180c6c1297/first-0.json",
+  "artifact_sha256": "d2fe3285d6da0baa9207fb358fa2d5d265f274fb6148221f13e8fa0a399a91d5",
+  "final_grade": {
+    "passed": true,
+    "detail": "all public fixtures match"
+  }
+}

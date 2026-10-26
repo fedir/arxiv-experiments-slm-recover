@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sql-nulls-last-labels",
+    "task_sha256": "f604f0d12026657df19a1f2f0a27fd3c7d604374c3697fae8b855426b3aa0b1d",
+    "prompt_sha256": "de802d84724e64f3644212c1670f0d5f473ff3a56082f36e3f97d60d02f0ed9e",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "R",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "record": "R-1.json"
+}

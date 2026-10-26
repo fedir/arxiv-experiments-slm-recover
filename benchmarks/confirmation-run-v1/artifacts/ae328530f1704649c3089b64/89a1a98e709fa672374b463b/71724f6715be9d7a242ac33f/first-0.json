@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE jobs(status TEXT); Return the count of rows whose status is exactly active, ignoring case. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE jobs(status TEXT); INSERT INTO jobs VALUES('active'),('done');\", \"expected\": [[1]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-h61s85yl45oy0wg8e3jlo",
+    "object": "chat.completion",
+    "created": 1792959522,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\nimport sqlite3\n\n\ndef count_active(jobs: sqlite3.Connection) -> int:\n    return jobs.execute(\n        \"SELECT COUNT(*) FROM jobs WHERE LOWER(status) = 'active';\"\n    ).fetchone()[0]\n\n\nif __name__ == \"__main__\":\n    conn = sqlite3.connect(\":memory:\")\n    try:\n        conn.execute(\"CREATE TABLE jobs(status TEXT)\")\n        for row in [\n            (\"active\",),\n            (\"done\",),\n            (\"ACTIVE\",),\n            (\"Active\",),\n        ]:\n            conn.execute(\"INSERT INTO jobs VALUES(?)\", row)\n\n        result = count_active(conn)\n        print(result)\n        assert [result] == [[1]]\n    finally:\n        conn.close()\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 136,
+      "completion_tokens": 168,
+      "total_tokens": 304,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\nimport sqlite3\n\n\ndef count_active(jobs: sqlite3.Connection) -> int:\n    return jobs.execute(\n        \"SELECT COUNT(*) FROM jobs WHERE LOWER(status) = 'active';\"\n    ).fetchone()[0]\n\n\nif __name__ == \"__main__\":\n    conn = sqlite3.connect(\":memory:\")\n    try:\n        conn.execute(\"CREATE TABLE jobs(status TEXT)\")\n        for row in [\n            (\"active\",),\n            (\"done\",),\n            (\"ACTIVE\",),\n            (\"Active\",),\n        ]:\n            conn.execute(\"INSERT INTO jobs VALUES(?)\", row)\n\n        result = count_active(conn)\n        print(result)\n        assert [result] == [[1]]\n    finally:\n        conn.close()\n```",
+  "telemetry": {
+    "request_seconds": 4.074417625000933,
+    "prompt_tokens": 136,
+    "completion_tokens": 168,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-h61s85yl45oy0wg8e3jlo"
+  },
+  "association": {
+    "task_id": "cv1-sql-case-status-count",
+    "task_sha256": "772e53c5259075dd18d550741109d903938f52049053ac934587ef8c68dcd29d",
+    "prompt_sha256": "756151ad3f6bb6f98f70a75a6c68011b09940ad08e58ce675036169858b51bd1",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"import\": syntax error",
+    "seconds": 0.00033733299642335624
+  }
+}

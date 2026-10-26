@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nPrint the first colon-separated field of each nonempty line in users.txt. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"users.txt\": \"ada:1\\nbo:2\\n\"}, \"expected\": \"ada\\nbo\\n\"}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```bash\nawk -F: '{print $1}' users.txt\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 184,
+      "total_output_tokens": 18,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 48.70726745010106,
+      "time_to_first_token_seconds": 0.163
+    }
+  },
+  "answer": "```bash\nawk -F: '{print $1}' users.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.5451127499982249,
+    "prompt_tokens": 184,
+    "completion_tokens": 18,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sh-first-fields",
+    "task_sha256": "fbb345912c96e9109e376ffb04bb1712b3b87c8d98cdeb542178ed483081c080",
+    "prompt_sha256": "5cfb73afb3de910f0c251cc3c27b32e7cdd7330ee367f3fcefe7defce84230b1",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.015696374990511686
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE files(filename TEXT); Return filenames longer than four characters, sorted by filename. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE files(filename TEXT); INSERT INTO files VALUES('alpha'),('beta');\", \"expected\": [[\"alpha\"]], \"ordered\": true}]"
+      },
+      {
+        "role": "assistant",
+        "content": "```python\nimport sqlite3\n\ndef get_long_filenames(conn):\n    cursor = conn.execute(\"SELECT filename FROM files WHERE length(filename) > 4 ORDER BY filename COLLATE NOCASE\")\n    return cursor.fetchall()\n```"
+      },
+      {
+        "role": "user",
+        "content": "the query fails: OperationalError: near \"import\": syntax error Correct the solution. Return only one code block."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-jtk2kngyt0bedqyf1oop5v",
+    "object": "chat.completion",
+    "created": 1792959540,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef get_long_filenames(conn):\n    cursor = conn.execute(\"SELECT filename FROM files WHERE length(filename) > 4 ORDER BY filename\")\n    return cursor.fetchall()\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 218,
+      "completion_tokens": 40,
+      "total_tokens": 258,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```python\ndef get_long_filenames(conn):\n    cursor = conn.execute(\"SELECT filename FROM files WHERE length(filename) > 4 ORDER BY filename\")\n    return cursor.fetchall()\n```",
+  "telemetry": {
+    "request_seconds": 1.0554373750055674,
+    "prompt_tokens": 218,
+    "completion_tokens": 40,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-jtk2kngyt0bedqyf1oop5v"
+  },
+  "association": {
+    "task_id": "cv1-sql-length-filter",
+    "task_sha256": "3809dc5ebd681ba26840be14315f14ade9d6a2f9c22386d390ecfed588f3b00f",
+    "prompt_sha256": "2b720cbbba565d6d395fe42177ba9e450edc41cd046f8ae1906b03bf263ef6a4",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "the query fails: OperationalError: near \"def\": syntax error",
+    "seconds": 0.0004039170016767457
+  }
+}

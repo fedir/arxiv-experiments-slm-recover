@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-sorted-space-filenames",
+    "task_sha256": "16a86294b5bd1e115b7d8b14ab9323d3e57541a73f856a31d79aef6daa756330",
+    "prompt_sha256": "3242c934a129164a029b4a37163ab37f0e486b848657ccfc39e97613818d6588",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "record": "first-0.json"
+}

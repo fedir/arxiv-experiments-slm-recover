@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-unique-casefold-words",
+    "task_sha256": "5fe26b02c8e8313031f69bb2f54c6db76889eaf9e928a61c1e3dd030263b7435",
+    "prompt_sha256": "6488e6ce6647329b2c3207a1cdf3da70db903192223f80320563f52d2a80626e",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "D-1.json"
+}

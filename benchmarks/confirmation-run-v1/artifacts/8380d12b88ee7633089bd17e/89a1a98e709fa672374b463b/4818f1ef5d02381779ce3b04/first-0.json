@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nSQLite schema: CREATE TABLE games(team TEXT,score INTEGER); Return each team and its maximum score, sorted by team. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE games(team TEXT,score INTEGER); INSERT INTO games VALUES('A',2),('B',4);\", \"expected\": [[\"A\", 2], [\"B\", 4]], \"ordered\": true}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```sqlite\nSELECT team, MAX(score) FROM games GROUP BY team;\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 158,
+      "total_output_tokens": 19,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 48.622039625365446,
+      "time_to_first_token_seconds": 0.138
+    }
+  },
+  "answer": "```sqlite\nSELECT team, MAX(score) FROM games GROUP BY team;\n```",
+  "telemetry": {
+    "request_seconds": 0.5449509999889415,
+    "prompt_tokens": 158,
+    "completion_tokens": 19,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sql-per-team-top-score",
+    "task_sha256": "afd49dd12427daefb897789a69e2ddab25cccdb67eeac837f97c8f3a2287f8e5",
+    "prompt_sha256": "f7f6ef0f4652ad7b138c78e7caae1da600feba857b380c4236c951c5fd55d596",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.00026979199901688844
+  }
+}

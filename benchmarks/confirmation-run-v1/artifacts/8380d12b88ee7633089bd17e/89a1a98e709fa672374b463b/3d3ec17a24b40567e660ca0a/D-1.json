@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nPrint the name of the largest regular file in the current directory; choose the lexicographically greatest full filename on ties. At least one regular file exists. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"a\": \"x\", \"b\": \"xx\"}, \"expected\": \"b\\n\"}]\n\nASSISTANT:\n```bash\nls -1 -- *.txt | xargs egrep -v '^$' | sort -r | head -n 1\n```\n\nUSER:\nexit=0, stdout=b'', expected=b'b\\n', stderr=b'ls: *.txt: No such file or directory\\n' Correct the solution. Return only one code block.",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```bash\nls -1 | sort -r | head -n 1\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 273,
+      "total_output_tokens": 19,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 48.412875232939506,
+      "time_to_first_token_seconds": 0.116
+    }
+  },
+  "answer": "```bash\nls -1 | sort -r | head -n 1\n```",
+  "telemetry": {
+    "request_seconds": 0.5236244589905255,
+    "prompt_tokens": 273,
+    "completion_tokens": 19,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sh-largest-byte-file",
+    "task_sha256": "2f38e31a2e9f6073a58076abb1d5c832cf2b905ad8b5609670d7c9c6b60b6b6c",
+    "prompt_sha256": "0611b064d8d7e56fed2dac8b852845759aed47350776c83af28afd1f55044dc6",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.017304042004980147
+  }
+}

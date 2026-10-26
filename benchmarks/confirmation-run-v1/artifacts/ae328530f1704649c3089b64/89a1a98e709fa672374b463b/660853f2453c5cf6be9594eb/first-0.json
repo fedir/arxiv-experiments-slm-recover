@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print the number of newline-delimited records in records.txt; an unterminated final record still counts. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"records.txt\": \"a\\nb\\n\"}, \"expected\": \"2\\n\"}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-0n9agppcl7efgo6lbey0ahn",
+    "object": "chat.completion",
+    "created": 1792959543,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nawk 'END{print NR}' records.txt\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 176,
+      "completion_tokens": 15,
+      "total_tokens": 191,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nawk 'END{print NR}' records.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.8384495000063907,
+    "prompt_tokens": 176,
+    "completion_tokens": 15,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-0n9agppcl7efgo6lbey0ahn"
+  },
+  "association": {
+    "task_id": "cv1-sh-newline-record-count",
+    "task_sha256": "59f4cc2b02e2a20bef7468c044228655f3cadae211c32e3c688c6ec894540185",
+    "prompt_sha256": "46ae9dda6a1179acd82455b948f134f491b6bb8efbe41135d298a707afdf31f1",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.03938433299481403
+  }
+}

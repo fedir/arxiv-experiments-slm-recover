@@ -1,0 +1,36 @@
+{
+  "association": {
+    "task_id": "cv1-sh-csv-active-names",
+    "task_sha256": "a7b0ef60b7209f8b59962a3de712532accd939d6e5d848f6103b6e876d1b76c4",
+    "prompt_sha256": "dab6397a13f0876ea315e2f9df1d84451fe7cc47f5ab42f2fb6195d86f00b248",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "cell",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "policies": {
+    "N": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/3a111d1396af5beea34fabdf/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.0611586669983808
+    },
+    "R": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/3a111d1396af5beea34fabdf/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.0611795419972623
+    },
+    "D": {
+      "attempts": [
+        "artifacts/ae328530f1704649c3089b64/89a1a98e709fa672374b463b/3a111d1396af5beea34fabdf/first-0.json"
+      ],
+      "selected": 0,
+      "full_loop_seconds": 1.0611760840110946
+    }
+  },
+  "cell_seconds": 1.0613434580009198
+}

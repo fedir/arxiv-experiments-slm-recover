@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gemma-confirmation",
+    "system_prompt": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level.",
+    "input": "USER:\nFor integers stored one per nonempty line in amounts.txt, print the running total after each line, preserving order. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"amounts.txt\": \"2\\n3\\n\"}, \"expected\": \"2\\n5\\n\"}]",
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "store": false
+  },
+  "response": {
+    "model_instance_id": "gemma-confirmation",
+    "output": [
+      {
+        "type": "message",
+        "content": "```bash\nawk '{s+=$1; print s}' amounts.txt\n```"
+      }
+    ],
+    "stats": {
+      "input_tokens": 187,
+      "total_output_tokens": 19,
+      "reasoning_output_tokens": 0,
+      "tokens_per_second": 48.47037694646829,
+      "time_to_first_token_seconds": 0.187
+    }
+  },
+  "answer": "```bash\nawk '{s+=$1; print s}' amounts.txt\n```",
+  "telemetry": {
+    "request_seconds": 0.5944512910064077,
+    "prompt_tokens": 187,
+    "completion_tokens": 19,
+    "reasoning_tokens": 0,
+    "finish_reason": null,
+    "response_id": null,
+    "response_model": "gemma-confirmation",
+    "http_status": 200
+  },
+  "association": {
+    "task_id": "cv1-sh-cumulative-integer-totals",
+    "task_sha256": "523e549f8519664105bc3a07f29be64b0efa5dfae22581e855d1ce85cbd3e9d6",
+    "prompt_sha256": "aa04a4d6c87ceebdebfb452c8bc121190ae1c28be6e2290e153f4d95a0992c3e",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.019568916002754122
+  }
+}

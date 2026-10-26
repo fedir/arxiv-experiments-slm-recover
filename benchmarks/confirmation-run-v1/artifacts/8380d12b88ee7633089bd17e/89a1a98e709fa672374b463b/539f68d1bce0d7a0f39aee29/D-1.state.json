@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-failed-command-names",
+    "task_sha256": "fe0d260a5538b2a2e31fdc3969351a5f90316a5e1cefb6bf2a477e669c7637e5",
+    "prompt_sha256": "fae367ca67b1eabfd8e07eb1a7f442af4cb283f84a0ca8bfbf3644fc8aeff282",
+    "model_id": "gemma-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "3f08a25eb897468ede3bc9d56e377f2d2aa8a9ce8234f671bfd5a5555133d901"
+  },
+  "record": "D-1.json"
+}

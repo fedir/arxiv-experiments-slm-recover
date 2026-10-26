@@ -1,0 +1,8 @@
+{
+  "artifact": "artifacts/8380d12b88ee7633089bd17e/89a1a98e709fa672374b463b/3d3ec17a24b40567e660ca0a/R-1.json",
+  "artifact_sha256": "a6687946a7974e27e87e510d95cbb8a3063f366d0b2432b7c1fd69ac8128c083",
+  "final_grade": {
+    "passed": false,
+    "detail": "exit=0, stdout=b'', expected=b'z\\n', stderr=b'stat: illegal option -- c\\nusage: stat [-FLnq] [-f format | -l | -r | -s | -x] [-t timefmt] [file ...]\\nstat: illegal option -- c\\nusage: stat [-FLnq] [-f format | -l | -r | -s | -x] [-t timefmt] [file .'"
+  }
+}

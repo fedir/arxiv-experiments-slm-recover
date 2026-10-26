@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE shipments(\"order\" INTEGER); Return values from the column named order, sorted ascending. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE shipments(\\\"order\\\" INTEGER); INSERT INTO shipments VALUES(2),(1);\", \"expected\": [[1], [2]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-q0o88q00q4hgq1qmzkuge8",
+    "object": "chat.completion",
+    "created": 1792959501,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```sql\nSELECT \"order\" FROM shipments ORDER BY \"order\" ASC;\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 140,
+      "completion_tokens": 19,
+      "total_tokens": 159,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```sql\nSELECT \"order\" FROM shipments ORDER BY \"order\" ASC;\n```",
+  "telemetry": {
+    "request_seconds": 0.8590840840042802,
+    "prompt_tokens": 140,
+    "completion_tokens": 19,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-q0o88q00q4hgq1qmzkuge8"
+  },
+  "association": {
+    "task_id": "cv1-sql-quoted-reserved-column",
+    "task_sha256": "9c431e744e2fc5e764b1d975c5285bb15ca92f514da27fd5558470dd1d53b5ec",
+    "prompt_sha256": "733559f1e63ce5b3d2a0bf34074df4398d47ba3120db495f796916b15a8a0c38",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.0004367500077933073
+  }
+}

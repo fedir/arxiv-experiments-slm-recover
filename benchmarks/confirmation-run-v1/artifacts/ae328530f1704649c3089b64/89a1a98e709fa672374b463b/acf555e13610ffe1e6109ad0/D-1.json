@@ -1,0 +1,84 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print unique words from words.txt case-insensitively, as lowercase, sorted. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"words.txt\": \"a\\nb\\n\"}, \"expected\": \"a\\nb\\n\"}]"
+      },
+      {
+        "role": "assistant",
+        "content": "```bash\nLC_ALL=C sort -u < words.txt | tr '\\n' ' '; echo\n```"
+      },
+      {
+        "role": "user",
+        "content": "exit=0, stdout=b'a b \\n', expected=b'a\\nb\\n', stderr=b'' Correct the solution. Return only one code block."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-h9l3epl5h635z5rp3qfvs",
+    "object": "chat.completion",
+    "created": 1792959548,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nLC_ALL=C sort -u < words.txt | tr 'A-Z' 'a-z'; echo\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 242,
+      "completion_tokens": 26,
+      "total_tokens": 268,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nLC_ALL=C sort -u < words.txt | tr 'A-Z' 'a-z'; echo\n```",
+  "telemetry": {
+    "request_seconds": 0.8131451250083046,
+    "prompt_tokens": 242,
+    "completion_tokens": 26,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-h9l3epl5h635z5rp3qfvs"
+  },
+  "association": {
+    "task_id": "cv1-sh-unique-casefold-words",
+    "task_sha256": "5fe26b02c8e8313031f69bb2f54c6db76889eaf9e928a61c1e3dd030263b7435",
+    "prompt_sha256": "6488e6ce6647329b2c3207a1cdf3da70db903192223f80320563f52d2a80626e",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": false,
+    "feedback": "exit=0, stdout=b'a\\nb\\n\\n', expected=b'a\\nb\\n', stderr=b''",
+    "seconds": 0.036869332994683646
+  }
+}

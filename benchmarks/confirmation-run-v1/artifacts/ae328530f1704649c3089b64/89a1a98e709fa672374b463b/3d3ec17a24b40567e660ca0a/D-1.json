@@ -1,0 +1,84 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 1142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "Print the name of the largest regular file in the current directory; choose the lexicographically greatest full filename on ties. At least one regular file exists. Files are in the current directory. Inputs are ASCII plain text; CSV/TSV have no quoting or embedded delimiters; words.txt has one word per line. Filenames contain no newlines or tabs. Use C locale and preserve input order unless sorting is requested. Output must match exactly, including newlines, and the command must exit 0 within 5 seconds. Return one bash command in a code block.\nPublic fixture(s): [{\"files\": {\"a\": \"x\", \"b\": \"xx\"}, \"expected\": \"b\\n\"}]"
+      },
+      {
+        "role": "assistant",
+        "content": "```bash\nls -1 . | grep -E '^-' | awk '{print $NF}' | sort | tail -n1\n```"
+      },
+      {
+        "role": "user",
+        "content": "exit=0, stdout=b'', expected=b'b\\n', stderr=b'' Correct the solution. Return only one code block."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-sn5g986zc9c7heyt6zyd9u",
+    "object": "chat.completion",
+    "created": 1792959551,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```bash\nls -1 . | awk '{print $NF}' | sort | tail -n1\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 257,
+      "completion_tokens": 24,
+      "total_tokens": 281,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```bash\nls -1 . | awk '{print $NF}' | sort | tail -n1\n```",
+  "telemetry": {
+    "request_seconds": 0.7130864590144483,
+    "prompt_tokens": 257,
+    "completion_tokens": 24,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-sn5g986zc9c7heyt6zyd9u"
+  },
+  "association": {
+    "task_id": "cv1-sh-largest-byte-file",
+    "task_sha256": "2f38e31a2e9f6073a58076abb1d5c832cf2b905ad8b5609670d7c9c6b60b6b6c",
+    "prompt_sha256": "c85ac38d6f7bf41766b7c012045a78b06e736460adb23c393a6588f31730d3b1",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.03932379200705327
+  }
+}

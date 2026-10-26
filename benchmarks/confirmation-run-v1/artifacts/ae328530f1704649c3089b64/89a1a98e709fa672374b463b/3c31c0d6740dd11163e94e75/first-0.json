@@ -1,0 +1,76 @@
+{
+  "request": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "seed": 142,
+    "model": "ornith-confirmation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Implement the requested solution. Return only complete code in one code block, including required imports. For Python, define the requested function at top level."
+      },
+      {
+        "role": "user",
+        "content": "SQLite schema: CREATE TABLE readings(temp REAL); Return the average non-NULL temperature rounded to two decimals. Return only the requested columns in one read-only SELECT query. Preserve duplicates unless stated otherwise; use SQLite default binary text collation. Return one code block.\nPublic fixture(s): [{\"setup\": \"CREATE TABLE readings(temp REAL); INSERT INTO readings VALUES(2.0),(4.0);\", \"expected\": [[3.0]], \"ordered\": true}]"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-bt67fj01itvu1enhy07qw",
+    "object": "chat.completion",
+    "created": 1792959541,
+    "model": "ornith-confirmation",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```sql\nSELECT ROUND(AVG(temp), 2) FROM readings WHERE temp IS NOT NULL;\n```",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 140,
+      "completion_tokens": 23,
+      "total_tokens": 163,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "ornith-confirmation"
+  },
+  "answer": "```sql\nSELECT ROUND(AVG(temp), 2) FROM readings WHERE temp IS NOT NULL;\n```",
+  "telemetry": {
+    "request_seconds": 0.9436299170047278,
+    "prompt_tokens": 140,
+    "completion_tokens": 23,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-bt67fj01itvu1enhy07qw"
+  },
+  "association": {
+    "task_id": "cv1-sql-average-nonnull",
+    "task_sha256": "ab1d5db3d34db72fe4d76739ebf649b6a3653df2790ad48eed2c000dc3d229cc",
+    "prompt_sha256": "c778ebc3ea4e46d95e6b13ecb1a946af726ce02a1c5a79720c46ba814a8573e8",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "first",
+    "attempt": 0,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "public_grade": {
+    "passed": true,
+    "feedback": "all public fixtures match",
+    "seconds": 0.000489499987452291
+  }
+}

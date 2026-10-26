@@ -1,0 +1,14 @@
+{
+  "status": "recorded",
+  "association": {
+    "task_id": "cv1-sh-matching-extension-count",
+    "task_sha256": "322fb7fc674418152d1c463a40c29bbf030f4d855ea703ffe1e07304f00fdc04",
+    "prompt_sha256": "46f2d638016fcde95c76469dac7b7f7163283137e5b083fb248ae7b9df62121c",
+    "model_id": "ornith-confirmation",
+    "block": "block-1",
+    "policy": "D",
+    "attempt": 1,
+    "protocol_sha256": "5e30b8e89dd7606992a2c302fcba53e86a75bc48e52001bd91100be30e4236b4"
+  },
+  "record": "D-1.json"
+}
