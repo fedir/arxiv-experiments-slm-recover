@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "source": {
+    "evaluator": "evalplus",
+    "evaluator_version": "0.3.1",
+    "dataset": "HumanEvalPlus",
+    "dataset_version": "v0.1.10",
+    "source_sha256": "42526ec0e7d5f3ee0b06d6ced98f8c8bae3d76519151bfb3d36f79010645bd7f"
+  },
+  "selection": {
+    "algorithm": "random.Random(seed).sample(sorted(task_ids), 40)",
+    "seed": 20261025,
+    "task_count": 40
+  },
+  "tasks": [
+    {
+      "task_id": "HumanEval/5",
+      "entry_point": "intersperse",
+      "prompt_sha256": "388474ac71e5b893802f5971102df2e4ea82ddf2f916a4a55361c19370f54012"
+    },
+    {
+      "task_id": "HumanEval/8",
+      "entry_point": "sum_product",
+      "prompt_sha256": "84dc98e731928675a91c68cbff1f89d0677596f849fa0e6b34fa9b40335fce03"
+    },
+    {
+      "task_id": "HumanEval/10",
+      "entry_point": "make_palindrome",
+      "prompt_sha256": "60e80406bde04ba96808271e9ba8fd58129b6e8570d3ef23a2eb4c8a79370913"
+    },
+    {
+      "task_id": "HumanEval/11",
+      "entry_point": "string_xor",
+      "prompt_sha256": "ab1ec5c88f83f3fd16def18381c88b33bd5109b84f05147a54f50f95eca66c89"
+    },
+    {
+      "task_id": "HumanEval/13",
+      "entry_point": "greatest_common_divisor",
+      "prompt_sha256": "a7946546bc3a483bb5f2249ced878d510d6765d3c987a3e56dd878fe5bb60c19"
+    },
+    {
+      "task_id": "HumanEval/15",
+      "entry_point": "string_sequence",
+      "prompt_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4"
+    },
+    {
+      "task_id": "HumanEval/17",
+      "entry_point": "parse_music",
+      "prompt_sha256": "713553ae9220b08678d575238a702f883cc1d37b1986a6bfa010f8d641601d36"
+    },
+    {
+      "task_id": "HumanEval/18",
+      "entry_point": "how_many_times",
+      "prompt_sha256": "6fc9c00aa6b110ecf79f34e36f14b6b4c9a27128463ef6733b948e32a35c2bfc"
+    },
+    {
+      "task_id": "HumanEval/19",
+      "entry_point": "sort_numbers",
+      "prompt_sha256": "61b0d963a0d3797bc5ef83253bf35a531d7e31eedbd18181ff117b0e07e5c940"
+    },
+    {
+      "task_id": "HumanEval/21",
+      "entry_point": "rescale_to_unit",
+      "prompt_sha256": "f5d1f07614da8dffb7e6ede02cdedd73f58405f47aeb516b82318416a4acf0c7"
+    },
+    {
+      "task_id": "HumanEval/25",
+      "entry_point": "factorize",
+      "prompt_sha256": "b619821eb84b3f0f1296d3f955acfcd54e9f78bc70d2f06929cdfc08fd6b3788"
+    },
+    {
+      "task_id": "HumanEval/34",
+      "entry_point": "unique",
+      "prompt_sha256": "c48cad1505632ee1c7534d4b5dc430767155942186f1f0eb2c3e46074c1111a6"
+    },
+    {
+      "task_id": "HumanEval/36",
+      "entry_point": "fizz_buzz",
+      "prompt_sha256": "9ca3d814d8f4c88fc35c6286cf046f39b0903222b094a800926eead370bcf4bb"
+    },
+    {
+      "task_id": "HumanEval/50",
+      "entry_point": "decode_shift",
+      "prompt_sha256": "e887c2acd0e721f727626a0eb8e1dd45c88ec9f8fdbf1e5c2c637cf5cf2d907c"
+    },
+    {
+      "task_id": "HumanEval/55",
+      "entry_point": "fib",
+      "prompt_sha256": "b99ee738edd1466c976259cf4271917d52d9a0df5220d566646b476a4400a336"
+    },
+    {
+      "task_id": "HumanEval/57",
+      "entry_point": "monotonic",
+      "prompt_sha256": "5656ff21e3b01209978415c290235784e32350405706cebc0045defa6271dd99"
+    },
+    {
+      "task_id": "HumanEval/58",
+      "entry_point": "common",
+      "prompt_sha256": "1ea0b2ba5f5fa366f20d0edd79ce1af5dc42629807502c5868700fcb9117b8b0"
+    },
+    {
+      "task_id": "HumanEval/59",
+      "entry_point": "largest_prime_factor",
+      "prompt_sha256": "cf78f9000b4d867d85088bb0c95336fae0da8a00dee82e40074ad153f0f470bd"
+    },
+    {
+      "task_id": "HumanEval/65",
+      "entry_point": "circular_shift",
+      "prompt_sha256": "2751ca433b3ea9f4f348dd18f65c357482e140739e26ec98b1e056e55b491dc0"
+    },
+    {
+      "task_id": "HumanEval/69",
+      "entry_point": "search",
+      "prompt_sha256": "62a5a2d0332d73a27da26ab1a46a7302d27bff719d9d354887d0a27a7cdc776a"
+    },
+    {
+      "task_id": "HumanEval/82",
+      "entry_point": "prime_length",
+      "prompt_sha256": "ed81b55d1d505600cf191ac150a087e2e81199bfd968e4fd6d9b3cad12bb28fa"
+    },
+    {
+      "task_id": "HumanEval/83",
+      "entry_point": "starts_one_ends",
+      "prompt_sha256": "501c2ec4e9c4a6fe9dfde5df9f891588ed572edc4a5db1eb82babe0d522a8391"
+    },
+    {
+      "task_id": "HumanEval/86",
+      "entry_point": "anti_shuffle",
+      "prompt_sha256": "f8a02b3472de03cd4fa7b7d9d47abd5a5d64cb8eea267c81dc575e2a281aa972"
+    },
+    {
+      "task_id": "HumanEval/91",
+      "entry_point": "is_bored",
+      "prompt_sha256": "9445e82177f062459a801e24909bc856435701d82f1d67a9dad1f9d6fd0f6362"
+    },
+    {
+      "task_id": "HumanEval/93",
+      "entry_point": "encode",
+      "prompt_sha256": "856a164439599802d5210e2969c1c5673c84b83b4bdca5db34384d7b10d3d741"
+    },
+    {
+      "task_id": "HumanEval/97",
+      "entry_point": "multiply",
+      "prompt_sha256": "cadfab7a20c335c251fcd403e9c144183ae36eee01a205783c534184aa1d3004"
+    },
+    {
+      "task_id": "HumanEval/99",
+      "entry_point": "closest_integer",
+      "prompt_sha256": "53ad185333496f1faa011070d323b24af3e23506e32f52ced0b3c0f9867d2719"
+    },
+    {
+      "task_id": "HumanEval/104",
+      "entry_point": "unique_digits",
+      "prompt_sha256": "bebe5af48f3614d96f23c19fa6134409f0b3bfe2f759662569f0987e15e0507c"
+    },
+    {
+      "task_id": "HumanEval/107",
+      "entry_point": "even_odd_palindrome",
+      "prompt_sha256": "0635c205473d52d0dcb6681641abe4b97606c0f5dbd6b2881179bd386b9f0d64"
+    },
+    {
+      "task_id": "HumanEval/108",
+      "entry_point": "count_nums",
+      "prompt_sha256": "c2e8f36f104159515ac39779538568114e45da57511596c007abc0da04875981"
+    },
+    {
+      "task_id": "HumanEval/112",
+      "entry_point": "reverse_delete",
+      "prompt_sha256": "1a0e5435912522547470d17b91604c47dbff24e81d145a7f2b79c281eef6b033"
+    },
+    {
+      "task_id": "HumanEval/113",
+      "entry_point": "odd_count",
+      "prompt_sha256": "2e684f86c7166a064ce81c06ad2a26b4d974f41c507e6e65e4dccd32f2345bcd"
+    },
+    {
+      "task_id": "HumanEval/118",
+      "entry_point": "get_closest_vowel",
+      "prompt_sha256": "0eec1170b109fb6d89c6ef7ccf3407439aa820f170e9377d84d5fef4a8da296d"
+    },
+    {
+      "task_id": "HumanEval/120",
+      "entry_point": "maximum",
+      "prompt_sha256": "360323c0b48ab9ab91ecd91655e881eb66140b4822d73cc5e6e40c9e2ae6ab82"
+    },
+    {
+      "task_id": "HumanEval/123",
+      "entry_point": "get_odd_collatz",
+      "prompt_sha256": "517b9458e64b1285c8fed0636622367f2fbdd313e8f23027250740cd7588f9e3"
+    },
+    {
+      "task_id": "HumanEval/126",
+      "entry_point": "is_sorted",
+      "prompt_sha256": "050a2b9defc209aa64d0777939ff3387ee7db918434d818789eab7b36578b7ca"
+    },
+    {
+      "task_id": "HumanEval/132",
+      "entry_point": "is_nested",
+      "prompt_sha256": "ceeef7227e3911edf98ea8a7c714116780f3468053e4cccc66bbb2dfa185c334"
+    },
+    {
+      "task_id": "HumanEval/146",
+      "entry_point": "specialFilter",
+      "prompt_sha256": "310a71d2feca4b63bf4ab0279cac60820a61a57157a413efd62823e6c69eb917"
+    },
+    {
+      "task_id": "HumanEval/149",
+      "entry_point": "sorted_list_sum",
+      "prompt_sha256": "387c54540db444ab39a66ed7c465db9a9145f9437273960b116cd1c7c974727a"
+    },
+    {
+      "task_id": "HumanEval/161",
+      "entry_point": "solve",
+      "prompt_sha256": "fa29d7f413a74f20646e32cd02cb87cdd6766bf4f81745a92db8bcd19d9734d2"
+    }
+  ]
+}

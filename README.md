@@ -2,10 +2,10 @@
 
 Research data accompanying this article, by Fedir Rykhtik, October 2026.
 
-This is a **data-only release**, not the original execution pipeline. It contains
+This is a **data and offline scientific reproduction-code release**. It contains
 the completed Ornith 1.5 9B / Gemma 4 E4B study: 72 tasks per model (40 HumanEval+,
 16 SQL, 16 shell), one sampling block, 144 task/model cells and 226 recorded calls.
-Historical experiments, pilot responses, author harness scripts, manuscript files,
+Historical experiments, pilot responses, inference/serving orchestration, manuscript files,
 model weights and unrelated private material are excluded.
 
 ## Layout
@@ -65,12 +65,29 @@ outcomes, subgroup counts and descriptive costs are in the JSON analyses.
 
 ## Scope of reproducibility
 
-The records support reconstruction of policy selections, inspection of generated
-candidates and fixtures, and independent statistical interpretation. The original
-collector/evaluator/analysis scripts and full runtime are **not distributed**.
-Thus this is not a complete computational replication package or a promise of
-identical stochastic trajectories. Hashes of withheld code/metadata identify
-retained evidence; not every referenced input is present in this export.
+The [`scientific/`](scientific/) package provides offline evidence/provenance
+checks, raw candidate extraction, original Python/SQL/shell grading, paired
+statistics and retrospective verifier/interval/cost reconstruction. See its
+[instructions](scientific/README.md), [source provenance](scientific/PROVENANCE.json)
+and [author validation record](scientific/VALIDATION.json).
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scientific/reproduce.py verify --output /tmp/slm-verify
+```
+
+The package was validated from a clean directory, fresh Python 3.12 environment
+and fresh dataset/expected-output cache on macOS: all 226 grade records and the
+full original analysis matched, and 16 focused controls passed. Statistical
+reconstruction requires only the standard library; regrading requires the pinned
+EvalPlus environment and OS execution sandbox described in the instructions.
+
+This is offline artifact reproduction, not the complete original collection
+pipeline or a promise of identical stochastic trajectories. Original collector,
+serving environment and private preflight/pilot logs remain excluded. Hashes of
+withheld metadata identify retained evidence; not every referenced input is
+present. Private hardware telemetry is reported evidence, not independently
+re-audited by the public replay. No separate DOI archive is deposited at present;
+cite a fixed GitHub commit for the exact data/code version.
 
 HumanEval final tests/canonical implementations are not bundled. The pinned
 upstream component is EvalPlus 0.3.1 / HumanEvalPlus v0.1.10; its original JSONL
@@ -81,7 +98,8 @@ kernel. No new benchmark run is necessary to inspect these files.
 
 ## License and attribution
 
-Author-contributed research data and annotations are CC BY 4.0 to the extent of
+Author scientific code in `scientific/` is MIT-licensed. Author-contributed research
+data and annotations are CC BY 4.0 to the extent of
 the author's rights; see `LICENSE`. Third-party prompts and dataset material keep
 their original terms and notices in `THIRD_PARTY_NOTICES.md`. No exclusive rights
 over facts or third-party/model-generated code are asserted. Model weights are

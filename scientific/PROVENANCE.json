@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "files": {
+    "frozen/public_checks.py": {
+      "original_source": "benchmarks/confirmation-run-v1/sources/public_checks.py",
+      "original_sha256": "5b5783445c4b05149b2d0883af0f2134096a348f7bb06ab3a2c18aa58cafdcb7",
+      "export_sha256": "5b5783445c4b05149b2d0883af0f2134096a348f7bb06ab3a2c18aa58cafdcb7",
+      "adaptation": "Byte-identical frozen source."
+    },
+    "frozen/final_grader.py": {
+      "original_source": "benchmarks/confirmation-run-v1/sources/final_grader.py",
+      "original_sha256": "e1ea6638800ece1d3631f7381ec887e3ff2e91f977db2df538c85db0c5e148cc",
+      "export_sha256": "e1ea6638800ece1d3631f7381ec887e3ff2e91f977db2df538c85db0c5e148cc",
+      "adaptation": "Byte-identical frozen source."
+    },
+    "frozen/analyze_confirmation.py": {
+      "original_source": "benchmarks/confirmation-run-v1/sources/analyze_confirmation.py",
+      "original_sha256": "4c2d95fd1b7185c385ef7e4a57f1821f42e14852fa0baf084d158bcecd5abb93",
+      "export_sha256": "4c2d95fd1b7185c385ef7e4a57f1821f42e14852fa0baf084d158bcecd5abb93",
+      "adaptation": "Byte-identical frozen source."
+    },
+    "frozen/collect.py": {
+      "original_source": "benchmarks/confirmation-run-v1/sources/collect.py",
+      "original_sha256": "866727a4a2e9c06b758ad103152a143baf8fa0c61b7ac2c4ffad43f0167a4276",
+      "export_sha256": "6a373055639339bfdced86c661971640e375426701903c29bad95cbae0546ac6",
+      "adaptation": "Exact named utility functions; validate_protocol's full-source-file loop is replaced by retained identity comparison. Exported bytes are checked by MANIFEST.json. No dispatch, network, collection or serving functions."
+    },
+    "run.py": {
+      "original_source": "benchmarks/confirmation-run-v1/sources/run.py",
+      "original_sha256": "f9bc9a2839364e04a9673a5a20eb01ba5981a9ce98e45bb25d3da6f2a18255c7",
+      "export_sha256": "eb69cde0589a1db7362c41de76594b424ef85f7474f3ecaf52396c4fa3ef252d",
+      "adaptation": "Exact named functions and required imports only; no algorithmic changes."
+    },
+    "primary_stats.py": {
+      "original_source": "benchmarks/confirmation-run-v1/sources/analyze_confirmation.py",
+      "original_sha256": "4c2d95fd1b7185c385ef7e4a57f1821f42e14852fa0baf084d158bcecd5abb93",
+      "export_sha256": "7e182818449fd0e5bbbd38e43d1c0d4bf4b0449fe6294bd4e28935b2ed4460cb",
+      "adaptation": "Exact interval, paired_stats and holm functions; no numerical changes."
+    },
+    "frozen/humaneval_manifest.json": {
+      "original_source": "benchmarks/confirmatory-v1/humaneval_manifest.json",
+      "original_sha256": "1b030f7ecbdc320bd15f57c65d3049a414eba45140c2e97fcd44c3332f2fc5d5",
+      "export_sha256": "97e8d8a9df1747322b668055d19b2031362c476626c7e0a94adcfb2bab9b09ea",
+      "adaptation": "Remove unused author-local source_path; retain source hash, versions, selection and all task/prompt identities unchanged."
+    },
+    "review/analyze_verifier.py": {
+      "original_source": "benchmarks/confirmation-review-v2/analyze_verifier.py",
+      "original_sha256": "181d2df4c90151a700f4148144ac4ae6d1439ac73acb147219e2deac42b974f6",
+      "export_sha256": "eed07fe8c06fa1c6c87b95af340ee6331bb771ccc7b472c3019a3b25db518a5a",
+      "adaptation": "Remove output-writing CLI; adjust default evidence location. All analysis functions are unchanged. New manifest identifies relocated code, not the old code."
+    },
+    "review/analyze_precision_cost.py": {
+      "original_source": "benchmarks/confirmation-review-v2/analyze_precision_cost.py",
+      "original_sha256": "152a64d2b6008eb6c3a974c457fb0a6b317d23d887392aceb11453909fff2c09",
+      "export_sha256": "a69fdece9937d35488d78aa4958d2832cd857654c99aa9e903f1ea9438a77d7e",
+      "adaptation": "Exact named numerical/config-summary functions; original private preflight/pilot orchestration omitted. Public entry point recomputes all model statistics/costs and checkpoint quantization summaries, not withheld configuration telemetry."
+    },
+    "review/PLAN.md": {
+      "original_source": "benchmarks/confirmation-review-v2/PLAN.md",
+      "original_sha256": "fcf8543f2ecd1a70fed2a31ea9dd0fa5eb2086fa8f0cc178e92992f391a9b003",
+      "export_sha256": "fcf8543f2ecd1a70fed2a31ea9dd0fa5eb2086fa8f0cc178e92992f391a9b003",
+      "adaptation": "Byte-identical frozen source."
+    },
+    "review/PLAN_P1.md": {
+      "original_source": "benchmarks/confirmation-review-v2/PLAN_P1.md",
+      "original_sha256": "a8c10d816b28c0bee3a068a96b30acaa7e4f10572613d185e320a3f2565c52bc",
+      "export_sha256": "a8c10d816b28c0bee3a068a96b30acaa7e4f10572613d185e320a3f2565c52bc",
+      "adaptation": "Byte-identical frozen source."
+    },
+    "tests/test_review_verifier.py": {
+      "original_source": "benchmarks/test_review_verifier.py",
+      "original_sha256": "8857b41c30dfcf479ba62981c18e6b2cd4a0bd017d32732818dcd9c6b84b1b1f",
+      "export_sha256": "9da2bffccf7abc5c9ce9184c2efb6e339929ee56f9ab0db5976bf944fcfa425c",
+      "adaptation": "Only test import path relocated."
+    },
+    "tests/test_review_precision_cost.py": {
+      "original_source": "benchmarks/test_review_precision_cost.py",
+      "original_sha256": "10780737b851b8588889218489ed7bbc3d5a31952753e5d938d244473316981c",
+      "export_sha256": "52d7fdc4fe1562d0d27a16d4e83eccffdbea9aea8c156ffade7c737b4d23d7db",
+      "adaptation": "Only test import path relocated."
+    }
+  }
+}

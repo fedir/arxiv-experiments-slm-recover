@@ -1,0 +1,39 @@
+{
+  "status": "pass",
+  "scope": "author validation of portable offline scientific release",
+  "environment": {
+    "python": "3.12.8",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "dependencies": "requirements-lock.txt",
+    "installation": "fresh venv, pip --no-cache-dir"
+  },
+  "checkout": "clean copied public export, no private workspace inputs",
+  "dataset_cache": "fresh HOME; pinned upstream dataset freshly downloaded; official outputs computed on cold cache",
+  "tests": 16,
+  "verification": {
+    "status": "pass",
+    "package_files_checked": 864,
+    "evidence_files_consumed": 828,
+    "candidates": 226,
+    "task_model_cells": 144,
+    "original_paired_statistics": "identical",
+    "retrospective_model_statistics_costs": "identical",
+    "grading": "saved grades checked against raw hashes; not executed by verify",
+    "configuration": "checkpoint summaries recomputed; withheld preflight/pilot telemetry not re-audited",
+    "model_calls": 0,
+    "python": "3.12.8"
+  },
+  "regrading": {
+    "status": "pass",
+    "candidate_grades": 226,
+    "full_original_analysis": "identical",
+    "grade_records": "identical including final detail and raw-file hash",
+    "model_calls": 0,
+    "python": "3.12.8",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "limits": "offline artifact replay, not independent human review or stochastic generation replay"
+  },
+  "export_manifest_sha256": "c7626e93e75c8c7c04e65191d206ee936139e56b1d6b2d2420ead1cf2b2a1df8",
+  "model_calls": 0,
+  "limitations": "macOS only validation; no independent human review, no stochastic generation replay; private hardware/preflight evidence not re-audited"
+}

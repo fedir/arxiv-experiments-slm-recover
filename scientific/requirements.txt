@@ -1,0 +1,2 @@
+# Scientific evaluator pin; exact resolved dependencies are recorded in validation.
+evalplus==0.3.1

@@ -1,0 +1,14 @@
+{
+  "collect.py": "866727a4a2e9c06b758ad103152a143baf8fa0c61b7ac2c4ffad43f0167a4276",
+  "public_checks.py": "5b5783445c4b05149b2d0883af0f2134096a348f7bb06ab3a2c18aa58cafdcb7",
+  "../run.py": "f9bc9a2839364e04a9673a5a20eb01ba5981a9ce98e45bb25d3da6f2a18255c7",
+  "final_grader.py": "e1ea6638800ece1d3631f7381ec887e3ff2e91f977db2df538c85db0c5e148cc",
+  "assurance.py": "8fa32f3c9b5614b0bcb35c448b314faa963a2cd33eff4733edff8336621aa94a",
+  "practical_tasks.py": "dab97f9f025d15773c3aab02fd8d68e06653c81afba65908646c89d0aa926c49",
+  "prepare_humaneval.py": "a0ba394509622bf6cdea983d0613c0d9e3f8d22f5061d49041ecfd70d12f9b8a",
+  "freeze.py": "87bbdf2b4dc35cfe914c9b48c60e4eda644d5b92198a5aa809c422cb64d10532",
+  "analyze_confirmation.py": "4c2d95fd1b7185c385ef7e4a57f1821f42e14852fa0baf084d158bcecd5abb93",
+  "preflight.py": "bea07826d899eddb4302411a864c0219f9df5403c5fe153bf0a7ef9f28f6e45d",
+  "PROTOCOL.md": "ea26783e16789f3d5fcfb4043528730b703346e5b32a8fe1ac866c5d69a5c5d1",
+  "VALIDATION.md": "73ef301a5a781427c8f8318f4795f94590f265883f9e08fc721df5e39b03687c"
+}

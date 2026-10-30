@@ -20,5 +20,6 @@ This grant does not replace third-party licenses, grant rights the author does
 not hold, or assert exclusive rights in facts or model-generated code. Material
 identified as third-party remains subject to its original terms. In particular,
 HumanEval/EvalPlus-derived content retains the notices and licenses reproduced
-in THIRD_PARTY_NOTICES.md. Model weights and the author's harness scripts are
-not distributed in this data-only repository.
+in THIRD_PARTY_NOTICES.md. Author scientific code under scientific/ is separately
+MIT-licensed; see scientific/LICENSE. Model weights and inference/serving
+orchestration are not distributed.
